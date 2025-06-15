@@ -12,9 +12,6 @@ type Props = {
 };
 
 const User = (props: Props) => {
-  // const [name, setName] = useState(props.name);
-  // const truncate = (str: string, max: number, suffix: string) => (str.length < max ? str : `${str.slice(0, str.slice(0, max - suffix.length).lastIndexOf(' '))}${suffix}`);
-
   const openMenu = () => {
     if (props.onClick) {
       props.menuActive ? props.onClick(false) : props.onClick(true);

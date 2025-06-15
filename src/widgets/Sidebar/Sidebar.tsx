@@ -11,7 +11,7 @@ const Sidebar = () => {
 
   const config = {
     logo: {
-      img: '/imgs/sidebar/logo.png',
+      img: 'imgs/sidebar/logo.png',
       alt: 'сигма лого',
       link: '/structure'
     },
@@ -129,7 +129,7 @@ const Sidebar = () => {
     accountInfo: {
       name: 'Мария',
       email: localStorage.getItem('userLogin') || 'mail@mail.ru',
-      image: '/imgs/sidebar/avatar.png'
+      image: 'imgs/sidebar/avatar.png'
     }
   };
 
