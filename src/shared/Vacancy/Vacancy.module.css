@@ -1,0 +1,128 @@
+.recruter,
+.vacancy_recruter {
+  width: 165px;
+}
+
+.created,
+.deadline,
+.vacancy_created,
+.vacancy_deadline {
+  text-align: center;
+  width: 100px;
+}
+
+.status {
+  text-align: center;
+  width: 126px;
+}
+
+.vacancy {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1636px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 21px 32px 21px 0px;
+  margin-bottom: 16px;
+}
+
+.main_checkbox {
+  width: 16px;
+  height: 16px;
+  margin: 8px;
+  background: var(--main-background-color);
+}
+
+.vacancy_title {
+  display: flex;
+}
+
+.vacancy_title__description {
+  width: 320px;
+  margin-left: 12px;
+  padding-right: 20px;
+}
+
+.vacancy_title__name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.vacancy_title__customer_name {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.vacancy_recruter__name {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.vacancy_created__date,
+.vacancy_deadline__date {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.vacancy_status {
+  width: 126px;
+}
+
+.vacancy_status__default {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  width: 100px;
+  border-radius: 10px;
+  padding: 4px 30px;
+}
+
+.vacancy_status__active {
+  background-color: #edf2ff;
+  color: var(--main-color);
+}
+
+.vacancy_status__paused {
+  background-color: #fcf0ca;
+  color: #d0a130;
+}
+
+.vacancy_status__draft {
+  background-color: #F5F6F9;
+  color: #767A7F;
+}
+
+.vacancy_status__closed {
+  background-color: #EAF7EB;
+  color: #5CBA61;
+}
+
+.vacancy_responses {
+  width: 70px;
+  text-align: center;
+}
+
+.vacancy_responses__quantity {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.vacancy_btn {
+  height: 36px;
+  background-color: var(--main-color);
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 8px;
+  margin-left: auto;
+}

@@ -1,0 +1,79 @@
+.user {
+  display: flex;
+  align-items: center;
+  padding: 8px ;
+  padding-top: 25px;
+  border-radius: 10px;
+}
+
+.user:hover {
+  background: rgb(236, 237, 240);
+}
+
+.user_popup:hover {
+  background-color: #fff;
+}
+
+.user_active,
+.user_active:hover {
+  background-color: var(--accent-color);
+}
+
+.list_arrow {
+  position: absolute;
+  background-image: url('/imgs/sidebar/user-arrow.svg');
+  width: 24px;
+  height: 24px;
+  right: 0;
+}
+
+.user:hover .list_arrow {
+  background-image: url('/imgs/sidebar/user-arrow-hover.svg');
+}
+
+.user_active .list_arrow,
+.user_active:hover .list_arrow {
+  background-image: url('/imgs/sidebar/user-arrow-active.svg');
+}
+
+.user_active .user_name,
+.user_active .user_email {
+  color: #fff;
+}
+
+.user_pic {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+}
+.user_info {
+display: flex;
+flex-direction: column;
+
+}
+
+.user_name {
+  margin: 0;
+  font-family: 'Gramatika Bold' !important;
+  color: var(--main-black);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 150%;
+  margin-bottom: 4px;
+}
+
+.user_email {
+  color: #595d62;
+  font-size: 14px;
+  line-height: 24px;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 1680px) {
+  .user_email:not(.popup) {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 88px;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,246 @@
+* {
+  color: #181b21;
+}
+
+.container {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100%;
+  padding: 20px;
+  overflow-x: hidden;
+  background: #f6f7fa;
+}
+
+.menu_btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  padding: 0;
+  border-radius: 4px;
+  background-image: url('/imgs/sidebar/menu-arrow.svg');
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.menu_btn:hover {
+  background-image: url('/imgs/sidebar/menu-arrow-hover.svg');
+}
+
+.menu_btn:active {
+  background-image: url('/imgs/sidebar/menu-arrow-active.svg');
+}
+
+.logo {
+  display: block;
+  cursor: pointer;
+  padding-left: 11px;
+  padding-top: 13px;
+  width: 160px;
+  height: 46px;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: #e1e1e1;
+  margin-top: 18px;
+  margin-bottom: 30px;
+}
+
+.nav {
+  height: 82%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu_list {
+  padding: 0;
+  border-bottom: 1px solid #e2e5ee;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.menu_list_item {
+  background-color: var(--main-background-color);
+  margin-bottom: 8px;
+  list-style: none;
+}
+
+.menu_list_item__checked {
+  background-color: var(--main-color);
+  border-radius: 8px;
+  color: white;
+}
+
+.menu_list_link,
+.menu_list_btn {
+  color: var(--font-color);
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 12px 4px 12px 42px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 24px;
+  background-repeat: no-repeat;
+  background-position: left 8px center;
+}
+
+.menu_list_link:hover,
+.menu_list_btn:hover,
+.expandable_container_link:hover {
+  background-color: #ecedf0;
+}
+
+.menu_list_link__checked {
+  color: white;
+}
+
+.menu_list_btn {
+  position: relative;
+  background-color: #f6f7fa;
+}
+
+.menu_list_btn_arrow {
+  position: absolute;
+  background-image: url('/imgs/sidebar/arrow-right.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 24px;
+  height: 24px;
+  right: 4px;
+  top: 12px;
+}
+
+.menu_list_btn_arrow_active {
+  background-image: url('/imgs/sidebar/arrow-active.svg');
+}
+
+.expandable_container {
+  height: fit-content;
+}
+
+.expandable_container_item {
+  box-sizing: border-box;
+}
+
+.expandable_container_link {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 4px 12px 44px;
+}
+
+.list_arrow {
+  position: absolute;
+  background-image: url('/imgs/icons/select-arrow.svg');
+  width: 24px;
+  height: 24px;
+  right: 0;
+  transform: rotate(270deg);
+}
+
+.list_arrow.active {
+  background-image: url('/imgs/icons/select-arrow-active.svg');
+  transform: none;
+}
+
+.link_options_list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.link_option {
+  width: 100%;
+  border-radius: 10px;
+  padding: 12px 4px 12px 52px;
+  font-size: 16px;
+  line-height: 150%;
+  margin-bottom: 2px;
+}
+
+.link_option:hover {
+  background-color: #feebe6;
+}
+
+.link_option_active,
+.link_option_active:hover {
+  color: #fff;
+  background-color: var(--accent-color);
+}
+
+.account_list {
+  position: relative;
+}
+
+.user_menu {
+  position: absolute;
+  bottom: 0;
+  right: -40px;
+}
+
+/* small */
+
+.container_small {
+  width: 104px;
+}
+
+.logo_small {
+  margin-bottom: 60px;
+}
+
+.menu_btn_small {
+  transform: rotate(0.5turn);
+}
+
+.menu_list_link_small,
+.menu_list_btn_small {
+  width: 64px;
+  height: 52px;
+  display: block;
+  padding: 14px 20px;
+  background-position: center;
+  background-size: 24px;
+  /* background-color: violet; */
+}
+
+.menu_list_btn_container_small {
+  margin-left: -12px;
+
+  width: 64px;
+  height: 52px;
+  display: block;
+  border-radius: 10px;
+}
+
+.menu_list_btn_dot {
+  position: absolute;
+  border-radius: 7px;
+  right: 8px;
+  top: 20px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-color);
+}
+
+@media screen and (max-width: 1720px) {
+  .container:not(.container_small) {
+    width: 240px;
+  }
+
+  .logo {
+    width: 160px;
+    height: 46px;
+  }
+}

@@ -1,0 +1,10 @@
+<svg width="24.000000" height="24.000000" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs/>
+	<path id="bar-vertical" d="M4.87 5.62L8.52 5.62M4.87 8.91L12.18 8.91M4.87 15.49L12.18 15.49M4.87 18.37L19.12 18.37M4.87 12.2L15.83 12.2" stroke="#181B21" stroke-opacity="1.000000" stroke-width="1.000000" stroke-linejoin="round"/>
+	<g opacity="0.000000">
+		<path id="plus" d="M19 2.18L19 5.06L19 7.93M19 5.06L16.12 5.06M19 5.06L21.87 5.06" stroke="#181B21" stroke-opacity="1.000000" stroke-width="1.000000" stroke-linejoin="round"/>
+	</g>
+</svg>
