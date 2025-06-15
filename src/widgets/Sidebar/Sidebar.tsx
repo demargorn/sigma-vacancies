@@ -7,7 +7,7 @@ import styles from './Sidebar.module.css';
 const Sidebar = () => {
   const currentPath = window.location.pathname;
   const [small, setSmall] = useState<boolean>(false);
-  const [currentMenu, setCurrentMenu] = useState<string>('');
+  const [currentMenu] = useState<string>('');
 
   const config = {
     logo: {
