@@ -1,25 +1,31 @@
+import { Link } from 'react-router';
+import { Breadcrumb } from '@heathmont/moon-core-tw';
+import { ControlsChevronRight, GenericHome } from '@heathmont/moon-icons-tw';
 import Vacancy from '@/shared/Vacancy/Vacancy';
-import styles from './Hiring.module.css';
 
-const Hiring = () => {
+import styles from './Vacancies.module.css';
+
+const Vacancies = () => {
+  const baseBreadcrumbs = [
+    <Link to="/" aria-label="Home">
+      <GenericHome className="text-moon-24" />
+    </Link>,
+    <Link to={`/vacancies`} style={{ marginRight: '8px', marginLeft: '8px' }}>
+      Найм сотрудников
+    </Link>,
+    <span key="Current" style={{ marginLeft: '8px' }}>
+      Вакансии
+    </span>
+  ];
+
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <div>
-          <a href="" className={styles.breadcrumbs}>
-            Home
-          </a>{' '}
-          --{'>'}
-          <a href="" className={styles.breadcrumbs}>
-            {' '}
-            Найм сотрудников
-          </a>{' '}
-          --{'>'}
-          <a href="" className={styles.breadcrumbs}>
-            {' '}
-            Вакансии
-          </a>
+
+        <div className={styles.breadcrumbs}>
+          <Breadcrumb breadcrumbs={baseBreadcrumbs} divider={<ControlsChevronRight className="text-moon-16 text-black" />} />
         </div>
+
         <div className={styles.input_container}>
           <input type="text" placeholder="Поиск" className={styles.input} />
           <button className={styles.input_button}></button>
@@ -40,10 +46,10 @@ const Hiring = () => {
           <button className={styles.chip}>Черновики</button>
         </div>
         <div className={styles.actions}>
-          <button className={`${styles.action} ${styles.action_1}`}></button>
+          <button className={`${styles.action} ${styles.action_1}`} title="фильтровать"></button>
           <button className={`${styles.action} ${styles.action_2}`}></button>
-          <button className={`${styles.action} ${styles.action_3}`}></button>
-          <button className={`${styles.action} ${styles.action_4}`}></button>
+          <button className={`${styles.action} ${styles.action_3}`} title="добавить вакансию"></button>
+          <button className={`${styles.action} ${styles.action_4}`} title="параметры"></button>
         </div>
       </div>
 
@@ -104,4 +110,4 @@ const Hiring = () => {
   );
 };
 
-export default Hiring;
+export default Vacancies;

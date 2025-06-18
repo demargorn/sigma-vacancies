@@ -70,12 +70,14 @@
 .menu_list_item {
   background-color: var(--main-background-color);
   margin-bottom: 8px;
-  list-style: none;
 }
 
 .menu_list_item__checked {
   background-color: var(--main-color);
-  border-radius: 8px;
+  border-radius: 10px;
+}
+
+.menu_list_item__checked a {
   color: white;
 }
 
@@ -98,10 +100,6 @@
 .menu_list_btn:hover,
 .expandable_container_link:hover {
   background-color: #ecedf0;
-}
-
-.menu_list_link__checked {
-  color: white;
 }
 
 .menu_list_btn {

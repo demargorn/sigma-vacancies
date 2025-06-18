@@ -23,7 +23,8 @@ button {
 }
 
 .breadcrumbs {
-  color: var(--font-color);
+  display: flex;
+  justify-content: space-between;
 }
 
 .input_container {
