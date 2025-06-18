@@ -22,6 +22,10 @@ button {
   margin-right: 20px;
 }
 
+.breadcrumbs {
+  color: var(--font-color);
+}
+
 .input_container {
   display: flex;
   justify-items: center;

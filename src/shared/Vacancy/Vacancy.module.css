@@ -1,21 +1,3 @@
-.recruter,
-.vacancy_recruter {
-  width: 165px;
-}
-
-.created,
-.deadline,
-.vacancy_created,
-.vacancy_deadline {
-  text-align: center;
-  width: 100px;
-}
-
-.status {
-  text-align: center;
-  width: 126px;
-}
-
 .vacancy {
   display: flex;
   align-items: center;
@@ -56,10 +38,20 @@
   line-height: 20px;
 }
 
+.vacancy_recruter {
+  width: 165px;
+}
+
 .vacancy_recruter__name {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
+}
+
+.vacancy_created,
+.vacancy_deadline {
+  text-align: center;
+  width: 100px;
 }
 
 .vacancy_created__date,
@@ -93,13 +85,13 @@
 }
 
 .vacancy_status__draft {
-  background-color: #F5F6F9;
-  color: #767A7F;
+  background-color: #f5f6f9;
+  color: #767a7f;
 }
 
 .vacancy_status__closed {
-  background-color: #EAF7EB;
-  color: #5CBA61;
+  background-color: #eaf7eb;
+  color: #5cba61;
 }
 
 .vacancy_responses {

@@ -5,9 +5,21 @@ const Hiring = () => {
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <span>
-          Home --{'>'} Найм сотрудников --{'>'} Вакансии
-        </span>
+        <div>
+          <a href="" className={styles.breadcrumbs}>
+            Home
+          </a>{' '}
+          --{'>'}
+          <a href="" className={styles.breadcrumbs}>
+            {' '}
+            Найм сотрудников
+          </a>{' '}
+          --{'>'}
+          <a href="" className={styles.breadcrumbs}>
+            {' '}
+            Вакансии
+          </a>
+        </div>
         <div className={styles.input_container}>
           <input type="text" placeholder="Поиск" className={styles.input} />
           <button className={styles.input_button}></button>
@@ -16,7 +28,7 @@ const Hiring = () => {
 
       <div className={styles.text_container}>
         <h1 className={styles.h1}>Вакансии</h1>
-        <span className={styles.qty}>49</span>
+        <span className={styles.qty}>4</span>
       </div>
 
       <div className={styles.tabs}>

@@ -22,14 +22,14 @@ const Sidebar = () => {
     mainMenu: [
       {
         text: 'Главная',
-        icon: '/imgs/sidebar/menu_icon.svg',
+        icon: 'imgs/sidebar/menu_icon.svg',
         // iconActive: '/imgs/sidebar/menu_icon_active.svg',
         link: '/structure',
         expands: false
       },
       {
         text: 'Аналитика',
-        icon: '/imgs/sidebar/analytics.svg',
+        icon: 'imgs/sidebar/analytics.svg',
         // iconActive: '/imgs/sidebar/analytics-active.svg',
         expands: true,
         link: '/analyticts',
@@ -58,28 +58,28 @@ const Sidebar = () => {
       },
       {
         text: 'Орг. структура',
-        icon: '/imgs/sidebar/orgs.svg',
+        icon: 'imgs/sidebar/orgs.svg',
         // iconActive: '/imgs/sidebar/orgs-active.svg', // пока нет
         link: '/departments',
         expands: false
       },
       {
         text: 'Сотрудники',
-        icon: '/imgs/sidebar/employees.svg',
+        icon: 'imgs/sidebar/employees.svg',
         // iconActive: '/imgs/sidebar/employees-active.svg', // пока нет
         link: '/employees',
         expands: false
       },
       {
         text: 'Найм сотрудников',
-        icon: '/imgs/sidebar/star.svg',
+        icon: 'imgs/sidebar/star.svg',
         // iconActive: '/imgs/sidebar/star-active.svg', // пока нет
         link: '/hiring',
         expands: false
       },
       {
         text: 'Опросы',
-        icon: '/imgs/sidebar/polls.svg',
+        icon: 'imgs/sidebar/polls.svg',
         // iconActive: '/imgs/sidebar/polls-active.svg', // пока нет
         options: [
           {
@@ -94,7 +94,7 @@ const Sidebar = () => {
       },
       {
         text: 'Поиск',
-        icon: '/imgs/sidebar/search.svg',
+        icon: 'imgs/sidebar/search.svg',
         iconActive: '/imgs/sidebar/search-active.svg',
         expands: true,
         options: [
@@ -107,21 +107,21 @@ const Sidebar = () => {
 
       {
         text: 'Справка',
-        icon: '/imgs/sidebar/i-info.svg',
+        icon: 'imgs/sidebar/i-info.svg',
         // iconActive: '/imgs/main/i-info-active.svg', // пока нет
         link: '/help',
         expands: false
       },
       {
         text: 'Уведомления',
-        icon: '/imgs/sidebar/notification.svg',
+        icon: 'imgs/sidebar/notification.svg',
         // iconActive: '/imgs/sidebar/notification-active.svg', // пока нет
         link: '/notifications',
         service: true
       },
       {
         text: 'Настройки',
-        icon: '/imgs/sidebar/settings.svg',
+        icon: 'imgs/sidebar/settings.svg',
         link: '/settings',
         service: true
       }

@@ -13,7 +13,7 @@ interface IVacancyProps {
 const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline_date, status, responses_qty }: IVacancyProps) => {
   let status_mode: string;
 
-  const mode = function getStatus(): string {
+  const style_mode = function getStatus(): string {
     switch (status) {
       case 'активная':
         status_mode = `${styles.vacancy_status__active}`;
@@ -28,7 +28,7 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
         status_mode = `${styles.vacancy_status__closed}`;
         break;
     }
-    console.log(status_mode);
+
     return status_mode;
   };
 
@@ -53,7 +53,7 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
         <span className={styles.vacancy_deadline__date}>{deadline_date}</span>
       </div>
       <div className={styles.vacancy_status}>
-        <span className={`${styles.vacancy_status__default} ${mode()}`}>{status}</span>
+        <span className={`${styles.vacancy_status__default} ${style_mode()}`}>{status}</span>
       </div>
       <div className={styles.vacancy_responses}>
         <span className={styles.vacancy_responses__quantity}>{responses_qty}</span>
