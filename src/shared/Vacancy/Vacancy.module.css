@@ -5,7 +5,7 @@
   max-width: 1636px;
   background-color: white;
   border-radius: 8px;
-  padding: 21px 32px 21px 0px;
+  padding: 21px 24px 21px 0px;
   margin-bottom: 16px;
 }
 
@@ -109,18 +109,30 @@
   margin-left: 10px;
 }
 
-.vacancy_btn {
+.vacancy_buttons {
+  display: flex;
+  margin-left: 10px;
+}
+
+.vacancy_edit_btn {
+  background-image: url('/imgs/vacancies/edit.svg');
+  background-repeat: no-repeat;
+  width: 40px;
+  margin-right: 12px;
+}
+
+.vacancy_main_btn {
   height: 36px;
   background-color: var(--main-color);
   border-radius: 8px;
   color: white;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 20px;
-  padding: 8px;
+  padding: 3px;
   margin-left: auto;
 }
 
-.vacancy_btn:hover {
+.vacancy_main_btn:hover {
   color: var(--font-color);
 }

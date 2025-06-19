@@ -43,11 +43,9 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
           <p className={styles.vacancy_title__customer_name}>{customer_name}</p>
         </div>
       </div>
-
       <div className={styles.vacancy_recruter}>
         <span className={styles.vacancy_recruter__name}>{recruter}</span>
       </div>
-
       <div className={styles.vacancy_created}>
         <span className={styles.vacancy_created__date}>{created_date}</span>
       </div>
@@ -60,7 +58,11 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
       <div className={styles.vacancy_responses}>
         <span className={styles.vacancy_responses__quantity}>{responses_qty}</span>
       </div>
-      <button className={styles.vacancy_btn}>Перейти к откликам</button>
+
+      <div className={styles.vacancy_buttons}>
+        <button className={styles.vacancy_edit_btn} title='редактировать'></button>
+        <button className={styles.vacancy_main_btn}>Перейти к откликам</button>
+      </div>
     </div>
   );
 };

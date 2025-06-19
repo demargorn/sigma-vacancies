@@ -139,19 +139,22 @@ const Vacancies = () => {
             ))}
         </article>
       </main>
-      <footer className={styles.footer}>
-        <button className={styles.previous_page}>
-          <img src="imgs/vacancies/chevron-left.svg" alt="previous page" />
-        </button>
-        <div className={styles.pages}>
-          <button className={cn(styles.page_number, styles.page_number__active)}>1</button>
-          <button className={cn(styles.page_number, styles.page_2)}>2</button>
-          <button className={cn(styles.page_number, styles.page_3)}>3</button>
-        </div>
-        <button className={styles.next_page}>
-          <img src="imgs/vacancies/chevron-right.svg" alt="nexn page" />
-        </button>
-      </footer>
+
+      {visibleVacancies.length >= 5 && (
+        <footer className={styles.footer}>
+          <button className={styles.previous_page}>
+            <img src="imgs/vacancies/chevron-left.svg" alt="previous page" />
+          </button>
+          <div className={styles.pages}>
+            <button className={cn(styles.page_number, styles.page_number__active)}>1</button>
+            <button className={cn(styles.page_number, styles.page_2)}>2</button>
+            <button className={cn(styles.page_number, styles.page_3)}>3</button>
+          </div>
+          <button className={styles.next_page}>
+            <img src="imgs/vacancies/chevron-right.svg" alt="nexn page" />
+          </button>
+        </footer>
+      )}
     </section>
   );
 };
