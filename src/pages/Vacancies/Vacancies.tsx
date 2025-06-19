@@ -81,27 +81,33 @@ const Vacancies = () => {
 
       <div className={styles.tabs}>
         <ul className={styles.chips}>
-          <li className={activeCategory === 'Все вакансии' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Все вакансии')}>
-            Все вакансии
-          </li>
-          <li className={activeCategory === 'Активные' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Активные')}>
-            Активные
-          </li>
-          <li
-            className={activeCategory === 'На паузе' ? cn(styles.chip, styles.chip_active) : styles.chip}
-            onClick={() => {
-              handleSetCategory('На паузе');
-              handleFilterCategory('на паузе');
-            }}
-          >
-            На паузе
-          </li>
-          <li className={activeCategory === 'Закрытые' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Закрытые')}>
-            Закрытые
-          </li>
-          <li className={activeCategory === 'Черновики' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Черновики')}>
-            Черновики
-          </li>
+          {vacancies.length === 0 ? (
+            <>
+              <li className={cn(styles.chip, styles.chip_active, styles.chip_disable)}>Все вакансии</li>
+              <li className={cn(styles.chip, styles.chip_disable)}>Активные</li>
+              <li className={cn(styles.chip, styles.chip_disable)}>На паузе</li>
+              <li className={cn(styles.chip, styles.chip_disable)}>Закрытые</li>
+              <li className={cn(styles.chip, styles.chip_disable)}>Черновики</li>
+            </>
+          ) : (
+            <>
+              <li className={activeCategory === 'Все вакансии' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Все вакансии')}>
+                Все вакансии
+              </li>
+              <li className={activeCategory === 'Активные' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Активные')}>
+                Активные
+              </li>
+              <li className={activeCategory === 'На паузе' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('На паузе')}>
+                На паузе
+              </li>
+              <li className={activeCategory === 'Закрытые' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Закрытые')}>
+                Закрытые
+              </li>
+              <li className={activeCategory === 'Черновики' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Черновики')}>
+                Черновики
+              </li>
+            </>
+          )}
         </ul>
 
         <div className={styles.actions}>
@@ -124,7 +130,7 @@ const Vacancies = () => {
         </div>
 
         <article className={styles.vacancies_container}>
-          {vacancies.length > 0 &&
+          {vacancies.length > 0 ? (
             visibleVacancies.map((v) => (
               <Vacancy
                 key={v.id}
@@ -136,7 +142,21 @@ const Vacancies = () => {
                 status={v.status}
                 responses_qty={v.responses_qty}
               />
-            ))}
+            ))
+          ) : (
+            <div className={styles.create_vacancy_container}>
+              <img src="imgs/vacancies/empty.png" alt="в вакансиях пока пусто" className={styles.banner} />
+              <div className={styles.empty_container__description}>
+                <h3 className={styles.empty_container__title}>В Вакансиях пока пусто</h3>
+                <span className={styles.empty_container__text}>Самое время это исправить.</span>
+                <span className={styles.empty_container__text}>
+                  Создайте свою первую вакансию, <br />
+                  нажав на кнопку ниже
+                </span>
+              </div>
+              <button className={styles.empty_container__btn}>Создать вакансию</button>
+            </div>
+          )}
         </article>
       </main>
 

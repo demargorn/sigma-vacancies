@@ -111,6 +111,11 @@ button {
   color: white;
 }
 
+.chip_disable {
+  opacity: 50%;
+  cursor: not-allowed;
+}
+
 .actions {
   display: flex;
 }
@@ -283,6 +288,43 @@ button {
   line-height: 20px;
   padding: 8px;
   margin-left: auto;
+}
+
+.create_vacancy_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty_container__description {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.empty_container__text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+}
+
+.empty_container__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+}
+
+.empty_container__btn {
+  height: 36px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  background-color: var(--main-color);
+  padding: 8px;
+  color: white;
 }
 
 .footer {
