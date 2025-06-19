@@ -49,7 +49,7 @@ button {
 }
 
 button:hover {
-  color: #1a1a1a;
+  color: white;
 }
 
 @media (prefers-color-scheme: light) {
