@@ -1,16 +1,31 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import cn from 'classnames';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { ControlsChevronRight, GenericHome } from '@heathmont/moon-icons-tw';
 import Vacancy from '@/shared/Vacancy/Vacancy';
-
+import type { IVacancy } from '@/shared/Vacancy/Vacancy';
 import styles from './Vacancies.module.css';
 
+/** моковый список вакансий */
+const some_vacancies: Array<IVacancy> = [
+  { vacancy_name: 'Frontend-разработчик', customer_name: 'Авито', recruter: 'Михайлова Э.Г.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'активная', responses_qty: 5 },
+  { vacancy_name: 'Backend-разработчик', customer_name: 'HeadHunter', recruter: 'Попова Н.С.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'на паузе', responses_qty: 15 },
+  { vacancy_name: 'Python-разработчик', customer_name: 'Ozon', recruter: 'Константинова В.Б.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'закрыта', responses_qty: 10 },
+  { vacancy_name: 'Product Manager', customer_name: 'X5 Group', recruter: 'Андреева А.А.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'черновик', responses_qty: 0 },
+  { vacancy_name: 'Product Manager', customer_name: 'X5 Group', recruter: 'Андреева А.А.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'черновик', responses_qty: 0 },
+  { vacancy_name: 'Product Manager', customer_name: 'X5 Group', recruter: 'Андреева А.А.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'черновик', responses_qty: 0 }
+];
+
 const Vacancies = () => {
+  const [vacancies, setVacancies] = useState<Array<IVacancy>>([]); /** массив вакансий */
+  const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
+
   const baseBreadcrumbs = [
-    <Link to="/" aria-label="Home">
+    <Link to="/" aria-label="Home" key="Home">
       <GenericHome className="text-moon-24" />
     </Link>,
-    <Link to={`/vacancies`} style={{ marginRight: '8px', marginLeft: '8px' }}>
+    <Link to={`/vacancies`} style={{ marginRight: '8px', marginLeft: '8px' }} key="Page 1">
       Найм сотрудников
     </Link>,
     <span key="Current" style={{ marginLeft: '8px' }}>
@@ -18,12 +33,25 @@ const Vacancies = () => {
     </span>
   ];
 
+  /** функция активации нужной категории */
+  const handleSetCategory = (category: string) => {
+    setActiveCategory(category);
+  };
+
+  const handleFilterCategory = (status: string) => {
+    return vacancies.filter((v) => v.status === status);
+  };
+
+  useEffect(() => {
+    setVacancies(some_vacancies);
+    setActiveCategory('Все вакансии');
+  }, []);
+
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-
         <div className={styles.breadcrumbs}>
-          <Breadcrumb breadcrumbs={baseBreadcrumbs} divider={<ControlsChevronRight className="text-moon-16 text-black" />} />
+          <Breadcrumb breadcrumbs={baseBreadcrumbs} />
         </div>
 
         <div className={styles.input_container}>
@@ -34,22 +62,32 @@ const Vacancies = () => {
 
       <div className={styles.text_container}>
         <h1 className={styles.h1}>Вакансии</h1>
-        <span className={styles.qty}>4</span>
+        <span className={styles.qty}>{vacancies.length}</span>
       </div>
 
       <div className={styles.tabs}>
-        <div className={styles.chips}>
-          <button className={`${styles.chip} ${styles.chip_active}`}>Все вакансии</button>
-          <button className={styles.chip}>Активные</button>
-          <button className={styles.chip}>На паузе</button>
-          <button className={styles.chip}>Закрытые</button>
-          <button className={styles.chip}>Черновики</button>
-        </div>
+        <ul className={styles.chips}>
+          <li className={activeCategory === 'Все вакансии' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Все вакансии')}>
+            Все вакансии
+          </li>
+          <li className={activeCategory === 'Активные' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Активные')}>
+            Активные
+          </li>
+          <li className={activeCategory === 'На паузе' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('На паузе')}>
+            На паузе
+          </li>
+          <li className={activeCategory === 'Закрытые' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Закрытые')}>
+            Закрытые
+          </li>
+          <li className={activeCategory === 'Черновики' ? cn(styles.chip, styles.chip_active) : styles.chip} onClick={() => handleSetCategory('Черновики')}>
+            Черновики
+          </li>
+        </ul>
         <div className={styles.actions}>
-          <button className={`${styles.action} ${styles.action_1}`} title="фильтровать"></button>
-          <button className={`${styles.action} ${styles.action_2}`}></button>
-          <button className={`${styles.action} ${styles.action_3}`} title="добавить вакансию"></button>
-          <button className={`${styles.action} ${styles.action_4}`} title="параметры"></button>
+          <button className={`${styles.action} ${styles.action_filter}`} title="сортировать"></button>
+          <button className={`${styles.action} ${styles.action_2}`} title="фильтровать"></button>
+          <button className={`${styles.action} ${styles.action_add}`} title="добавить вакансию"></button>
+          <button className={`${styles.action} ${styles.action_settings}`} title="параметры"></button>
         </div>
       </div>
 
@@ -65,17 +103,19 @@ const Vacancies = () => {
         </div>
 
         <article className={styles.vacancies_container}>
-          <Vacancy
-            vacancy_name="Название вакансии"
-            customer_name="Заказчик (ФИО или название команды)"
-            recruter="Константинова М.П."
-            created_date="12.05.25"
-            deadline_date="12.06.25"
-            status="активная"
-            responses_qty={3}
-          />
+          {vacancies.map((v) => (
+            <Vacancy
+              vacancy_name={v.vacancy_name}
+              customer_name={v.customer_name}
+              recruter={v.recruter}
+              created_date={v.created_date}
+              deadline_date={v.deadline_date}
+              status={v.status}
+              responses_qty={v.responses_qty}
+            />
+          ))}
 
-          <Vacancy
+          {/* <Vacancy
             vacancy_name="Название вакансии"
             customer_name="Заказчик (ФИО или название команды)"
             recruter="Еремеева П.Р."
@@ -103,7 +143,7 @@ const Vacancies = () => {
             deadline_date="07.01.26"
             status="черновик"
             responses_qty={0}
-          />
+          /> */}
         </article>
       </main>
     </section>

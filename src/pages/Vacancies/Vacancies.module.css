@@ -22,9 +22,16 @@ button {
   margin-right: 20px;
 }
 
-.breadcrumbs {
+.breadcrumbs ol {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: center;
+  align-items: center
+}
+
+.breadcrumbs ol li {
+  display: flex;
+  align-items: center;
 }
 
 .input_container {
@@ -84,18 +91,24 @@ button {
 
 .chips {
   display: flex;
+  align-items: center;
   box-sizing: border-box;
 }
 
 .chip {
+  display: flex;
+  align-items: center;
+  text-align: center;
   height: 36px;
   border-radius: 10px;
   background-color: var(--main-background-color);
   padding-inline: 16px;
+  cursor: pointer;
 }
 
 .chip_active {
   background-color: var(--main-color);
+  color: white;
 }
 
 .actions {
@@ -109,16 +122,16 @@ button {
   margin-right: 12px;
 }
 
-.action_1 {
+.action_filter {
   background-image: url('/imgs/vacancies/action_1.svg');
 }
 .action_2 {
   background-image: url('/imgs/vacancies/action_2.svg');
 }
-.action_3 {
+.action_add {
   background-image: url('/imgs/vacancies/action_3.svg');
 }
-.action_4 {
+.action_settings {
   background-image: url('/imgs/vacancies/action_4.svg');
 }
 

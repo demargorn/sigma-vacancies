@@ -1,16 +1,16 @@
 import styles from './Vacancy.module.css';
 
-interface IVacancyProps {
+export interface IVacancy {
   vacancy_name: string;
   customer_name: string;
   recruter: string;
   created_date: string;
   deadline_date: string;
-  status: string;
+  status: 'активная' | 'на паузе' | 'черновик' | 'закрыта';
   responses_qty: number;
 }
 
-const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline_date, status, responses_qty }: IVacancyProps) => {
+const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline_date, status, responses_qty }: IVacancy) => {
   let status_mode: string;
 
   const style_mode = function getStatus(): string {
