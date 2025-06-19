@@ -9,8 +9,8 @@ import styles from './Vacancies.module.css';
 
 /** моковый список вакансий */
 const some_vacancies: Array<IVacancy> = [
-  { id: 1, vacancy_name: 'Frontend-разработчик', customer_name: 'Авито', recruter: 'Михайлова Э.Г.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'активная', responses_qty: 5 },
-  { id: 2, vacancy_name: 'Backend-разработчик', customer_name: 'HeadHunter', recruter: 'Попова Н.С.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'на паузе', responses_qty: 15 },
+  { id: 1, vacancy_name: 'Frontend-разработчик', customer_name: 'Авито', recruter: 'Михайлова Э.Г.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'активная', responses_qty: 235 },
+  { id: 2, vacancy_name: 'Backend-разработчик', customer_name: 'HeadHunter', recruter: 'Попова Н.С.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'на паузе', responses_qty: 115 },
   { id: 3, vacancy_name: 'Python-разработчик', customer_name: 'Ozon', recruter: 'Константинова В.Б.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'закрыта', responses_qty: 10 },
   { id: 4, vacancy_name: 'Product Manager', customer_name: 'X5 Group', recruter: 'Андреева А.А.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'черновик', responses_qty: 0 },
   { id: 5, vacancy_name: 'HR Manager', customer_name: 'Рога И Копыта', recruter: 'Рожкина И.В.', created_date: '10.12.25', deadline_date: '10.01.26', status: 'на паузе', responses_qty: 15 }
@@ -105,8 +105,8 @@ const Vacancies = () => {
         </ul>
 
         <div className={styles.actions}>
-          <button className={`${styles.action} ${styles.action_filter}`} title="сортировать"></button>
-          <button className={`${styles.action} ${styles.action_2}`} title="фильтровать"></button>
+          <button className={`${styles.action} ${styles.action_sort}`} title="сортировать"></button>
+          <button className={`${styles.action} ${styles.action_filter}`} title="фильтровать"></button>
           <button className={`${styles.action} ${styles.action_add}`} title="добавить вакансию"></button>
           <button className={`${styles.action} ${styles.action_settings}`} title="параметры"></button>
         </div>
@@ -151,7 +151,7 @@ const Vacancies = () => {
             <button className={cn(styles.page_number, styles.page_3)}>3</button>
           </div>
           <button className={styles.next_page}>
-            <img src="imgs/vacancies/chevron-right.svg" alt="nexn page" />
+            <img src="imgs/vacancies/chevron-right.svg" alt="next page" />
           </button>
         </footer>
       )}

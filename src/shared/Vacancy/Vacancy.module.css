@@ -21,7 +21,7 @@
 }
 
 .vacancy_title__description {
-  width: 320px;
+  width: 285px;
   margin-left: 12px;
   padding-right: 20px;
 }
@@ -39,7 +39,7 @@
 }
 
 .vacancy_recruter {
-  width: 165px;
+  width: 150px;
 }
 
 .vacancy_recruter__name {
@@ -50,8 +50,9 @@
 
 .vacancy_created,
 .vacancy_deadline {
+  width: 80px;
   text-align: center;
-  width: 100px;
+  margin-right: 20px;
 }
 
 .vacancy_created__date,
@@ -62,15 +63,16 @@
 }
 
 .vacancy_status {
-  width: 126px;
-  margin-left: 10px;
+  width: 120px;
+  margin-right: 10px;
 }
 
 .vacancy_status__default {
+  display: block;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  width: 100px;
+  width: 120px;
   border-radius: 10px;
   padding: 4px 30px;
 }
@@ -111,7 +113,7 @@
 
 .vacancy_buttons {
   display: flex;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .vacancy_edit_btn {
@@ -126,13 +128,18 @@
   background-color: var(--main-color);
   border-radius: 8px;
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  padding: 3px;
+  padding: 8px;
   margin-left: auto;
 }
 
-.vacancy_main_btn:hover {
+.vacancy_main_btn:disabled {
+  opacity: 50%;
+  cursor: not-allowed;
+}
+
+.vacancy_main_btn:hover:not(.vacancy_main_btn:disabled) {
   color: var(--font-color);
 }

@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import styles from './Vacancy.module.css';
 
 export interface IVacancy {
@@ -47,10 +48,14 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
         <span className={styles.vacancy_recruter__name}>{recruter}</span>
       </div>
       <div className={styles.vacancy_created}>
-        <span className={styles.vacancy_created__date}>{created_date}</span>
+        <span className={styles.vacancy_created__date} title="дата создания">
+          {created_date}
+        </span>
       </div>
       <div className={styles.vacancy_deadline}>
-        <span className={styles.vacancy_deadline__date}>{deadline_date}</span>
+        <span className={styles.vacancy_deadline__date} title="дата окончания">
+          {deadline_date}
+        </span>
       </div>
       <div className={styles.vacancy_status}>
         <span className={`${styles.vacancy_status__default} ${style_mode()}`}>{status}</span>
@@ -60,8 +65,14 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
       </div>
 
       <div className={styles.vacancy_buttons}>
-        <button className={styles.vacancy_edit_btn} title='редактировать'></button>
-        <button className={styles.vacancy_main_btn}>Перейти к откликам</button>
+        <button className={styles.vacancy_edit_btn} title="редактировать"></button>
+        {responses_qty === 0 ? (
+          <button className={cn(styles.vacancy_main_btn, styles.vacancy_main_btn__disabled)} disabled>
+            Перейти к откликам
+          </button>
+        ) : (
+          <button className={styles.vacancy_main_btn}>Перейти к откликам</button>
+        )}
       </div>
     </div>
   );

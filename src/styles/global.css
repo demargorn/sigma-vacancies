@@ -47,10 +47,6 @@ button {
   transition: border-color 0.25s;
 }
 
-button:hover {
-  color: var(--main-color);
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

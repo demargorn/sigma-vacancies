@@ -122,10 +122,10 @@ button {
   margin-right: 12px;
 }
 
-.action_filter {
+.action_sort {
   background-image: url('/imgs/vacancies/action_1.svg');
 }
-.action_2 {
+.action_filter {
   background-image: url('/imgs/vacancies/action_2.svg');
 }
 .action_add {
@@ -157,25 +157,23 @@ button {
 }
 
 .owner {
-  width: 320px;
+  width: 285px;
   margin-left: 12px;
 }
 
-.recruter,
-.vacancy_recruter {
-  width: 165px;
+.recruter {
+  width: 150px;
 }
 
 .created,
-.deadline,
-.vacancy_created,
-.vacancy_deadline {
-  width: 100px;
+.deadline {
+  width: 80px;
   text-align: center;
+  margin-right: 20px;
 }
 
 .status {
-  width: 126px;
+  width: 120px;
   text-align: center;
 }
 
@@ -308,6 +306,10 @@ button {
   width: 32px;
   height: 32px;
   border-radius: 8px;
+}
+
+.page_number:hover {
+  color: black;
 }
 
 .page_number__active {
