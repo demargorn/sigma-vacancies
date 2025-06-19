@@ -1,6 +1,7 @@
 import styles from './Vacancy.module.css';
 
 export interface IVacancy {
+  id?: number;
   vacancy_name: string;
   customer_name: string;
   recruter: string;
@@ -13,6 +14,7 @@ export interface IVacancy {
 const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline_date, status, responses_qty }: IVacancy) => {
   let status_mode: string;
 
+  /** функция выбора статуса вакансии */
   const style_mode = function getStatus(): string {
     switch (status) {
       case 'активная':

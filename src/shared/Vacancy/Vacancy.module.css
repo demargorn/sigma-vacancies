@@ -63,6 +63,7 @@
 
 .vacancy_status {
   width: 126px;
+  margin-left: 10px;
 }
 
 .vacancy_status__default {
@@ -105,6 +106,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
+  margin-left: 10px;
 }
 
 .vacancy_btn {
@@ -117,4 +119,8 @@
   line-height: 20px;
   padding: 8px;
   margin-left: auto;
+}
+
+.vacancy_btn:hover {
+  color: var(--font-color);
 }

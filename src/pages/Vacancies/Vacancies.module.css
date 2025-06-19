@@ -24,9 +24,9 @@ button {
 
 .breadcrumbs ol {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
 
 .breadcrumbs ol li {
@@ -170,13 +170,18 @@ button {
 .deadline,
 .vacancy_created,
 .vacancy_deadline {
-  text-align: center;
   width: 100px;
+  text-align: center;
 }
 
 .status {
-  text-align: center;
   width: 126px;
+  text-align: center;
+}
+
+.responses {
+  width: 100px;
+  text-align: center;
 }
 
 .vacancies_container {
@@ -280,6 +285,34 @@ button {
   line-height: 20px;
   padding: 8px;
   margin-left: auto;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: -16px;
+  margin-bottom: 18px;
+  padding-inline: 8px;
+}
+
+.previous_page,
+.next_page {
+  width: 32px;
+  height: 32px;
+  background-color: #eceef4;
+}
+
+.page_number {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.page_number__active {
+  background-color: var(--main-color);
+  color: white;
 }
 
 /* 
