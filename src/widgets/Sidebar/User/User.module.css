@@ -1,7 +1,7 @@
 .user {
   display: flex;
   align-items: center;
-  padding: 8px ;
+  padding: 8px;
   padding-top: 25px;
   border-radius: 10px;
 }
@@ -46,10 +46,10 @@
   height: 48px;
   margin-right: 12px;
 }
-.user_info {
-display: flex;
-flex-direction: column;
 
+.user_info {
+  display: flex;
+  flex-direction: column;
 }
 
 .user_name {

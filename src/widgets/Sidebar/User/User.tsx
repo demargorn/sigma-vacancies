@@ -15,8 +15,11 @@ const User = (props: Props) => {
   const openMenu = () => {
     if (props.onClick) {
       props.menuActive ? props.onClick(false) : props.onClick(true);
-    } else return;
+    } else {
+      return;
+    }
   };
+
   return (
     <div
       className={props.mode === 'popup' ? `${styles.user} ${styles.user_popup}` : props.menuActive ? `${styles.user} ${styles.user_active}` : `${styles.user}`}

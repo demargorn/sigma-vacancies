@@ -16,6 +16,7 @@ const UserMenu = (props: Props) => {
     icon: 'imgs/sidebar/log-out.svg',
     link: '/login'
   };
+
   return (
     <div className={props.active ? `${styles.container} ${styles.active}` : `${styles.container}`} onClick={() => props.setActive(false)}>
       <div className={props.active ? `${styles.content} ${styles.active}` : `${styles.content}`} onClick={(e) => e.stopPropagation()} style={props.small ? { left: '104px' } : {}}>

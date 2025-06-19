@@ -16,7 +16,7 @@ const Sidebar = () => {
     logo: {
       img: 'imgs/sidebar/logo.png',
       alt: 'сигма лого',
-      link: '#/home'
+      link: '/home'
     },
     setSmall: {
       btnIcon: '/imgs/sidebar/menu-arrow.png',
@@ -62,28 +62,28 @@ const Sidebar = () => {
       {
         text: 'Орг. структура',
         icon: 'imgs/sidebar/orgs.svg',
-        iconActive: '/imgs/sidebar/orgs-active.svg', // пока нет
+        iconActive: '/imgs/sidebar/orgs-active.svg',
         link: '/departments',
         expands: false
       },
       {
         text: 'Сотрудники',
         icon: 'imgs/sidebar/employees.svg',
-        iconActive: '/imgs/sidebar/employees-active.svg', // пока нет
+        iconActive: '/imgs/sidebar/employees-active.svg',
         link: '/employees',
         expands: false
       },
       {
         text: 'Найм сотрудников',
         icon: 'imgs/sidebar/star.svg',
-        iconActive: '/imgs/sidebar/star-active.svg', // пока нет
+        iconActive: '/imgs/sidebar/star-active.svg',
         link: '/vacancies',
         expands: false
       },
       {
         text: 'Опросы',
         icon: 'imgs/sidebar/polls.svg',
-        iconActive: '/imgs/sidebar/polls-active.svg', // пока нет
+        iconActive: '/imgs/sidebar/polls-active.svg',
         options: [
           {
             text: 'Создать опрос',
@@ -136,6 +136,7 @@ const Sidebar = () => {
     }
   };
 
+  /** функция установки активной вкладки сайд-бара */
   const handleSetCurrentMenu = (e: SyntheticEvent) => {
     if (!(e.target instanceof HTMLElement)) {
       return;
@@ -167,10 +168,6 @@ const Sidebar = () => {
                           {small ? '' : item.text}
                         </Link>
                       </Tooltip.Trigger>
-                      <Tooltip.Content position="right" className="tooltip">
-                        {item.text}
-                        <Tooltip.Arrow />
-                      </Tooltip.Content>
                     </Tooltip>
                   ) : (
                     <div
