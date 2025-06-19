@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import cn from 'classnames';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
-import { ControlsChevronRight, GenericHome } from '@heathmont/moon-icons-tw';
+import { GenericHome } from '@heathmont/moon-icons-tw';
 import Vacancy from '@/shared/Vacancy/Vacancy';
 import type { IVacancy } from '@/shared/Vacancy/Vacancy';
 import styles from './Vacancies.module.css';
@@ -38,9 +38,9 @@ const Vacancies = () => {
     setActiveCategory(category);
   };
 
-  const handleFilterCategory = (status: string) => {
-    return vacancies.filter((v) => v.status === status);
-  };
+  // const handleFilterCategory = (status: string) => {
+  //   return vacancies.filter((v) => v.status === status);
+  // };
 
   useEffect(() => {
     setVacancies(some_vacancies);
