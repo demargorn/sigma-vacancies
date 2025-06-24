@@ -38,7 +38,7 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
   return (
     <div className={styles.vacancy}>
       <div className={styles.vacancy_title}>
-        <input type="checkbox" className={styles.main_checkbox} />
+        <input type="checkbox" className={styles.vacancy_checkbox} />
         <div className={styles.vacancy_title__description}>
           <h5 className={styles.vacancy_title__name}>{vacancy_name}</h5>
           <p className={styles.vacancy_title__customer_name}>{customer_name}</p>

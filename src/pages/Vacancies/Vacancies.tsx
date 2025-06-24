@@ -119,15 +119,19 @@ const Vacancies = () => {
       </div>
 
       <main className={styles.main}>
-        <div className={styles.main_top}>
-          <input type="checkbox" className={styles.main_checkbox} />
-          <span className={`${styles.span} ${styles.owner}`}>Вакансия и заказчик</span>
-          <span className={`${styles.span} ${styles.recruter}`}>Рекрутер</span>
-          <span className={`${styles.span} ${styles.created}`}>Создана</span>
-          <span className={`${styles.span} ${styles.deadline}`}>Дедлайн</span>
-          <span className={`${styles.span} ${styles.status}`}>Статус</span>
-          <span className={`${styles.span} ${styles.responses}`}>Отклики</span>
-        </div>
+        {vacancies.length > 0 ? (
+          <div className={styles.main_top}>
+            <div className={styles.owner}>
+              <input type="checkbox" className={styles.main_checkbox} />
+              <p className={styles.owner_title}>Вакансия и заказчик</p>
+            </div>
+            <span className={styles.recruter}>Рекрутер</span>
+            <span className={styles.created}>Создана</span>
+            <span className={styles.deadline}>Дедлайн</span>
+            <span className={styles.status}>Статус</span>
+            <span className={styles.responses}>Отклики</span>
+          </div>
+        ) : null}
 
         <article className={styles.vacancies_container}>
           {vacancies.length > 0 ? (
