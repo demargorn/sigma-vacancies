@@ -1,17 +1,13 @@
-* {
-  color: #181b21;
-}
-
 .container {
-  position: fixed;
-  z-index: 5;
+  position: absolute;
   top: 0;
-  left: 0;
+  left: 15px;
   width: 240px;
   height: 100%;
   padding: 20px;
   overflow-x: hidden;
-  background: #f6f7fa;
+  background: var(--main-background-color);
+  z-index: 5;
 }
 
 .menu_btn {
@@ -61,10 +57,12 @@
 }
 
 .menu_list {
-  padding: 0;
   border-bottom: 1px solid #e2e5ee;
   padding-top: 25px;
-  padding-bottom: 25px;
+}
+
+.menu_list_service {
+  padding-block: 25px;
 }
 
 .menu_list_item {

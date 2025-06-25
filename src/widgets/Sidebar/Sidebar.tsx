@@ -205,10 +205,6 @@ const Sidebar = () => {
                         {!small ? item.text : ''}
                       </Link>
                     </Tooltip.Trigger>
-                    <Tooltip.Content position="right" className="tooltip">
-                      {item.text}
-                      <Tooltip.Arrow />
-                    </Tooltip.Content>
                   </Tooltip>
                 </li>
               )
