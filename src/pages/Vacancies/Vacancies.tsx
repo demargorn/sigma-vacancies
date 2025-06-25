@@ -1,24 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import cn from 'classnames';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import Vacancy from '@/shared/Vacancy/Vacancy';
-import type { IVacancy } from '@/shared/Vacancy/Vacancy';
+import type { TypeRootState } from '@/app/store/store';
 import styles from './Vacancies.module.css';
 
-/** моковый список вакансий */
-const some_vacancies: Array<IVacancy> = [
-  { id: 1, vacancy_name: 'Frontend-разработчик', customer_name: 'Авито', recruter: 'Михайлова Э.Г.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'активная', responses_qty: 235 },
-  { id: 2, vacancy_name: 'Backend-разработчик', customer_name: 'HeadHunter', recruter: 'Попова Н.С.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'на паузе', responses_qty: 115 },
-  { id: 3, vacancy_name: 'Python-разработчик', customer_name: 'Ozon', recruter: 'Константинова В.Б.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'закрыта', responses_qty: 10 },
-  { id: 4, vacancy_name: 'Product Manager', customer_name: 'X5 Group', recruter: 'Андреева А.А.', created_date: '10.05.25', deadline_date: '10.06.25', status: 'черновик', responses_qty: 0 },
-  { id: 5, vacancy_name: 'HR Manager', customer_name: 'Рога И Копыта', recruter: 'Рожкина И.В.', created_date: '10.12.25', deadline_date: '10.01.26', status: 'на паузе', responses_qty: 15 }
-];
-
 const Vacancies = () => {
-  const [vacancies, setVacancies] = useState<Array<IVacancy>>([]); /** массив вакансий */
+  const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
   const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
+  const [checkboxActive, setCheckboxActive] = useState<boolean>(false); /** состояние чекбокса */
 
   const baseBreadcrumbs = [
     <Link to="/" aria-label="Home" key="Home">
@@ -53,11 +46,13 @@ const Vacancies = () => {
     }
   };
 
+  /** функция переключения активности чекбокса */
+  const handleCheckboxesCheck = () => setCheckboxActive(!checkboxActive);
+
   /** создаем массив отфильтрованных вакансий */
   const visibleVacancies = handleFilterCategory(activeCategory);
 
   useEffect(() => {
-    setVacancies(some_vacancies);
     setActiveCategory('Все вакансии');
   }, []);
 
@@ -122,7 +117,7 @@ const Vacancies = () => {
         {vacancies.length > 0 ? (
           <div className={styles.main_top}>
             <div className={styles.owner}>
-              <input type="checkbox" className={styles.main_checkbox} />
+              <input type="checkbox" className={styles.main_checkbox} onClick={handleCheckboxesCheck} />
               <p className={styles.owner_title}>Вакансия и заказчик</p>
             </div>
             <span className={styles.recruter}>Рекрутер</span>
