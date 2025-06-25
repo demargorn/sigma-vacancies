@@ -288,6 +288,5 @@
   .main_top {
     flex-wrap: wrap;
     padding-right: 12px;
-    display: none; /* Скрываем заголовки на мобильных */
   }
 }

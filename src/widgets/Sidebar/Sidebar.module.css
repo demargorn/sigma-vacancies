@@ -3,7 +3,7 @@
   top: 0;
   left: 15px;
   width: 240px;
-  height: 100%;
+  min-height: 100%;
   padding: 20px;
   overflow-x: hidden;
   background: var(--main-background-color);
