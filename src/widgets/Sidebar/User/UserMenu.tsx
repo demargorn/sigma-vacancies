@@ -11,6 +11,11 @@ type Props = {
 };
 
 const UserMenu = (props: Props) => {
+  const userData = {
+    text: 'Данные профиля',
+    icon: 'imgs/sidebar/user.svg',
+    link: '/profile'
+  };
   const logOut = {
     text: 'Выйти',
     icon: 'imgs/sidebar/log-out.svg',
@@ -23,6 +28,11 @@ const UserMenu = (props: Props) => {
         <User mode="popup" arrow={false} name={props.userName} email={props.userEmail} img={props.userPic} small={false} />
         <div className={styles.divider}></div>
         <ul className={styles.link_list}>
+          <li className={styles.link_item}>
+            <button className={styles.link} style={{ backgroundImage: `url(${userData.icon})`, marginBottom: 0 }}>
+              {userData.text}
+            </button>
+          </li>
           <li className={styles.link_item}>
             <button className={styles.link} style={{ backgroundImage: `url(${logOut.icon})`, marginBottom: 0 }}>
               {logOut.text}

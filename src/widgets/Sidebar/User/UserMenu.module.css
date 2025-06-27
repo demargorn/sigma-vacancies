@@ -35,6 +35,10 @@
   transform: scale(1);
 }
 
+.link_item {
+  padding: 8px;
+}
+
 .link {
   width: 100%;
   font-size: 16px;
@@ -43,10 +47,6 @@
   background-size: 24px;
   background-repeat: no-repeat;
   cursor: pointer;
-}
-
-.link_item {
-  padding: 8px;
 }
 
 .link_item button:hover {

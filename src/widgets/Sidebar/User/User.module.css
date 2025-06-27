@@ -47,19 +47,13 @@
   margin-right: 12px;
 }
 
-.user_info {
-  display: flex;
-  flex-direction: column;
-}
-
 .user_name {
-  margin: 0;
   font-family: 'Gramatika Bold' !important;
   color: var(--main-black);
   font-size: 14px;
   font-weight: 700;
   line-height: 150%;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .user_email {
