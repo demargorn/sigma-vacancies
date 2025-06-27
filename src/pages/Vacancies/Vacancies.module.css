@@ -121,14 +121,17 @@
   margin-right: 12px;
 }
 
+.action_add {
+  background-color: #eceef4;
+  color: var(--main-color);
+  width: 175px;
+  height: 40px;
+}
 .action_sort {
   background-image: url('/imgs/vacancies/action_1.svg');
 }
 .action_filter {
   background-image: url('/imgs/vacancies/action_2.svg');
-}
-.action_add {
-  background-image: url('/imgs/vacancies/action_3.svg');
 }
 .action_settings {
   background-image: url('/imgs/vacancies/action_4.svg');

@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import styles from './Vacancy.module.css';
 
+/** интерфейс вакансии */
 export interface IVacancy {
   id?: number;
   vacancy_name: string;
@@ -10,9 +11,12 @@ export interface IVacancy {
   deadline_date: string;
   status: 'активная' | 'на паузе' | 'черновик' | 'закрыта';
   responses_qty: number;
+
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
 }
 
-const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline_date, status, responses_qty }: IVacancy) => {
+const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline_date, status, responses_qty, checked, onChange }: IVacancy) => {
   let status_mode: string;
 
   /** функция выбора статуса вакансии */
@@ -38,7 +42,7 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
   return (
     <div className={styles.vacancy}>
       <div className={styles.vacancy_title}>
-        <input type="checkbox" className={styles.vacancy_checkbox} />
+        <input type="checkbox" name="checkbox" className={styles.vacancy_checkbox} checked={checked} onChange={(e) => onChange?.(e.target.checked)} />
         <div className={styles.vacancy_title__description}>
           <h5 className={styles.vacancy_title__name}>{vacancy_name}</h5>
           <p className={styles.vacancy_title__customer_name}>{customer_name}</p>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import cn from 'classnames';
@@ -11,7 +11,11 @@ import styles from './Vacancies.module.css';
 const Vacancies = () => {
   const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
   const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
-  const [checkboxActive, setCheckboxActive] = useState<boolean>(false); /** состояние чекбокса */
+  const [checkedStates, setCheckedStates] = useState<Array<boolean>>(() => vacancies.map(() => false)); /** состояние дочерних чекбоксов */
+
+  const parentRef = useRef<HTMLInputElement>(null); /** реф на главный чекбокс */
+  const allChecked = checkedStates.every(Boolean); /** какие-то выбраны */
+  const someChecked = checkedStates.some(Boolean); /** все выбраны */
 
   const baseBreadcrumbs = [
     <Link to="/" aria-label="Home" key="Home">
@@ -46,8 +50,16 @@ const Vacancies = () => {
     }
   };
 
-  /** функция переключения активности чекбокса */
-  const handleCheckboxesCheck = () => setCheckboxActive(!checkboxActive);
+  /** функция контроля главного чекбокса */
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    setCheckedStates(vacancies.map(() => checked));
+  };
+
+  /** функция контроля дочерних чекбоксов */
+  const handleVacancyCheckboxChange = (index: number, checked: boolean) => {
+    setCheckedStates((prev) => prev.map((val, i) => (i === index ? checked : val)));
+  };
 
   /** создаем массив отфильтрованных вакансий */
   const visibleVacancies = handleFilterCategory(activeCategory);
@@ -55,6 +67,12 @@ const Vacancies = () => {
   useEffect(() => {
     setActiveCategory('Все вакансии');
   }, []);
+
+  useEffect(() => {
+    if (parentRef.current) {
+      parentRef.current.indeterminate = !allChecked && someChecked;
+    }
+  }, [allChecked, someChecked]);
 
   return (
     <section className={styles.container}>
@@ -106,31 +124,33 @@ const Vacancies = () => {
         </ul>
 
         <div className={styles.actions}>
-          <button className={`${styles.action} ${styles.action_sort}`} title="сортировать"></button>
-          <button className={`${styles.action} ${styles.action_filter}`} title="фильтровать"></button>
-          <button className={`${styles.action} ${styles.action_add}`} title="добавить вакансию"></button>
-          <button className={`${styles.action} ${styles.action_settings}`} title="параметры"></button>
+          <button className={cn(styles.action, styles.action_add)} title="создать новую вакансию">
+            Создать вакансию
+          </button>
+          <button className={cn(styles.action, styles.action_sort)} title="сортировать вакансии"></button>
+          <button className={cn(styles.action, styles.action_filter)} title="фильтровать вакансии"></button>
+          <button className={cn(styles.action, styles.action_settings)} title="параметры"></button>
         </div>
       </div>
 
       <main className={styles.main}>
         {vacancies.length > 0 ? (
-          <div className={styles.main_top}>
-            <div className={styles.owner}>
-              <input type="checkbox" className={styles.main_checkbox} onClick={handleCheckboxesCheck} />
+          <ul className={styles.main_top}>
+            <li className={styles.owner}>
+              <input type="checkbox" className={styles.main_checkbox} checked={allChecked} onChange={handleChange} />
               <p className={styles.owner_title}>Вакансия и заказчик</p>
-            </div>
-            <span className={styles.recruter}>Рекрутер</span>
-            <span className={styles.created}>Создана</span>
-            <span className={styles.deadline}>Дедлайн</span>
-            <span className={styles.status}>Статус</span>
-            <span className={styles.responses}>Отклики</span>
-          </div>
+            </li>
+            <li className={styles.recruter}>Рекрутер</li>
+            <li className={styles.created}>Создана</li>
+            <li className={styles.deadline}>Дедлайн</li>
+            <li className={styles.status}>Статус</li>
+            <li className={styles.responses}>Отклики</li>
+          </ul>
         ) : null}
 
         <article className={styles.vacancies_container}>
           {vacancies.length > 0 ? (
-            visibleVacancies.map((v) => (
+            visibleVacancies.map((v, i) => (
               <Vacancy
                 key={v.id}
                 vacancy_name={v.vacancy_name}
@@ -140,6 +160,8 @@ const Vacancies = () => {
                 deadline_date={v.deadline_date}
                 status={v.status}
                 responses_qty={v.responses_qty}
+                checked={checkedStates[i]}
+                onChange={(checked) => handleVacancyCheckboxChange(i, checked)}
               />
             ))
           ) : (
