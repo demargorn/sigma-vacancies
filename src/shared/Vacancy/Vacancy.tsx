@@ -69,6 +69,7 @@ const Vacancy = ({ vacancy_name, customer_name, recruter, created_date, deadline
       </div>
 
       <div className={styles.vacancy_buttons}>
+        {status === 'активная' ? <button className={styles.vacancy_copylink_btn} title="копировать ссылку" style={{ marginLeft: '-52px' }}></button> : null}
         <button className={styles.vacancy_edit_btn} title="редактировать"></button>
         {responses_qty === 0 ? (
           <button className={cn(styles.vacancy_main_btn, styles.vacancy_main_btn__disabled)} disabled>

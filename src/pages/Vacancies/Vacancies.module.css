@@ -1,19 +1,19 @@
 .container {
   position: absolute;
   top: 0;
-  left: 250px;
+  left: 260px;
+  right: 20px;
+  width: 100%;
   max-width: 1636px;
   background: var(--main-background-color);
-  padding-top: 20px;
-  padding-left: 24px;
-  margin-right: -20px;
+  padding: 20px 20px 0px 0px;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-right: 20px;
+  margin-bottom: 8px;
 }
 
 .breadcrumbs ol {
@@ -21,6 +21,7 @@
   gap: 8px;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .breadcrumbs ol li {
@@ -30,8 +31,7 @@
 
 .input_container {
   display: flex;
-  justify-items: center;
-  margin-bottom: 8px;
+  justify-items: space-between;
 }
 
 .input {
@@ -79,12 +79,12 @@
 .tabs {
   display: flex;
   justify-content: space-between;
-  margin-right: 20px;
   margin-bottom: 24px;
 }
 
 .chips {
   display: flex;
+  gap: 8px;
   align-items: center;
   box-sizing: border-box;
 }
@@ -96,7 +96,7 @@
   height: 36px;
   border-radius: 10px;
   background-color: var(--main-background-color);
-  padding-inline: 16px;
+  padding: 8px 16px;
   cursor: pointer;
 }
 
@@ -112,13 +112,13 @@
 
 .actions {
   display: flex;
+  gap: 12px;
 }
 
 .action {
   width: 40px;
   height: 40px;
   background-color: var(--main-background-color);
-  margin-right: 12px;
 }
 
 .action_add {
@@ -138,19 +138,21 @@
 }
 
 .main {
-  padding: 12px 8px;
+  padding: 12px 0px;
 }
 
 .main_top {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1636px;
   margin-bottom: 16px;
+  padding-right: 268px;
 }
 
 /* общие стили для всех заголовков */
-.main_top > span,
+.main_top > li,
 .owner_title {
   font-size: 15px;
   font-weight: 400;
@@ -163,8 +165,9 @@
 
 .owner {
   display: flex;
-  margin-right: 9.2vw;
-  width: 210px;
+  width: 100%;
+  max-width: 210px;
+  /* margin-right: 9.2vw; */
 }
 
 .owner_title {
