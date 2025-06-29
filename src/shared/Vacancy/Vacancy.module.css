@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2vw;
   width: 100%;
   max-width: 1636px;
   background-color: white;
@@ -12,7 +11,7 @@
 }
 
 .vacancy_checkbox {
-  flex: 0 0 40px;
+  flex-basis: 40px;
   width: 16px;
   height: 16px;
   padding: 8px;
@@ -22,7 +21,7 @@
 
 .vacancy_title {
   display: flex;
-  flex: 1 0 260px;
+  flex: 1 0 250px;
   max-width: 400px;
 }
 
@@ -32,7 +31,7 @@
 
 .vacancy_title__name {
   display: inline-block;
-  max-width: 300px;
+  max-width: 330px;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -51,11 +50,13 @@
 }
 
 .vacancy_recruter {
-  flex: 1 0 110px;
+  flex: 1 0 144px;
   max-width: 144px;
 }
 
 .vacancy_recruter__name {
+  display: inline-block;
+  max-width: 144px;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -81,7 +82,7 @@
 }
 
 .vacancy_status {
-  flex: 1 0 128px;
+  flex: 1 1 128px;
   max-width: 160px;
 }
 
@@ -124,7 +125,7 @@
   background-position: center;
   width: 40px;
   height: 40px;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
 }
 
 .vacancy_edit_btn {
@@ -133,7 +134,7 @@
   background-position: center;
   width: 40px;
   height: 40px;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
 }
 
 .vacancy_main_btn {

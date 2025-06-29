@@ -2,11 +2,11 @@
   position: absolute;
   top: 0;
   left: 260px;
-  right: 20px;
   width: 100%;
   max-width: 1636px;
   background: var(--main-background-color);
   padding: 20px 20px 0px 0px;
+  overflow: hidden;
 }
 
 .header {
@@ -138,13 +138,14 @@
 }
 
 .main {
-  padding: 12px 0px;
+  padding-block: 12px;
 }
 
 .main_top {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  gap: 2vw;
   width: 100%;
   max-width: 1636px;
   margin-bottom: 16px;
@@ -165,8 +166,8 @@
 
 .owner {
   display: flex;
-  width: 100%;
-  max-width: 210px;
+  flex: 1 0 250px;
+  max-width: 400px;
   /* margin-right: 9.2vw; */
 }
 
@@ -183,14 +184,14 @@
 }
 
 .recruter {
-  min-width: 100px;
-  margin-right: 3vw;
+  flex: 1 0 110px;
+  max-width: 144px;
 }
 
 .created,
 .deadline {
-  min-width: 80px;
-  margin-right: 2vw;
+  flex: 1 0 60px;
+  max-width: 70px;
   text-align: center;
 }
 
@@ -199,13 +200,13 @@
 }
 
 .status {
-  min-width: 120px;
-  margin-left: -5px;
-  text-align: center;
+  flex: 1 0 128px;
+  max-width: 160px;
 }
 
 .responses {
-  min-width: 70px;
+  flex: 1 0 60px;
+  max-width: 70px;
   text-align: center;
 }
 
