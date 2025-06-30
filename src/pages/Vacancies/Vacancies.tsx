@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import cn from 'classnames';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
-import Vacancy from '@/shared/Vacancy/Vacancy';
+import Vacancy from '@/widgets/Vacancy/Vacancy';
 import type { TypeRootState } from '@/app/store/store';
 import styles from './Vacancies.module.css';
 
@@ -65,14 +65,14 @@ const Vacancies = () => {
   const visibleVacancies = handleFilterCategory(activeCategory);
 
   useEffect(() => {
-    setActiveCategory('Все вакансии');
-  }, []);
-
-  useEffect(() => {
     if (parentRef.current) {
       parentRef.current.indeterminate = !allChecked && someChecked;
     }
   }, [allChecked, someChecked]);
+
+  useEffect(() => {
+    setActiveCategory('Все вакансии');
+  }, []);
 
   return (
     <section className={styles.container}>
