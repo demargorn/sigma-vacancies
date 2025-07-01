@@ -1,4 +1,4 @@
-import { useEffect, useState, type JSX } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
@@ -8,7 +8,6 @@ import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
 import type { TypeRootState } from '@/app/store/store';
 import type { EditPageInfo, EditPollInfo, Template } from '@/types/types';
 import styles from './CreateNewVacancy.module.css';
-import { Org } from '@/widgets/SelectSidebar/Sections';
 
 type TypeCreateNewVacancyProps = {
   mode?: string;
