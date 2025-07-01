@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import cn from 'classnames';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
@@ -13,11 +13,13 @@ const Vacancies = () => {
   const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
   const [checkedStates, setCheckedStates] = useState<Array<boolean>>(() => vacancies.map(() => false)); /** состояние дочерних чекбоксов */
 
+  const navigate = useNavigate();
+
   const parentRef = useRef<HTMLInputElement>(null); /** реф на главный чекбокс */
   const allChecked = checkedStates.every(Boolean); /** какие-то выбраны */
   const someChecked = checkedStates.some(Boolean); /** все выбраны */
 
-  const baseBreadcrumbs = [
+  const breadcrumbs = [
     <Link to="/" aria-label="Home" key="Home">
       <GenericHome className="text-moon-24" />
     </Link>,
@@ -76,16 +78,16 @@ const Vacancies = () => {
 
   return (
     <section className={styles.container}>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <div className={styles.breadcrumbs}>
-          <Breadcrumb breadcrumbs={baseBreadcrumbs} />
+          <Breadcrumb breadcrumbs={breadcrumbs} />
         </div>
 
         <div className={styles.input_container}>
           <input type="text" placeholder="Поиск" className={styles.input} />
           <button className={styles.input_button}></button>
         </div>
-      </div>
+      </header>
 
       <div className={styles.text_container}>
         <h1 className={styles.h1}>Вакансии</h1>
@@ -175,7 +177,9 @@ const Vacancies = () => {
                   нажав на кнопку ниже
                 </span>
               </div>
-              <button className={styles.empty_container__btn}>Создать вакансию</button>
+              <button className={styles.empty_container__btn} onClick={() => navigate('/vacancies/create')}>
+                Создать вакансию
+              </button>
             </div>
           )}
         </article>

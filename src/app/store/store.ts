@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import vacanciesReducer from '@/app/store/slices/vacancies.slice';
+import templateEditRedcuer from '@/app/store/slices/templateEditSlice';
 
 const store = configureStore({
   reducer: {
-    vacancies: vacanciesReducer
+    vacancies: vacanciesReducer,
+    templateEdit: templateEditRedcuer
   }
 });
 
