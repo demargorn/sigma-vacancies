@@ -49,10 +49,10 @@
 }
 
 .nav {
-  height: 82%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 82%;
 }
 
 .menu_list {
@@ -80,7 +80,7 @@
 
 .menu_list_link,
 .menu_list_btn {
-  color: var(--font-color);
+  color: var(--primary-text);
   cursor: pointer;
   display: block;
   width: 100%;
@@ -207,7 +207,6 @@
   padding: 14px 20px;
   background-position: center;
   background-size: 24px;
-  /* background-color: violet; */
 }
 
 .menu_list_btn_container_small {

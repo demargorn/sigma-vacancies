@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { templateEditActions } from '@/app/store/slices/templateEditSlice';
-import type { TypeRootState } from '@/app/store/store';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import styles from './Sections.module.css';
 
-type Props = {
+type TypeCustomerInfoProps = {
   error: boolean;
   setError: (arg: boolean) => void;
   hasChanged: boolean;
 };
 
-const Info = (props: Props) => {
+const CustomerInfo = (props: TypeCustomerInfoProps) => {
   const templateEditInfo = useSelector((s: TypeRootState) => s.templateEdit);
   const [name, setName] = useState(templateEditInfo.adminHeading);
   const [description, setDescription] = useState(templateEditInfo.adminDescription);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<TypeDispatch>();
 
   useEffect(() => {
     dispatch(templateEditActions.addAdminHeading({ adminHeading: name }));
@@ -59,4 +59,4 @@ const Info = (props: Props) => {
   );
 };
 
-export default Info;
+export default CustomerInfo;

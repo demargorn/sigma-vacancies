@@ -1,6 +1,4 @@
-// import Info from "./Info";
-
-export { default as Info } from './Info';
+export { default as CustomerInfo } from './CustomerInfo';
 
 export { default as Greeting } from './Greeting';
 
@@ -14,6 +12,6 @@ export { default as Preview } from './Preview';
 
 export { default as Dates } from './Dates';
 
-export { default as Org } from './Org';
+export { default as MainInfo } from './MainInfo';
 
 export { default as Participation } from './Participation';

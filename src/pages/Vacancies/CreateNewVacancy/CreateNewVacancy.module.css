@@ -2,7 +2,7 @@
   position: absolute;
   top: 0;
   left: 260px;
-  width: calc(100vw - 260px);
+  width: calc(100% - 260px);
   max-width: 1636px;
   background: var(--main-background-color);
   padding: 20px 20px 0px 0px;
@@ -28,12 +28,12 @@
   align-items: center;
 }
 
-.input_container {
+.header_input_container {
   display: flex;
-  justify-items: space-between;
+  align-items: center;
 }
 
-.input {
+.header_input {
   width: 256px;
   height: 40px;
   border: 1px solid rgb(206, 200, 200);
@@ -42,14 +42,14 @@
   margin-right: 12px;
 }
 
-.input::placeholder {
+.header_input::placeholder {
   background-image: url('/imgs/vacancies/search.svg');
   background-repeat: no-repeat;
   background-position: 8px;
   padding-left: 40px;
 }
 
-.input_button {
+.header_input_button {
   width: 40px;
   height: 40px;
   background-image: url('/imgs/vacancies/i.svg');
@@ -58,6 +58,7 @@
 
 .text_container {
   display: flex;
+  justify-content: space-between;
   margin-bottom: 24px;
 }
 
@@ -68,27 +69,61 @@
   margin-right: 12px;
 }
 
+.header_btn_save {
+  background-color: var(--main-color);
+  color: white;
+  padding: 8px;
+}
+
 .main {
   display: flex;
-  gap: 2vw;
+  flex-direction: column;
   background-color: var(--main-background-color);
-
   border-radius: 10px;
-  max-height: 100vh;
+}
+
+.selectSidebar_container {
+  display: flex;
+  max-height: calc(100vh - 135px);
 }
 
 .form {
+  position: relative;
   width: calc(100% - 352px);
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 20px;
+  padding: 40px 60px 0px 60px;
 }
 
 .btn_container {
   display: flex;
   justify-content: space-between;
-  margin-top: 100px;
+}
+
+.btn_prev,
+.btn_next {
+  position: absolute;
+  background-color: #eceef4;
+  color: var(--main-color);
+  padding: 8px;
+}
+
+.btn_prev {
+  bottom: 30px;
+  left: 432px;
+}
+
+.btn_next {
+  bottom: 30px;
+  right: 80px;
+}
+
+.btn_display_none {
+  display: none;
 }
 
 /* share page */
-
 .share_page {
   height: 100vh;
   display: flex;

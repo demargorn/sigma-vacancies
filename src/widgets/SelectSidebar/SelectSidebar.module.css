@@ -4,8 +4,9 @@
 
 /* sidebar */
 .sidebar_container {
-  /* position: absolute;
-   top: 112px; */
+  /* position: fixed;
+  top: 112px;
+  left: 260px; */
   width: 352px;
   border-radius: 10px;
   background-color: #fff;
@@ -33,15 +34,15 @@
 }
 
 .sidebar_item_active {
-  background-color: var(--main-color);
+  background-color: var(--disable-color);
   background-image: url('/imgs/select-sidebar/edit-arrow.svg');
   background-repeat: no-repeat;
-  color: white;
+  color: black;
   background-position: right center;
 }
 
 .sidebar_description_active {
-  color: white;
+  color: black;
 }
 
 /* edit pages */

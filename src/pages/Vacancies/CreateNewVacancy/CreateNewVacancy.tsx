@@ -18,31 +18,32 @@ type TypeCreateNewVacancyProps = {
 const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
   const templateEditInfo = useSelector((s: TypeRootState) => s.templateEdit);
   const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
-  const [pageInfo, setPageInfo] = useState<EditPageInfo | undefined>();
+  const [pageInfo, setPageInfo] = useState<EditPageInfo>();
   const [error, setError] = useState<boolean>(false);
 
   const [hasChanged, setHasChanged] = useState<boolean>(false);
-  const [ready, setReady] = useState<boolean>(false);
   const { mode } = useParams();
 
-  const templateInfo = props.templateInfo;
   const pollInfo = props.pollInfo;
 
   const breadcrumbs = [
     <Link to="/" aria-label="Home" key="Home">
       <GenericHome className="text-moon-24" />
     </Link>,
-    <Link to={`/vacancies`} style={{ marginLeft: '8px' }} key="Page 1">
-      Найм сотрудников
+    <span style={{ marginLeft: '8px' }} key="Page 1">
+      ...
+    </span>,
+    <Link to={`/vacancies`} style={{ marginLeft: '8px' }} key="Page 2">
+      Вакансии
     </Link>,
     <span key="Current" style={{ marginLeft: '8px' }}>
-      Создать новую вакансию
+      Создание новой вакансии
     </span>
   ];
 
   const callComponent = () => {
     if (!pageInfo) {
-      return null;
+      return;
     }
 
     const props = {
@@ -79,42 +80,35 @@ const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
           <Breadcrumb breadcrumbs={breadcrumbs} />
         </div>
 
-        <div className={styles.input_container}>
-          <input type="text" placeholder="Поиск" className={styles.input} />
-          <button className={styles.input_button}></button>
+        <div className={styles.header_input_container}>
+          <input type="text" placeholder="Поиск" className={styles.header_input} />
+          <button className={styles.header_input_button}></button>
         </div>
       </header>
 
       <div className={styles.text_container}>
-        <h1 className={styles.h1}>Создать новую вакансию</h1>
+        <h1 className={styles.h1}>Создание новой вакансии</h1>
+        <button className={styles.header_btn_save} onClick={() => {}}>
+          Сохранить
+        </button>
       </div>
 
-      <main className={styles.main} style={editPage === 'Segmentation' || editPage === 'Preview' ? { height: '100%' } : {}}>
-        <SelectSidebar page={editPage} setPage={setEditPage} error={error} setError={setError} />
-        <form action="" onChange={() => setHasChanged(true)} className={styles.form}>
-          {callComponent()}
-        </form>
+      <main className={styles.main}>
+        <div className={styles.selectSidebar_container}>
+          <SelectSidebar page={editPage} setPage={setEditPage} error={error} setError={setError} />
+
+          <form action="" onChange={() => setHasChanged(true)} className={styles.form}>
+            {callComponent()}
+          </form>
+        </div>
+
         <div className={styles.btn_container}>
-          {/* <button
-            disabled={!pageInfo!.info?.prevLink}
-            className={styles.header_btnNext}
-            onClick={() => {
-              setEditPage(pageInfo!.info.prevLink);
-            }}
-          >
+          <button className={!pageInfo?.info.prevLink ? `${styles.btn_display_none}` : `${styles.btn_prev}`} onClick={() => setEditPage(pageInfo!.info.prevLink)}>
             Назад
-          </button> */}
-          {/* <button
-            disabled={!pageInfo!.info.nextLink}
-            className={styles.header_btnNext}
-            onClick={() => {
-              const err = checkIfError();
-              setError(err);
-              if (!err) setEditPage(pageInfo!.info.nextLink);
-            }}
-          >
+          </button>
+          <button className={!pageInfo?.info.nextLink ? `${styles.btn_display_none}` : `${styles.btn_next}`} onClick={() => setEditPage(pageInfo!.info.nextLink)}>
             Далeе
-          </button> */}
+          </button>
         </div>
       </main>
     </section>

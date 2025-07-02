@@ -1,44 +1,44 @@
 // @ts-nocheck
-import { Dates, FinalEdit, Greeting, Info, Org, Participation, Preview, Segmentation, Visual } from '@/widgets/SelectSidebar/Sections';
+import { Dates, FinalEdit, Greeting, CustomerInfo, MainInfo, Participation, Preview, Segmentation, Visual } from '@/widgets/SelectSidebar/Sections';
 
 import type { EditPageProps } from '@/types/types';
 
 export const editingConfig = [
   {
-    section: 'Org',
+    section: 'MainInfo',
     info: {
-      name: 'Наименование вакансии',
-      description: 'описание новой вакансии',
-      page: () => <Org />,
-      nextLink: 'Info',
+      name: 'Основная информация',
+      description: 'Название, описание и статус новой вакансии',
+      page: () => <MainInfo />,
+      nextLink: 'Customer',
       prevLink: ''
     }
   },
   {
-    section: 'Info',
+    section: 'Customer',
     info: {
-      name: 'Информация об опросе',
-      description: 'Для внутреннего пользования',
-      page: (props: EditPageProps) => <Info error={props.error} setError={props.setError} hasChanged={props.hasChanged} />,
+      name: 'Заказчик',
+      description: 'Информация о заказчике для внутреннего пользования',
+      page: (props: EditPageProps) => <CustomerInfo error={props.error} setError={props.setError} hasChanged={props.hasChanged} />,
       nextLink: 'Greeting',
-      prevLink: 'Org'
+      prevLink: 'MainInfo'
     }
   },
   {
     section: 'Greeting',
     info: {
-      name: 'Приветствие',
-      description: 'Текст в шапке анкеты',
+      name: 'Условия работы',
+      description: 'Локация, компания, формат и график работы, занятость, зарплата',
       page: (props: EditPageProps) => <Greeting templateInfo={props.templateInfo} pollInfo={props.pollInfo} hasChanged={props.hasChanged} />,
       nextLink: 'Segmentation',
-      prevLink: 'Info'
+      prevLink: 'Customer'
     }
   },
   {
     section: 'Segmentation',
     info: {
-      name: 'Сегментация респондентов',
-      description: 'Редактирование вопросов',
+      name: 'Требования к кандидату',
+      description: 'Описание навыков и опыта',
       nextLink: 'FinalEdit',
       prevLink: 'Greeting',
       page: (props: EditPageProps) => <Segmentation setHasChanged={props.setHasChanged} department={props.department} workPeriod={props.workPeriod} mode={props.mode} />
@@ -47,51 +47,31 @@ export const editingConfig = [
   {
     section: 'FinalEdit',
     info: {
-      name: 'Итоговая страница',
-      description: 'Страница после заполнения опроса',
+      name: 'Контакты',
+      description: 'Контакты HR для публикации',
+      page: (props: EditPageProps) => <FinalEdit hasChanged={props.hasChanged} />,
       nextLink: 'Visual',
-      prevLink: 'Segmentation',
-      page: (props: EditPageProps) => <FinalEdit hasChanged={props.hasChanged} />
+      prevLink: 'Segmentation'
     }
   },
   {
     section: 'Visual',
     info: {
-      name: 'Оформление',
+      name: 'Организационная информация',
+      description: 'Информация для рекрутера',
+      page: () => <Visual />,
       nextLink: 'Preview',
-      prevLink: 'FinalEdit',
-      description: 'Выбор цвета страницы, логотип, и графика',
-      page: () => <Visual />
+      prevLink: 'FinalEdit'
     }
   },
   {
     section: 'Preview',
     info: {
       name: 'Предпросмотр',
+      description: 'Предпросмотр вакансии',
+      page: () => Preview,
       nextLink: 'Participation',
-      prevLink: 'Visual',
-      description: 'Предпросмотр и публикация опроса',
-      page: () => Preview
-    }
-  },
-  {
-    section: 'Participation',
-    info: {
-      name: 'Участие респондентов',
-      nextLink: 'Dates',
-      prevLink: 'Preview',
-      description: 'Настройки анонимности и повторного участия',
-      page: (props: EditPageProps) => <Participation />
-    }
-  },
-  {
-    section: 'Dates',
-    info: {
-      name: 'Даты проведения',
-      nextLink: '',
-      prevLink: 'Participation',
-      description: 'Настройка перед публикацией опроса',
-      page: (props: EditPageProps) => <Dates mode={props.mode || ''} />
+      prevLink: 'Visual'
     }
   }
 ];
