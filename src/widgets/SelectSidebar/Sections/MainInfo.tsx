@@ -2,8 +2,10 @@ import styles from './Sections.module.css';
 
 const MainInfo = () => {
   return (
-    <div className={styles.container}>
-      <h2 className={styles.heading}>Основная информация о вакансии</h2>
+    <article className={styles.container}>
+      <h2 className={styles.heading} style={{ marginBottom: '32px' }}>
+        Основная информация о вакансии
+      </h2>
 
       <label className={styles.input_container}>
         <div className={styles.input_vacancy_name}>
@@ -41,7 +43,7 @@ const MainInfo = () => {
           Обратите внимание: вакансия будет опубликована на витрине вакансий только в статусе «Активная». Во всех остальных статусах вакансию можете просматривать и редактировать только вы.
         </p>
       </div>
-    </div>
+    </article>
   );
 };
 

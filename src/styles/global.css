@@ -13,10 +13,12 @@
   line-height: 1.5;
   font-weight: 400;
 
+  /* основные цвета*/
   --main-color: #487bfe;
   --disable-color: #edf2ff;
   --main-background-color: #f6f7fa;
 
+  /* цвет текста*/
   --primary-text: #0c151d;
   --secondary-text: #767a7f;
 

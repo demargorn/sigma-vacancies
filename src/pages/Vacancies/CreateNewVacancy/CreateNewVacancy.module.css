@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .breadcrumbs ol {
@@ -84,43 +84,36 @@
 
 .selectSidebar_container {
   display: flex;
-  max-height: calc(100vh - 135px);
+  max-height: 73vh;
 }
 
 .form {
   position: relative;
-  width: calc(100% - 352px);
+  width: calc(100% - 394px);
   background-color: white;
   border-radius: 10px;
   margin-left: 20px;
-  padding: 40px 60px 0px 60px;
+  padding: 30px 60px;
+  overflow: auto;
 }
 
 .btn_container {
   display: flex;
   justify-content: space-between;
+  width: calc(100% - 414px);
+  margin-left: auto;
 }
 
 .btn_prev,
 .btn_next {
-  position: absolute;
-  background-color: #eceef4;
+  background-color: white;
   color: var(--main-color);
   padding: 8px;
-}
-
-.btn_prev {
-  bottom: 30px;
-  left: 432px;
-}
-
-.btn_next {
-  bottom: 30px;
-  right: 80px;
+  margin-top: 20px;
 }
 
 .btn_display_none {
-  display: none;
+  visibility: hidden;
 }
 
 /* share page */

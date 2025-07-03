@@ -7,11 +7,12 @@
   /* position: fixed;
   top: 112px;
   left: 260px; */
-  width: 352px;
+  width: 394px;
+  max-height: 100%;
   border-radius: 10px;
   background-color: #fff;
   padding: 12px;
-  overflow-x: hidden;
+  overflow: auto;
 }
 
 .sidebar_item {
@@ -49,7 +50,7 @@
 .main {
   width: 100%;
   background-color: #fff;
-  margin-left: 356px;
+  margin-left: 394px;
   border-radius: 16px;
   height: calc(100vh - 110px);
   padding: 40px 80px;

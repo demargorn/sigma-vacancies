@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Dates, FinalEdit, Greeting, CustomerInfo, MainInfo, Participation, Preview, Segmentation, Visual } from '@/widgets/SelectSidebar/Sections';
+import { Dates, FinalEdit, Conditions, CustomerInfo, MainInfo, Participation, Preview, Segmentation, Visual } from '@/widgets/SelectSidebar/Sections';
 
 import type { EditPageProps } from '@/types/types';
 
@@ -19,17 +19,17 @@ export const editingConfig = [
     info: {
       name: 'Заказчик',
       description: 'Информация о заказчике для внутреннего пользования',
-      page: (props: EditPageProps) => <CustomerInfo error={props.error} setError={props.setError} hasChanged={props.hasChanged} />,
-      nextLink: 'Greeting',
+      page: () => <CustomerInfo />,
+      nextLink: 'Conditions',
       prevLink: 'MainInfo'
     }
   },
   {
-    section: 'Greeting',
+    section: 'Conditions',
     info: {
       name: 'Условия работы',
       description: 'Локация, компания, формат и график работы, занятость, зарплата',
-      page: (props: EditPageProps) => <Greeting templateInfo={props.templateInfo} pollInfo={props.pollInfo} hasChanged={props.hasChanged} />,
+      page: () => <Conditions />,
       nextLink: 'Segmentation',
       prevLink: 'Customer'
     }

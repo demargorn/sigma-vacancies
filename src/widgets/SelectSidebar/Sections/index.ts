@@ -1,6 +1,6 @@
 export { default as CustomerInfo } from './CustomerInfo';
 
-export { default as Greeting } from './Greeting';
+export { default as Conditions } from './Conditions';
 
 export { default as Segmentation } from './Segmentation';
 
