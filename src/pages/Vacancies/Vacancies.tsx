@@ -126,7 +126,7 @@ const Vacancies = () => {
         </ul>
 
         <div className={styles.actions}>
-          <button className={cn(styles.action, styles.action_add)} title="создать новую вакансию">
+          <button className={cn(styles.action, styles.action_add)} title="создать новую вакансию" onClick={() => navigate('/vacancies/create')}>
             Создать вакансию
           </button>
           <button className={cn(styles.action, styles.action_sort)} title="сортировать вакансии"></button>

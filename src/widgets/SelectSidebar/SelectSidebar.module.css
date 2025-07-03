@@ -21,7 +21,7 @@
 
 .sidebar_item:last-child {
   opacity: 30%;
-  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .sidebar_description {
