@@ -62,11 +62,11 @@ const Conditions = () => {
       <label className={styles.input_container}>
         <div className={styles.salary}>
           <div className={styles.input_label}>от</div>
-          <input type="text" placeholder="0" className={styles.input_text} />
+          <input type="number" placeholder="0" className={styles.input_text} />
         </div>
         <div className={styles.salary}>
           <div className={styles.input_label}>до</div>
-          <input type="text" placeholder="все деньги мира" className={styles.input_text} />
+          <input type="number" placeholder="все деньги мира" className={styles.input_text} />
         </div>
       </label>
     </article>

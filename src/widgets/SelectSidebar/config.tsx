@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Dates, FinalEdit, Conditions, CustomerInfo, MainInfo, Participation, Preview, Segmentation, Visual } from '@/widgets/SelectSidebar/Sections';
+import { Conditions, CustomerInfo, MainInfo, OrganizationalInfo, Preview, Requirements, Aspirant } from '@/widgets/SelectSidebar/Sections';
 
 import type { EditPageProps } from '@/types/types';
 
@@ -8,7 +8,7 @@ export const editingConfig = [
     section: 'MainInfo',
     info: {
       name: 'Основная информация',
-      description: 'Название, описание и статус новой вакансии',
+      description: 'Название, описание и статус вакансии',
       page: () => <MainInfo />,
       nextLink: 'Customer',
       prevLink: ''
@@ -18,7 +18,7 @@ export const editingConfig = [
     section: 'Customer',
     info: {
       name: 'Заказчик',
-      description: 'Информация о заказчике для внутреннего пользования',
+      description: 'Информация о заказчике вакансии, для внутреннего пользования',
       page: () => <CustomerInfo />,
       nextLink: 'Conditions',
       prevLink: 'MainInfo'
@@ -30,48 +30,48 @@ export const editingConfig = [
       name: 'Условия работы',
       description: 'Локация, компания, формат и график работы, занятость, зарплата',
       page: () => <Conditions />,
-      nextLink: 'Segmentation',
+      nextLink: 'Requirements',
       prevLink: 'Customer'
     }
   },
   {
-    section: 'Segmentation',
+    section: 'Requirements',
     info: {
       name: 'Требования к кандидату',
-      description: 'Описание навыков и опыта',
-      nextLink: 'FinalEdit',
-      prevLink: 'Greeting',
-      page: (props: EditPageProps) => <Segmentation setHasChanged={props.setHasChanged} department={props.department} workPeriod={props.workPeriod} mode={props.mode} />
+      description: 'Описание нужных навыков и опыта',
+      page: () => <Requirements />,
+      nextLink: 'Aspirant',
+      prevLink: 'Conditions'
     }
   },
   {
-    section: 'FinalEdit',
+    section: 'Aspirant',
     info: {
       name: 'Контакты',
-      description: 'Контакты HR для публикации',
-      page: (props: EditPageProps) => <FinalEdit hasChanged={props.hasChanged} />,
-      nextLink: 'Visual',
-      prevLink: 'Segmentation'
+      description: 'Контакты HR для публикации на витрине',
+      page: () => <Aspirant />,
+      nextLink: 'OrganizationalInfo',
+      prevLink: 'Requirements'
     }
   },
   {
-    section: 'Visual',
+    section: 'OrganizationalInfo',
     info: {
       name: 'Организационная информация',
-      description: 'Информация для рекрутера',
-      page: () => <Visual />,
-      nextLink: 'Preview',
-      prevLink: 'FinalEdit'
+      description: 'Информация о вакансии для рекрутера',
+      page: () => <OrganizationalInfo />,
+      nextLink: '',
+      prevLink: 'Aspirant'
     }
   },
   {
     section: 'Preview',
     info: {
       name: 'Предпросмотр',
-      description: 'Предпросмотр вакансии',
-      page: () => Preview,
-      nextLink: 'Participation',
-      prevLink: 'Visual'
+      description: 'Так будет выглядеть вакансия на витрине',
+      page: () => <Preview />,
+      nextLink: '',
+      prevLink: 'OrganizationalInfo'
     }
   }
 ];

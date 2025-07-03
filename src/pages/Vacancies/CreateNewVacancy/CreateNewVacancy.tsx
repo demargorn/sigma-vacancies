@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router';
+import cn from 'classnames';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import { editingConfig } from '@/widgets/SelectSidebar/config';
@@ -106,8 +107,8 @@ const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
           <button className={!pageInfo?.info.prevLink ? `${styles.btn_display_none}` : `${styles.btn_prev}`} onClick={() => setEditPage(pageInfo!.info.prevLink)}>
             Назад
           </button>
-          <button className={!pageInfo?.info.nextLink ? `${styles.btn_display_none}` : `${styles.btn_next}`} onClick={() => setEditPage(pageInfo!.info.nextLink)}>
-            Далeе
+          <button className={!pageInfo?.info.nextLink ? `${cn(styles.btn_next, styles.btn_next_save)}` : `${styles.btn_next}`} onClick={() => setEditPage(pageInfo!.info.nextLink)}>
+            {!pageInfo?.info.nextLink ? 'Сохранить' : 'Далее'}
           </button>
         </div>
       </main>

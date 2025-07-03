@@ -1,12 +1,5 @@
-.container {
-  width: 100%;
-}
-
 /* sidebar */
 .sidebar_container {
-  /* position: fixed;
-  top: 112px;
-  left: 260px; */
   width: 394px;
   max-height: 100%;
   border-radius: 10px;
@@ -16,22 +9,27 @@
 }
 
 .sidebar_item {
-  border-radius: 12px;
-  cursor: pointer;
-  padding: 12px 8px 12px 20px;
-  color: #595d62;
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;
+  color: #595d62;
+  border-radius: 12px;
+  padding: 12px 8px 12px 20px;
   margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.sidebar_item:last-child {
+  opacity: 30%;
+  cursor: not-allowed;
 }
 
 .sidebar_description {
-  margin-top: 4px;
-  color: #595d62;
   font-size: 14px;
-  line-height: 20px;
   font-weight: 400;
+  line-height: 20px;
+  color: #595d62;
+  margin-top: 4px;
 }
 
 .sidebar_item_active {

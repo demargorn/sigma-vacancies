@@ -108,55 +108,15 @@
 .btn_next {
   background-color: white;
   color: var(--main-color);
-  padding: 8px;
+  padding: 8px 12px;
   margin-top: 20px;
+}
+
+.btn_next_save {
+  background-color: var(--main-color);
+  color: white;
 }
 
 .btn_display_none {
   visibility: hidden;
-}
-
-/* share page */
-.share_page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.share_heading {
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.share_container {
-  width: 30%;
-  display: flex;
-  align-items: end;
-}
-
-.share_input {
-  width: 100%;
-  font-size: 24px;
-  border-radius: 5px;
-  box-shadow: 0px 5px 10px 2px rgba(var(--accent-color), 0.05) inset;
-  padding: 5px;
-  padding-left: 10px;
-}
-
-.share_btn {
-  width: 35px;
-  height: 35px;
-  padding-right: 45px;
-  cursor: pointer;
-  background-image: url('/imgs/icons/share.svg');
-  background-size: 35px;
-  background-repeat: no-repeat;
-  background-position: right;
-  transition: background-image 0.2s ease-in-out;
-}
-
-.share_btn:hover {
-  background-image: url('/imgs/icons/share_hover.svg');
 }
