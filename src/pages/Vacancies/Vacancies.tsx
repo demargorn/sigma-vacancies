@@ -6,7 +6,6 @@ import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import Vacancy from '@/widgets/Vacancy/Vacancy';
 import type { TypeRootState } from '@/app/store/store';
-import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import styles from './Vacancies.module.css';
 
 const Vacancies = () => {

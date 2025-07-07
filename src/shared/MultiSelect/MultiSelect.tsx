@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
-import type { TypeDispatch } from '@/app/store/store';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import styles from '@/widgets/SelectSidebar/Sections/Sections.module.css';
 
@@ -12,10 +12,11 @@ type TypeMultiSelectProps = {
 };
 
 const MultiSelect = (props: TypeMultiSelectProps) => {
+  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
+  const dispatch = useDispatch<TypeDispatch>();
   const [isOpen, setIsOpen] = useState<boolean>(false); /** открыт/закрыт выпадающий список */
   const [query, setQuery] = useState<string>(''); /** поисковый запрос */
   const ref = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch<TypeDispatch>();
 
   /** проверяем, что клик мимо выпадающего списка */
   const handleClickOutside = (e: MouseEvent) => {
@@ -46,9 +47,6 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
     dispatch(vacanciesActions.deleteVacancySelectedSkills(option));
   };
 
-  /** очистить выбранные опции */
-  // const handleClearAll = () => props.onSelectionChange([]);
-
   /** создаем отфильтрованный массив по поисковому слову */
   const filteredOptions = props.skills.filter((skill) => skill.toLowerCase().includes(query.toLowerCase()));
 
@@ -59,9 +57,9 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
   return (
     <div className={styles.label_container} ref={ref}>
       <div className={cn(styles.multiselect_checked_items_container, styles.select_status)} onClick={handleToggleDropdown}>
-        {props.selectedSkills.length === 0 && <span className={styles.input_label}>Выберите навыки</span>}
+        {vacancy.selectedSkills.length === 0 && <span className={styles.input_label}>Выберите навыки</span>}
 
-        {props.selectedSkills.map((skill, i) => (
+        {vacancy.selectedSkills.map((skill, i) => (
           <div key={i} className={styles.multiselect_checked_items_container}>
             <span className={styles.multiselect_checked_items}>{skill}</span>
             <button
@@ -69,7 +67,7 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
                 e.preventDefault();
                 handleRemoveOption(skill);
               }}
-              title="удалить"
+              title="удалить навык из списка"
               className={styles.multiselect_item_close}
             ></button>
           </div>
@@ -93,15 +91,6 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
               })
             )}
           </div>
-
-          {/** кнопка очистки навыков если потребуется */}
-          {/* {props.selectedOptions.length > 0 && (
-            <div className="border-t p-2">
-              <button onClick={handleClearAll} className="text-red-500 hover:text-red-700">
-                Очистить
-              </button>
-            </div>
-          )} */}
         </div>
       )}
     </div>

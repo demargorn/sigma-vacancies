@@ -60,6 +60,8 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     setPageInfo(currentInfo);
   }, [editPage]);
 
+  console.log(vacancy);
+
   return (
     <section className={styles.container}>
       <header className={styles.header}>
