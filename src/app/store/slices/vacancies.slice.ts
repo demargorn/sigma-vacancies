@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import type { TypeStatus } from '@/types/status.type';
+import { setLocalStorageItem } from '@/shared/helpers/localStorageFn';
 
 /** срез вакансий */
 
@@ -42,8 +43,8 @@ const initialState: IVacancyState = {
     selectedSkills: [],
     experience: '',
 
-    opened_date: new Date(),
-    closed_date: new Date(),
+    opened_date: '',
+    closed_date: '',
     budget: 0,
     responsible: ''
   }
@@ -112,15 +113,24 @@ const vacanciesSlice = createSlice({
       state.vacancy.salary_to = payload;
     },
     addVacancySelectedSkills: (state, { payload }: PayloadAction<string>) => {
+      const existed = state.vacancy.selectedSkills.some((skill) => skill === payload); /** ищем совпадения по навыку */
+
+      if (existed) {
+        return; /** запрещаем добавление одикаковых навыков */
+      }
+
       state.vacancy.selectedSkills.push(payload);
+    },
+    deleteVacancySelectedSkills: (state, { payload }: PayloadAction<string>) => {
+      state.vacancy.selectedSkills = state.vacancy.selectedSkills.filter((skill) => skill !== payload);
     },
     addVacancyExperience: (state, { payload }: PayloadAction<string>) => {
       state.vacancy.experience = payload;
     },
-    addVacancyOpened: (state, { payload }: PayloadAction<Date>) => {
+    addVacancyOpened: (state, { payload }: PayloadAction<string>) => {
       state.vacancy.opened_date = payload;
     },
-    addVacancyClosed: (state, { payload }: PayloadAction<Date>) => {
+    addVacancyClosed: (state, { payload }: PayloadAction<string>) => {
       state.vacancy.closed_date = payload;
     },
     addVacancyBudget: (state, { payload }: PayloadAction<number>) => {
@@ -128,6 +138,9 @@ const vacanciesSlice = createSlice({
     },
     addVacancyResponsible: (state, { payload }: PayloadAction<string>) => {
       state.vacancy.responsible = payload;
+    },
+    saveVacancyToLocalStorage: (state) => {
+      setLocalStorageItem('vacancy', state.vacancy);
     },
 
     /** очищаем поля ваканси */
@@ -157,8 +170,8 @@ const vacanciesSlice = createSlice({
         selectedSkills: [],
         experience: '',
 
-        opened_date: new Date(),
-        closed_date: new Date(),
+        opened_date: '',
+        closed_date: '',
         budget: 0,
         responsible: ''
       };

@@ -36,10 +36,6 @@ const Requirements = () => {
     setSelectedSkills(newOptions);
   };
 
-  // const handleVacancySelectedSkillsChange = (skill: string) => {
-  //   dispatch(vacanciesActions.addVacancySelectedSkills(skill));
-  // };
-
   useEffect(() => {
     handleFetchSkills();
   }, []);

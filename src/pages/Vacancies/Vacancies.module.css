@@ -138,6 +138,7 @@
 
 .main {
   max-width: 100%;
+  margin: 0 auto;
   padding-block: 12px;
 }
 

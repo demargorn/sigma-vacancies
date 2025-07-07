@@ -25,8 +25,8 @@ export interface IVacancy {
   selectedSkills: Array<string>;
   experience: string;
 
-  opened_date: Date;
-  closed_date: Date;
+  opened_date: string;
+  closed_date: string;
   budget: number;
   responsible: string;
 

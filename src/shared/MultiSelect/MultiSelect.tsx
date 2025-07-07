@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
+import type { TypeDispatch } from '@/app/store/store';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import styles from '@/widgets/SelectSidebar/Sections/Sections.module.css';
 
@@ -12,7 +12,6 @@ type TypeMultiSelectProps = {
 };
 
 const MultiSelect = (props: TypeMultiSelectProps) => {
-  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
   const [isOpen, setIsOpen] = useState<boolean>(false); /** открыт/закрыт выпадающий список */
   const [query, setQuery] = useState<string>(''); /** поисковый запрос */
   const ref = useRef<HTMLDivElement>(null);
@@ -38,10 +37,14 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
     const newSelection = isSelected ? props.selectedSkills.filter((skill) => skill !== option) : [...props.selectedSkills, option];
 
     props.onSelectionChange(newSelection);
+    newSelection.map((s) => dispatch(vacanciesActions.addVacancySelectedSkills(s)));
   };
 
   /** удалить опцию */
-  const handleRemoveOption = (option: string) => props.onSelectionChange(props.selectedSkills.filter((skill) => skill !== option));
+  const handleRemoveOption = (option: string) => {
+    props.onSelectionChange(props.selectedSkills.filter((skill) => skill !== option));
+    dispatch(vacanciesActions.deleteVacancySelectedSkills(option));
+  };
 
   /** очистить выбранные опции */
   // const handleClearAll = () => props.onSelectionChange([]);

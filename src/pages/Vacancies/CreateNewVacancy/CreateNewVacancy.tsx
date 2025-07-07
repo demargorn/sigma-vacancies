@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import cn from 'classnames';
 import { editingConfig } from '@/widgets/SelectSidebar/config';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
-import type { TypeRootState } from '@/app/store/store';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import type { EditPageInfo, EditPollInfo, Template } from '@/types/types';
 import styles from './CreateNewVacancy.module.css';
-import { setLocalStorageItem } from '@/shared/helpers/localStorageFn';
+import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 
 type TypeCreateNewVacancyProps = {
   templateInfo?: Template;
@@ -18,6 +18,7 @@ type TypeCreateNewVacancyProps = {
 
 const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
   const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
+  const dispatch = useDispatch<TypeDispatch>();
   const [clicked, setClicked] = useState<boolean>(false); /** нажата ли кнопка Сохранить */
   const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
   const [pageInfo, setPageInfo] = useState<EditPageInfo>();
@@ -41,7 +42,7 @@ const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
   /** функция сохранения вакансии в local storege */
   const handleSaveVacancy = () => {
     setClicked(true);
-    setLocalStorageItem('vacancy', vacancy);
+    dispatch(vacanciesActions.saveVacancyToLocalStorage());
   };
 
   /** функция вызова нового компонента */
