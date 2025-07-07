@@ -4,8 +4,6 @@ import styles from './SelectSidebar.module.css';
 type TypeSelectSidebarProps = {
   page: string;
   setPage: (arg: string) => void;
-  setError: (arg: boolean) => void;
-  error: boolean;
 };
 
 const SelectSidebar = (props: TypeSelectSidebarProps) => {

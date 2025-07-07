@@ -1,30 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router';
+import { Link } from 'react-router';
 import cn from 'classnames';
+import { editingConfig } from '@/widgets/SelectSidebar/config';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
-import { editingConfig } from '@/widgets/SelectSidebar/config';
 import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
 import type { TypeRootState } from '@/app/store/store';
 import type { EditPageInfo, EditPollInfo, Template } from '@/types/types';
 import styles from './CreateNewVacancy.module.css';
+import { setLocalStorageItem } from '@/shared/helpers/localStorageFn';
 
 type TypeCreateNewVacancyProps = {
-  mode?: string;
   templateInfo?: Template;
   pollInfo?: EditPollInfo;
 };
 
 const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
-  const templateEditInfo = useSelector((s: TypeRootState) => s.templateEdit);
+  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
+  const [clicked, setClicked] = useState<boolean>(false); /** нажата ли кнопка Сохранить */
   const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
   const [pageInfo, setPageInfo] = useState<EditPageInfo>();
-  const [error, setError] = useState<boolean>(false);
-
-  const [hasChanged, setHasChanged] = useState<boolean>(false);
-  const { mode } = useParams();
-
   const pollInfo = props.pollInfo;
 
   const breadcrumbs = [
@@ -42,28 +38,19 @@ const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
     </span>
   ];
 
+  /** функция сохранения вакансии в local storege */
+  const handleSaveVacancy = () => {
+    setClicked(true);
+    setLocalStorageItem('vacancy', vacancy);
+  };
+
+  /** функция вызова нового компонента */
   const callComponent = () => {
     if (!pageInfo) {
       return;
     }
 
-    const props = {
-      error,
-      setError,
-      hasChanged,
-      setHasChanged,
-      pollInfo,
-      mode
-    };
-
-    return pageInfo.info.page({ ...props });
-  };
-
-  const checkIfError = () => {
-    if (editPage === 'Info' && !templateEditInfo.adminHeading.replace(/\s+/g, '')) {
-      return true;
-    }
-    return false;
+    return pageInfo.info.page({ ...pollInfo });
   };
 
   useEffect(() => {
@@ -73,6 +60,8 @@ const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
     }
     setPageInfo(currentInfo);
   }, [editPage]);
+
+  console.log(vacancy);
 
   return (
     <section className={styles.container}>
@@ -89,16 +78,16 @@ const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
 
       <div className={styles.text_container}>
         <h1 className={styles.h1}>Создание новой вакансии</h1>
-        <button className={styles.header_btn_save} onClick={() => {}}>
-          Сохранить
+        <button className={clicked ? cn(styles.header_btn_clicked, styles.header_btn_save) : `${styles.header_btn_save}`} onClick={handleSaveVacancy}>
+          {clicked ? 'Изменения сохранены' : 'Сохранить и опубликовать'}
         </button>
       </div>
 
       <main className={styles.main}>
         <div className={styles.selectSidebar_container}>
-          <SelectSidebar page={editPage} setPage={setEditPage} error={error} setError={setError} />
+          <SelectSidebar page={editPage} setPage={setEditPage} />
 
-          <form action="" onChange={() => setHasChanged(true)} className={styles.form}>
+          <form action="" className={styles.form}>
             {callComponent()}
           </form>
         </div>

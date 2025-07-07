@@ -6,7 +6,7 @@ export { default as Conditions } from './Conditions';
 
 export { default as Requirements } from './Requirements';
 
-export { default as Aspirant } from './Aspirant';
+export { default as Contacts } from './Contacts';
 
 export { default as OrganizationalInfo } from './OrganizationalInfo';
 

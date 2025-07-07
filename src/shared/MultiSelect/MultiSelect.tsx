@@ -1,20 +1,24 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
+import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import styles from '@/widgets/SelectSidebar/Sections/Sections.module.css';
 
 type TypeMultiSelectProps = {
-  options: Array<string>;
-  selectedOptions: Array<string>;
+  skills: Array<string>;
+  selectedSkills: Array<string>;
   onSelectionChange: (s: Array<string>) => void;
 };
 
 const MultiSelect = (props: TypeMultiSelectProps) => {
+  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
   const [isOpen, setIsOpen] = useState<boolean>(false); /** открыт/закрыт выпадающий список */
   const [query, setQuery] = useState<string>(''); /** поисковый запрос */
-
   const ref = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch<TypeDispatch>();
 
-  // проверяем, что клик мимо выпадающего списка
+  /** проверяем, что клик мимо выпадающего списка */
   const handleClickOutside = (e: MouseEvent) => {
     const target = e.target as Node | null;
     if (ref.current && target && !ref.current.contains(target)) {
@@ -29,21 +33,21 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
 
   /** выбрать опцию */
   const handleOptionClick = (option: string) => {
-    const isSelected = props.selectedOptions.some((item) => item === option);
+    const isSelected = props.selectedSkills.some((skill) => skill === option);
 
-    const newSelection = isSelected ? props.selectedOptions.filter((item) => item !== option) : [...props.selectedOptions, option];
+    const newSelection = isSelected ? props.selectedSkills.filter((skill) => skill !== option) : [...props.selectedSkills, option];
 
     props.onSelectionChange(newSelection);
   };
 
   /** удалить опцию */
-  const handleRemoveOption = (option: string) => props.onSelectionChange(props.selectedOptions.filter((item) => item !== option));
+  const handleRemoveOption = (option: string) => props.onSelectionChange(props.selectedSkills.filter((skill) => skill !== option));
 
   /** очистить выбранные опции */
-  const handleClearAll = () => props.onSelectionChange([]);
+  // const handleClearAll = () => props.onSelectionChange([]);
 
   /** создаем отфильтрованный массив по поисковому слову */
-  const filteredOptions = props.options.filter((option) => option.toLowerCase().includes(query.toLowerCase()));
+  const filteredOptions = props.skills.filter((skill) => skill.toLowerCase().includes(query.toLowerCase()));
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -52,15 +56,15 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
   return (
     <div className={styles.label_container} ref={ref}>
       <div className={cn(styles.multiselect_checked_items_container, styles.select_status)} onClick={handleToggleDropdown}>
-        {props.selectedOptions.length === 0 && <span className={styles.input_label}>Выберите навыки</span>}
+        {props.selectedSkills.length === 0 && <span className={styles.input_label}>Выберите навыки</span>}
 
-        {props.selectedOptions.map((option, i) => (
+        {props.selectedSkills.map((skill, i) => (
           <div key={i} className={styles.multiselect_checked_items_container}>
-            <span className={styles.multiselect_checked_items}>{option}</span>
+            <span className={styles.multiselect_checked_items}>{skill}</span>
             <button
               onClick={(e) => {
                 e.preventDefault();
-                handleRemoveOption(option);
+                handleRemoveOption(skill);
               }}
               title="удалить"
               className={styles.multiselect_item_close}

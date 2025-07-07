@@ -6,9 +6,10 @@ import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import Vacancy from '@/widgets/Vacancy/Vacancy';
 import type { TypeRootState } from '@/app/store/store';
+import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import styles from './Vacancies.module.css';
 
-const Vacancies = () => {
+const Vacancies = (props: IVacancy) => {
   const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
   const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
   const [checkedStates, setCheckedStates] = useState<Array<boolean>>(() => vacancies.map(() => false)); /** состояние дочерних чекбоксов */
@@ -135,33 +136,57 @@ const Vacancies = () => {
         </div>
       </div>
 
-      <main className={styles.main}>
+      <table className={styles.main}>
         {vacancies.length > 0 ? (
-          <ul className={styles.main_top}>
-            <li className={styles.owner}>
-              <input type="checkbox" className={styles.main_checkbox} checked={allChecked} onChange={handleChange} />
-              <p className={styles.owner_title}>Вакансия и заказчик</p>
-            </li>
-            <li className={styles.recruter}>Рекрутер</li>
-            <li className={styles.created}>Создана</li>
-            <li className={styles.deadline}>Дедлайн</li>
-            <li className={styles.status}>Статус</li>
-            <li className={styles.responses}>Отклики</li>
-          </ul>
+          // <ul className={styles.main_top}>
+          //   <li className={styles.owner}>
+          //     <input type="checkbox" className={styles.main_checkbox} checked={allChecked} onChange={handleChange} />
+          //     <p className={styles.owner_title}>Вакансия и заказчик</p>
+          //   </li>
+          //   <li className={styles.recruter}>Рекрутер</li>
+          //   <li className={styles.created}>Создана</li>
+          //   <li className={styles.deadline}>Дедлайн</li>
+          //   <li className={styles.status}>Статус</li>
+          //   <li className={styles.responses}>Отклики</li>
+          // </ul>
+
+          <thead className={styles.main_top}>
+            <tr>
+              <th scope="col" className={styles.owner}>
+                <input type="checkbox" className={styles.main_checkbox} checked={allChecked} onChange={handleChange} />
+                <p className={styles.owner_title}>Вакансия и заказчик</p>
+              </th>
+              <th scope="col" className={styles.recruter}>
+                Рекрутер
+              </th>
+              <th scope="col" className={styles.created}>
+                Создана
+              </th>
+              <th scope="col" className={styles.deadline}>
+                Дедлайн
+              </th>
+              <th scope="col" className={styles.status}>
+                Статус
+              </th>
+              <th scope="col" className={styles.responses}>
+                Отклики
+              </th>
+            </tr>
+          </thead>
         ) : null}
 
-        <article className={styles.vacancies_container}>
+        <tbody className={styles.vacancies_container}>
           {vacancies.length > 0 ? (
             visibleVacancies.map((v, i) => (
               <Vacancy
+                {...props}
                 key={v.id}
                 vacancy_name={v.vacancy_name}
+                company_name={v.company_name}
                 customer_name={v.customer_name}
-                recruter={v.recruter}
-                created_date={v.created_date}
-                deadline_date={v.deadline_date}
+                opened_date={v.opened_date}
+                closed_date={v.closed_date}
                 status={v.status}
-                responses_qty={v.responses_qty}
                 checked={checkedStates[i]}
                 onChange={(checked) => handleVacancyCheckboxChange(i, checked)}
               />
@@ -182,8 +207,8 @@ const Vacancies = () => {
               </button>
             </div>
           )}
-        </article>
-      </main>
+        </tbody>
+      </table>
 
       {visibleVacancies.length >= 5 && (
         <footer className={styles.footer}>

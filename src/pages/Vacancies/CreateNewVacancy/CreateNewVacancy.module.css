@@ -75,6 +75,10 @@
   padding: 8px;
 }
 
+.header_btn_clicked {
+  opacity: 0.5;
+}
+
 .main {
   display: flex;
   flex-direction: column;

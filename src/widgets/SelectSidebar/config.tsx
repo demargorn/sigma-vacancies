@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Conditions, CustomerInfo, MainInfo, OrganizationalInfo, Preview, Requirements, Aspirant } from '@/widgets/SelectSidebar/Sections';
+import { Conditions, CustomerInfo, MainInfo, OrganizationalInfo, Preview, Requirements, Contacts } from '@/widgets/SelectSidebar/Sections';
 
 import type { EditPageProps } from '@/types/types';
 
@@ -40,16 +40,16 @@ export const editingConfig = [
       name: 'Требования к кандидату',
       description: 'Описание нужных навыков и опыта',
       page: () => <Requirements />,
-      nextLink: 'Aspirant',
+      nextLink: 'Contacts',
       prevLink: 'Conditions'
     }
   },
   {
-    section: 'Aspirant',
+    section: 'Contacts',
     info: {
       name: 'Контакты',
       description: 'Контакты HR для публикации на витрине',
-      page: () => <Aspirant />,
+      page: () => <Contacts />,
       nextLink: 'OrganizationalInfo',
       prevLink: 'Requirements'
     }
@@ -61,7 +61,7 @@ export const editingConfig = [
       description: 'Информация о вакансии для рекрутера',
       page: () => <OrganizationalInfo />,
       nextLink: '',
-      prevLink: 'Aspirant'
+      prevLink: 'Contacts'
     }
   },
   {

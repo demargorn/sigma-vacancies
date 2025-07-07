@@ -113,7 +113,8 @@
 .format,
 .employment,
 .salary,
-.customer_telegam,
+.customer_mail,
+.customer_telegram,
 .customer_whatsapp {
   width: 50%;
 }
