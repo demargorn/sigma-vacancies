@@ -12,17 +12,15 @@ import styles from './CreateNewVacancy.module.css';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 
 type TypeCreateNewVacancyProps = {
-  templateInfo?: Template;
   pollInfo?: EditPollInfo;
 };
 
-const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
+const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
   const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
   const dispatch = useDispatch<TypeDispatch>();
   const [clicked, setClicked] = useState<boolean>(false); /** нажата ли кнопка Сохранить */
   const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
   const [pageInfo, setPageInfo] = useState<EditPageInfo>();
-  const pollInfo = props.pollInfo;
 
   const breadcrumbs = [
     <Link to="/" aria-label="Home" key="Home">
@@ -61,8 +59,6 @@ const CreateNewVacancy = (props: TypeCreateNewVacancyProps) => {
     }
     setPageInfo(currentInfo);
   }, [editPage]);
-
-  console.log(vacancy);
 
   return (
     <section className={styles.container}>

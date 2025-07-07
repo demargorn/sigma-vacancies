@@ -9,8 +9,9 @@ import type { TypeRootState } from '@/app/store/store';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import styles from './Vacancies.module.css';
 
-const Vacancies = (props: IVacancy) => {
+const Vacancies = () => {
   const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
+  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
   const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
   const [checkedStates, setCheckedStates] = useState<Array<boolean>>(() => vacancies.map(() => false)); /** состояние дочерних чекбоксов */
 
@@ -179,7 +180,7 @@ const Vacancies = (props: IVacancy) => {
           {vacancies.length > 0 ? (
             visibleVacancies.map((v, i) => (
               <Vacancy
-                {...props}
+                {...vacancy}
                 key={v.id}
                 vacancy_name={v.vacancy_name}
                 company_name={v.company_name}

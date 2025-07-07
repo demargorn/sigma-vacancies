@@ -4,7 +4,7 @@ import styles from './Vacancy.module.css';
 
 /** Вакансия */
 
-const Vacancy = ({ vacancy_name, company_name, customer_name, opened_date, closed_date, status, checked, onChange }: IVacancy) => {
+const Vacancy = (props: IVacancy) => {
   let status_mode: string;
 
   /** функция выбора статуса вакансии */
@@ -30,34 +30,34 @@ const Vacancy = ({ vacancy_name, company_name, customer_name, opened_date, close
   return (
     <div className={styles.vacancy}>
       <div className={styles.vacancy_title}>
-        <input type="checkbox" name="checkbox" className={styles.vacancy_checkbox} checked={checked} onChange={(e) => onChange?.(e.target.checked)} />
+        <input type="checkbox" name="checkbox" className={styles.vacancy_checkbox} checked={props.checked} onChange={(e) => props.onChange?.(e.target.checked)} />
         <div className={styles.vacancy_title__description}>
-          <h5 className={styles.vacancy_title__name}>{vacancy_name}</h5>
-          <p className={styles.vacancy_title__customer_name}>{company_name}</p>
+          <h5 className={styles.vacancy_title__name}>{props.vacancy_name}</h5>
+          <p className={styles.vacancy_title__customer_name}>{props.company_name}</p>
         </div>
       </div>
       <div className={styles.vacancy_recruter}>
-        <span className={styles.vacancy_recruter__name}>{customer_name}</span>
+        <span className={styles.vacancy_recruter__name}>{props.customer_name}</span>
       </div>
       <div className={styles.vacancy_created}>
         <span className={styles.vacancy_created__date} title="дата создания">
-          {opened_date.toString()}
+          {props.opened_date.toString()}
         </span>
       </div>
       <div className={styles.vacancy_deadline}>
         <span className={styles.vacancy_deadline__date} title="дата окончания">
-          {closed_date.toString()}
+          {props.closed_date.toString()}
         </span>
       </div>
       <div className={styles.vacancy_status}>
-        <span className={`${styles.vacancy_status__default} ${style_mode()}`}>{status}</span>
+        <span className={`${styles.vacancy_status__default} ${style_mode()}`}>{props.status}</span>
       </div>
       {/* <div className={styles.vacancy_responses}>
         <span className={styles.vacancy_responses__quantity}>{responses_qty}</span>
       </div> */}
 
       <div className={styles.vacancy_buttons}>
-        {status === 'активная' ? <button className={styles.vacancy_copylink_btn} title="копировать ссылку"></button> : null}
+        {props.status === 'активная' ? <button className={styles.vacancy_copylink_btn} title="копировать ссылку"></button> : null}
         <button className={styles.vacancy_edit_btn} title="редактировать"></button>
         {/* {responses_qty === 0 ? (
           <button className={cn(styles.vacancy_main_btn, styles.vacancy_main_btn__disabled)} disabled>
