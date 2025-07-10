@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import cn from 'classnames';
 import { editingConfig } from '@/widgets/SelectSidebar/config';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
-import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
-import type { EditPageInfo, EditPollInfo, Template } from '@/types/types';
-import styles from './CreateNewVacancy.module.css';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
+import type { EditPageInfo, EditPollInfo } from '@/types/types';
+import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
+import ExitPopup from '@/shared/Popups/ExitPopup';
+import SavePopup from '@/shared/Popups/SavePopup';
+import styles from './CreateNewVacancy.module.css';
 
 type TypeCreateNewVacancyProps = {
   pollInfo?: EditPollInfo;
@@ -17,10 +19,17 @@ type TypeCreateNewVacancyProps = {
 
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
   const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
+  // const initialVacancyState = useSelector((s: TypeRootState) => s.vacancies); /** начальное состояние вакансии */
   const dispatch = useDispatch<TypeDispatch>();
   const [clicked, setClicked] = useState<boolean>(false); /** нажата ли кнопка Сохранить */
   const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
   const [pageInfo, setPageInfo] = useState<EditPageInfo>();
+
+  const [popupActive, setPopupActive] = useState<boolean>(false); /** управление открытием поп-апа */
+
+  const windowRef = useRef<HTMLDivElement>(null); /** реф на окно основного контента  */
+  const popupRef = useRef<HTMLDivElement>(null); /** реф на поп-ап */
+  const breadcrumbsRef = useRef<HTMLDivElement>(null); /** реф на breadcrumbs  */
 
   const breadcrumbs = [
     <Link to="/" aria-label="Home" key="Home">
@@ -37,10 +46,10 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     </span>
   ];
 
-  /** функция сохранения вакансии в local storege */
+  /** функция сохранения вакансии в storаge */
   const handleSaveVacancy = () => {
     setClicked(true);
-    dispatch(vacanciesActions.saveVacancyToLocalStorage());
+    dispatch(vacanciesActions.addVacancy());
   };
 
   /** функция вызова нового компонента */
@@ -52,6 +61,11 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     return pageInfo.info.page({ ...pollInfo });
   };
 
+  /** Сравнение текущего состояния с начальным */
+  // const hasFormChanged = useCallback(() => {
+  //   return JSON.stringify(vacancy) !== JSON.stringify(initialVacancyState);
+  // }, [vacancy]);
+
   useEffect(() => {
     const currentInfo = editingConfig.find((item) => item.section === editPage);
     if (!currentInfo) {
@@ -60,12 +74,42 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     setPageInfo(currentInfo);
   }, [editPage]);
 
-  console.log(vacancy);
+  /** показываем попап ExitPopup при клике вне окна */
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (windowRef.current && !windowRef.current.contains(e.target as Node)) {
+        setPopupActive(true);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  /** показываем попап ExitPopup при попытке закрыть/перезагрузить страницу (плохо работает) */
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      setPopupActive(!popupActive);
+      e.returnValue = ''; 
+      return;
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [popupActive]);
 
   return (
-    <section className={styles.container}>
+    <section ref={windowRef} className={styles.container}>
+      {clicked && <SavePopup active={popupActive} setActive={setPopupActive} />}
+      {popupActive && <ExitPopup active={popupActive} ref={popupRef} setActive={setPopupActive} />}
+
       <header className={styles.header}>
-        <div className={styles.breadcrumbs}>
+        <div ref={breadcrumbsRef} className={styles.breadcrumbs}>
           <Breadcrumb breadcrumbs={breadcrumbs} />
         </div>
 
@@ -78,7 +122,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
       <div className={styles.text_container}>
         <h1 className={styles.h1}>Создание новой вакансии</h1>
         <button className={clicked ? cn(styles.header_btn_clicked, styles.header_btn_save) : `${styles.header_btn_save}`} onClick={handleSaveVacancy}>
-          {clicked ? 'Изменения сохранены' : 'Сохранить и опубликовать'}
+          {clicked ? 'Изменения сохранены' : vacancy.status === 'активная' ? 'Сохранить и опубликовать' : ' Сохранить'}
         </button>
       </div>
 

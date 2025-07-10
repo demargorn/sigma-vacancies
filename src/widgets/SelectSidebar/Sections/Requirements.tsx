@@ -10,7 +10,6 @@ import styles from './Sections.module.css';
 const Requirements = () => {
   const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
   const dispatch = useDispatch<TypeDispatch>();
-
   const [skills, setSkills] = useState<Array<string>>([]); /** список навыков */
   const [selectedSkills, setSelectedSkills] = useState<Array<string>>([]); /** список выбранных навыков */
 
@@ -42,13 +41,16 @@ const Requirements = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Требование к кандидату</h2>
+      <h2 className={styles.heading} style={{ marginBottom: '32px' }}>
+        Требование к кандидату
+      </h2>
 
+      <div className={styles.input_label}>Навыки</div>
       <div className={styles.multiselect_container}>
         <MultiSelect skills={skills} selectedSkills={selectedSkills} onSelectionChange={handleSelectionChange} />
       </div>
 
-      <h2 className={styles.heading}>Требуемый опыт работы</h2>
+      <div className={styles.input_label}>Требуемый опыт работы</div>
       <select name="experience" value={vacancy.experience} className={styles.select_status} onChange={handleVacancyExperienceChange}>
         <option value="none" defaultChecked>
           Без опыта

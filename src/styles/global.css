@@ -42,12 +42,7 @@ a:hover {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
 @media (prefers-color-scheme: light) {

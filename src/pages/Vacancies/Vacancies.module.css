@@ -118,13 +118,22 @@
   width: 40px;
   height: 40px;
   background-color: var(--main-background-color);
+  border-radius: 8px;
 }
 
 .action_add {
+  background-image: url('/imgs/vacancies/plus.svg');
+  background-size: 24px;
+  background-repeat: no-repeat;
   background-color: #eceef4;
+  background-position: 5px;
   color: var(--main-color);
   width: 175px;
   height: 40px;
+  padding: 10px 8px 10px 30px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
 }
 .action_sort {
   background-image: url('/imgs/vacancies/action_1.svg');
@@ -237,6 +246,7 @@
   font-weight: 400;
   line-height: 20px;
   background-color: var(--main-color);
+  border-radius: 8px;
   padding: 8px;
   color: white;
 }

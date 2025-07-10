@@ -136,46 +136,22 @@ const Vacancies = () => {
         </div>
       </div>
 
-      <table className={styles.main}>
+      <div className={styles.main}>
         {vacancies.length > 0 ? (
-          // <ul className={styles.main_top}>
-          //   <li className={styles.owner}>
-          //     <input type="checkbox" className={styles.main_checkbox} checked={allChecked} onChange={handleChange} />
-          //     <p className={styles.owner_title}>Вакансия и заказчик</p>
-          //   </li>
-          //   <li className={styles.recruter}>Рекрутер</li>
-          //   <li className={styles.created}>Создана</li>
-          //   <li className={styles.deadline}>Дедлайн</li>
-          //   <li className={styles.status}>Статус</li>
-          //   <li className={styles.responses}>Отклики</li>
-          // </ul>
-
-          <thead className={styles.main_top}>
-            <tr>
-              <th scope="col" className={styles.owner}>
-                <input type="checkbox" className={styles.main_checkbox} checked={allChecked} onChange={handleChange} />
-                <p className={styles.owner_title}>Вакансия и заказчик</p>
-              </th>
-              <th scope="col" className={styles.recruter}>
-                Рекрутер
-              </th>
-              <th scope="col" className={styles.created}>
-                Создана
-              </th>
-              <th scope="col" className={styles.deadline}>
-                Дедлайн
-              </th>
-              <th scope="col" className={styles.status}>
-                Статус
-              </th>
-              <th scope="col" className={styles.responses}>
-                Отклики
-              </th>
-            </tr>
-          </thead>
+          <ul className={styles.main_top}>
+            <li className={styles.owner}>
+              <input type="checkbox" className={styles.main_checkbox} checked={allChecked} onChange={handleChange} />
+              <p className={styles.owner_title}>Вакансия и заказчик</p>
+            </li>
+            <li className={styles.recruter}>Рекрутер</li>
+            <li className={styles.created}>Создана</li>
+            <li className={styles.deadline}>Дедлайн</li>
+            <li className={styles.status}>Статус</li>
+            <li className={styles.responses}>Отклики</li>
+          </ul>
         ) : null}
 
-        <tbody className={styles.vacancies_container}>
+        <div className={styles.vacancies_container}>
           {vacancies.length > 0 ? (
             visibleVacancies.map((v, i) => (
               <Vacancy
@@ -207,9 +183,8 @@ const Vacancies = () => {
               </button>
             </div>
           )}
-        </tbody>
-      </table>
-
+        </div>
+      </div>
       {visibleVacancies.length >= 5 && (
         <footer className={styles.footer}>
           <button className={styles.previous_page}>

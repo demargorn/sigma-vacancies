@@ -1,4 +1,4 @@
-import { type ChangeEvent } from 'react';
+import { useEffect, type ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
@@ -26,6 +26,10 @@ const MainInfo = () => {
   const handleVacancyStatusChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
     dispatch(vacanciesActions.addVacancyStatus(target.value as TypeStatus));
   };
+
+  useEffect(() => {
+    localStorage.getItem('vacancy');
+  }, []);
 
   return (
     <article className={styles.container}>
@@ -62,12 +66,12 @@ const MainInfo = () => {
       <label className={styles.select_status_container}>
         <div className={styles.input_label}>Статус вакансии</div>
         <select className={styles.select_status} name="status_select" value={vacancy.status} onChange={handleVacancyStatusChange}>
-          <option value="active" defaultChecked>
+          <option value="активная" defaultChecked>
             Активная
           </option>
-          <option value="draft">Черновик</option>
-          <option value="paused">На паузе</option>
-          <option value="closed">Закрыта</option>
+          <option value="черновик">Черновик</option>
+          <option value="на паузе">На паузе</option>
+          <option value="закрыта">Закрыта</option>
         </select>
       </label>
 

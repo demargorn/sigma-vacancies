@@ -1,15 +1,16 @@
-import cn from 'classnames';
+import { useNavigate } from 'react-router';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import styles from './Vacancy.module.css';
 
 /** Вакансия */
 
 const Vacancy = (props: IVacancy) => {
+  const navigate = useNavigate();
   let status_mode: string;
 
   /** функция выбора статуса вакансии */
   const style_mode = function getStatus(): string {
-    switch (status) {
+    switch (props.status) {
       case 'активная':
         status_mode = `${styles.vacancy_status__active}`;
         break;
@@ -41,12 +42,12 @@ const Vacancy = (props: IVacancy) => {
       </div>
       <div className={styles.vacancy_created}>
         <span className={styles.vacancy_created__date} title="дата создания">
-          {props.opened_date.toString()}
+          {new Date(props.opened_date).toLocaleString('ru-Ru', { day: 'numeric', month: 'numeric', year: 'numeric' })}
         </span>
       </div>
       <div className={styles.vacancy_deadline}>
         <span className={styles.vacancy_deadline__date} title="дата окончания">
-          {props.closed_date.toString()}
+          {new Date(props.closed_date).toLocaleString('ru-Ru', { day: 'numeric', month: 'numeric', year: 'numeric' })}
         </span>
       </div>
       <div className={styles.vacancy_status}>
@@ -57,8 +58,8 @@ const Vacancy = (props: IVacancy) => {
       </div> */}
 
       <div className={styles.vacancy_buttons}>
-        {props.status === 'активная' ? <button className={styles.vacancy_copylink_btn} title="копировать ссылку"></button> : null}
-        <button className={styles.vacancy_edit_btn} title="редактировать"></button>
+        {props.status === 'активная' ? <button title="копировать ссылку" className={styles.vacancy_copylink_btn}></button> : null}
+        <button title="редактировать" className={styles.vacancy_edit_btn} onClick={() => navigate('/vacancies/create')}></button>
         {/* {responses_qty === 0 ? (
           <button className={cn(styles.vacancy_main_btn, styles.vacancy_main_btn__disabled)} disabled>
             Перейти к откликам

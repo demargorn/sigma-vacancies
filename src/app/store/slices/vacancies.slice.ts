@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import type { TypeStatus } from '@/types/status.type';
-import { setLocalStorageItem } from '@/shared/helpers/localStorageFn';
+import Vacancies from '@/pages/Vacancies/Vacancies';
 
 /** срез вакансий */
 
@@ -55,8 +55,13 @@ const vacanciesSlice = createSlice({
   initialState,
   reducers: {
     /** добавляем новую вакансию */
-    addVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
-      state.items.push(payload);
+    addVacancy: (state) => {
+      const existed = state.items.some((item) => item.id === state.vacancy.id);
+      /** если не существует - добавляем новую */
+      if (!existed) {
+        state.items.push(state.vacancy);
+        // return;
+      }
     },
     addVacancyId: (state, { payload }: PayloadAction<string>) => {
       state.vacancy.id = payload;
@@ -138,9 +143,6 @@ const vacanciesSlice = createSlice({
     },
     addVacancyResponsible: (state, { payload }: PayloadAction<string>) => {
       state.vacancy.responsible = payload;
-    },
-    saveVacancyToLocalStorage: (state) => {
-      setLocalStorageItem('vacancy', state.vacancy);
     },
 
     /** очищаем поля ваканси */
