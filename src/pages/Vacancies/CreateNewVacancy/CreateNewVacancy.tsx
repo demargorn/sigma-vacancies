@@ -26,7 +26,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
   const [clicked, setClicked] = useState<boolean>(false); /** нажата ли кнопка Сохранить */
 
   const [exitActive, setExitActive] = useState<boolean>(false); /** управление открытием exit-поп-апа */
-  const [saveActive, setSaveActive] = useState<boolean>(false); /** управление открытием save-поп-апа */
+  const [saveActive, setSaveActive] = useState<boolean>(true); /** управление открытием save-поп-апа */
 
   const windowRef = useRef<HTMLDivElement>(null); /** реф на окно основного контента  */
   const linkRef = useRef<HTMLAnchorElement>(null); /** реф на link  */
@@ -67,14 +67,6 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
   //   return JSON.stringify(vacancy) !== JSON.stringify(initialVacancyState);
   // }, [vacancy]);
 
-  useEffect(() => {
-    const currentInfo = editingConfig.find((item) => item.section === editPage);
-    if (!currentInfo) {
-      return;
-    }
-    setPageInfo(currentInfo);
-  }, [editPage]);
-
   /** показываем попап ExitPopup при клике вне окна */
   const handleClickOutside = useCallback((e: MouseEvent) => {
     if (windowRef.current && !windowRef.current.contains(e.target as Node)) {
@@ -83,11 +75,27 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
   }, []);
 
   /** показываем попап ExitPopup при попытке закрыть/перезагрузить страницу (плохо работает) */
-  const handleBeforeUnload = useCallback((e: BeforeUnloadEvent) => {
-    setExitActive(true);
-    e.preventDefault();
-    return;
-  }, []);
+  // const handleBeforeUnload = useCallback((e: BeforeUnloadEvent) => {
+  //   setExitActive(true);
+  //   e.preventDefault();
+  //   return;
+  // }, []);
+
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', handleBeforeUnload);
+
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleBeforeUnload);
+  //   };
+  // }, [exitActive]);
+
+  useEffect(() => {
+    const currentInfo = editingConfig.find((item) => item.section === editPage);
+    if (!currentInfo) {
+      return;
+    }
+    setPageInfo(currentInfo);
+  }, [editPage]);
 
   useEffect(() => {
     window.addEventListener('mousedown', handleClickOutside);
@@ -97,19 +105,9 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     };
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, [exitActive]);
-
-  console.log(clicked);
-
   return (
     <section ref={windowRef} className={styles.container}>
-      {clicked && <SavePopup active={!saveActive} setActive={setSaveActive} />}
+      {clicked && <SavePopup active={saveActive} setActive={setSaveActive} />}
       {exitActive && <ExitPopup active={exitActive} ref={popupRef} setActive={setExitActive} />}
 
       <header className={styles.header}>

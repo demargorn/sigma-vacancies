@@ -15,11 +15,13 @@ const ExitPopup = forwardRef<HTMLDivElement, TypeExitPopupProps>(({ active, setA
   const dispatch = useDispatch<TypeDispatch>();
   const navigate = useNavigate();
 
+  /** сохранить черновик при выходе */
   const handleSaveVacancy = () => {
     dispatch(vacanciesActions.addVacancy());
     navigate('/vacancies');
   };
 
+  /** выход без сохранения */
   const handleExitWithoutChanges = () => {
     setActive(false);
     dispatch(vacanciesActions.clearVacancyFields());

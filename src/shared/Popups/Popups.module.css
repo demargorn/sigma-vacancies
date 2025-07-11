@@ -63,6 +63,12 @@ hr {
   gap: 20px;
 }
 
+.btn_container_save {
+  display: flex;
+
+  justify-content: center;
+}
+
 .btn_cancel,
 .btn_close,
 .btn_exit {
@@ -96,7 +102,7 @@ hr {
 }
 
 .save_popup {
-line-height: normal;  
+  line-height: normal;
 }
 
 /* publish */

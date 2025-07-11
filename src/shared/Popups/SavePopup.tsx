@@ -16,17 +16,9 @@ const SavePopup = ({ active, setActive }: TypeSavePopupProps) => {
       <div className={active ? cn(styles.content, styles.active) : `${styles.content}`} onClick={(e) => e.stopPropagation()}>
         <h3 className={styles.heading}>Сохранено</h3>
         <button className={styles.btn_cross} onClick={() => setActive(false)}></button>
-        <div className={styles.btn_container}>
-          <button className={styles.btn_cancel} onClick={() => setActive(false)}>
+        <div className={styles.btn_container_save}>
+          <button className={cn(styles.btn_cancel, styles.btn_save)} onClick={() => setActive(false)}>
             Назад
-          </button>
-          <button
-            className={styles.btn_exit}
-            onClick={() => {
-              navigate('/vacancies');
-            }}
-          >
-            Выйти
           </button>
         </div>
       </div>
