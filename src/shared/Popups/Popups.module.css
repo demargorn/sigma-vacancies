@@ -29,9 +29,13 @@
   width: 600px;
   background-color: #fff;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   transform: scale(0.5);
   transition: 0.4s all;
+}
+
+.content_save {
+  width: 400px;
 }
 
 .content.active {
@@ -45,6 +49,11 @@
   margin-bottom: 14px;
 }
 
+.heading_save {
+  font-size: 24px;
+  text-align: center;
+}
+
 hr {
   color: #e2e5ee;
   margin-bottom: 25px;
@@ -53,7 +62,7 @@ hr {
 .text {
   color: var(--primary-text);
   font-size: 16px;
-  line-height: 150%;
+  line-height: 20px;
   margin-bottom: 40px;
 }
 
@@ -65,7 +74,6 @@ hr {
 
 .btn_container_save {
   display: flex;
-
   justify-content: center;
 }
 
@@ -93,16 +101,12 @@ hr {
 
 .btn_cross {
   position: absolute;
-  top: 26px;
-  right: 24px;
+  top: 22px;
+  right: 20px;
   width: 24px;
   height: 24px;
   background-image: url('/imgs/popups/cross.svg');
   background-repeat: no-repeat;
-}
-
-.save_popup {
-  line-height: normal;
 }
 
 /* publish */
