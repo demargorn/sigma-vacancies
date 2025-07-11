@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import cn from 'classnames';
@@ -21,24 +21,25 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
   const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
   // const initialVacancyState = useSelector((s: TypeRootState) => s.vacancies); /** начальное состояние вакансии */
   const dispatch = useDispatch<TypeDispatch>();
-  const [clicked, setClicked] = useState<boolean>(false); /** нажата ли кнопка Сохранить */
   const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
   const [pageInfo, setPageInfo] = useState<EditPageInfo>();
+  const [clicked, setClicked] = useState<boolean>(false); /** нажата ли кнопка Сохранить */
 
-  const [popupActive, setPopupActive] = useState<boolean>(false); /** управление открытием поп-апа */
+  const [exitActive, setExitActive] = useState<boolean>(false); /** управление открытием exit-поп-апа */
+  const [saveActive, setSaveActive] = useState<boolean>(false); /** управление открытием save-поп-апа */
 
   const windowRef = useRef<HTMLDivElement>(null); /** реф на окно основного контента  */
+  const linkRef = useRef<HTMLAnchorElement>(null); /** реф на link  */
   const popupRef = useRef<HTMLDivElement>(null); /** реф на поп-ап */
-  const breadcrumbsRef = useRef<HTMLDivElement>(null); /** реф на breadcrumbs  */
 
   const breadcrumbs = [
-    <Link to="/" aria-label="Home" key="Home">
+    <Link to="/" aria-label="Home" key="Home" ref={linkRef}>
       <GenericHome className="text-moon-24" />
     </Link>,
     <span style={{ marginLeft: '8px' }} key="Page 1">
       ...
     </span>,
-    <Link to={`/vacancies`} style={{ marginLeft: '8px' }} key="Page 2">
+    <Link to={`/vacancies`} style={{ marginLeft: '8px' }} key="Page 2" ref={linkRef}>
       Вакансии
     </Link>,
     <span key="Current" style={{ marginLeft: '8px' }}>
@@ -75,41 +76,44 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
   }, [editPage]);
 
   /** показываем попап ExitPopup при клике вне окна */
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (windowRef.current && !windowRef.current.contains(e.target as Node)) {
-        setPopupActive(true);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+  const handleClickOutside = useCallback((e: MouseEvent) => {
+    if (windowRef.current && !windowRef.current.contains(e.target as Node)) {
+      setExitActive(true);
+    }
   }, []);
 
   /** показываем попап ExitPopup при попытке закрыть/перезагрузить страницу (плохо работает) */
-  useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
-      setPopupActive(!popupActive);
-      e.returnValue = ''; 
-      return;
-    };
+  const handleBeforeUnload = useCallback((e: BeforeUnloadEvent) => {
+    setExitActive(true);
+    e.preventDefault();
+    return;
+  }, []);
 
+  useEffect(() => {
+    window.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
     window.addEventListener('beforeunload', handleBeforeUnload);
+
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [popupActive]);
+  }, [exitActive]);
+
+  console.log(clicked);
 
   return (
     <section ref={windowRef} className={styles.container}>
-      {clicked && <SavePopup active={popupActive} setActive={setPopupActive} />}
-      {popupActive && <ExitPopup active={popupActive} ref={popupRef} setActive={setPopupActive} />}
+      {clicked && <SavePopup active={!saveActive} setActive={setSaveActive} />}
+      {exitActive && <ExitPopup active={exitActive} ref={popupRef} setActive={setExitActive} />}
 
       <header className={styles.header}>
-        <div ref={breadcrumbsRef} className={styles.breadcrumbs}>
+        <div className={styles.breadcrumbs}>
           <Breadcrumb breadcrumbs={breadcrumbs} />
         </div>
 

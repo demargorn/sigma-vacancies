@@ -8,16 +8,16 @@ type TypeSavePopupProps = {
   setActive: (arg: boolean) => void;
 };
 
-const SavePopup = (props: TypeSavePopupProps) => {
+const SavePopup = ({ active, setActive }: TypeSavePopupProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className={props.active ? cn(styles.container, styles.active) : `${styles.container}`} onClick={() => props.setActive(false)}>
-      <div className={props.active ? cn(styles.content, styles.active) : `${styles.content}`} onClick={(e) => e.stopPropagation()}>
+    <div className={active ? cn(styles.container, styles.active) : `${styles.container}`} onClick={() => setActive(false)}>
+      <div className={active ? cn(styles.content, styles.active) : `${styles.content}`} onClick={(e) => e.stopPropagation()}>
         <h3 className={styles.heading}>Сохранено</h3>
-        <button className={styles.btn_cross} onClick={() => props.setActive(false)}></button>
+        <button className={styles.btn_cross} onClick={() => setActive(false)}></button>
         <div className={styles.btn_container}>
-          <button className={styles.btn_cancel} onClick={() => props.setActive(false)}>
+          <button className={styles.btn_cancel} onClick={() => setActive(false)}>
             Назад
           </button>
           <button
