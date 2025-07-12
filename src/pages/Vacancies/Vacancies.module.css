@@ -153,9 +153,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.5vw;
+  gap: 2.5vw;
   margin-bottom: 1vw;
-  padding-right: 20vw;
 }
 
 /* общие стили для всех заголовков */
@@ -277,19 +276,21 @@
 }
 
 /* адаптация для средних экранов */
-/* @media (max-width: 1680px) {
-  .container {
-    width: 82%;
-  }
-  .owner {
-    margin-right: 2vw;
-  }
-} */
-
-/* адаптация для мобильных */
-/* @media (max-width: 720px) {
+@media (min-width: 1556px) {
   .main_top {
-    flex-wrap: wrap;
-    padding-right: 12px;
+    padding-right: 18.5vw;
   }
-} */
+}
+
+@media (min-width: 1281px) and (max-width: 1555px) {
+  .main_top {
+    padding-right: 21vw;
+  }
+}
+
+@media (max-width: 1280px) {
+  .main_top {
+    gap: 3vw;
+    padding-right: 22vw;
+  }
+}
