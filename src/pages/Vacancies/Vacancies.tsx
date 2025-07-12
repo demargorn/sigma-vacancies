@@ -185,6 +185,7 @@ const Vacancies = () => {
           )}
         </div>
       </div>
+
       {visibleVacancies.length >= 5 && (
         <footer className={styles.footer}>
           <button className={styles.previous_page}>

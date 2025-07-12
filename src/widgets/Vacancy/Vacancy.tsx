@@ -29,7 +29,7 @@ const Vacancy = (props: IVacancy) => {
   };
 
   return (
-    <div className={styles.vacancy}>
+    <article className={styles.vacancy}>
       <div className={styles.vacancy_title}>
         <input type="checkbox" name="checkbox" className={styles.vacancy_checkbox} checked={props.checked} onChange={(e) => props.onChange?.(e.target.checked)} />
         <div className={styles.vacancy_title__description}>
@@ -53,12 +53,12 @@ const Vacancy = (props: IVacancy) => {
       <div className={styles.vacancy_status}>
         <span className={`${styles.vacancy_status__default} ${style_mode()}`}>{props.status}</span>
       </div>
-      {/* <div className={styles.vacancy_responses}>
-        <span className={styles.vacancy_responses__quantity}>{responses_qty}</span>
-      </div> */}
+      <div className={styles.vacancy_responses}>
+        <span className={styles.vacancy_responses__quantity}>{255}</span>
+      </div>
 
       <div className={styles.vacancy_buttons}>
-        {props.status === 'активная' ? <button title="копировать ссылку" className={styles.vacancy_copylink_btn}></button> : null}
+        <button title="копировать ссылку" className={props.status === 'активная' ? `${styles.vacancy_copylink_btn}` : `${styles.vacancy_copylink_btn__disable}`}></button>
         <button title="редактировать" className={styles.vacancy_edit_btn} onClick={() => navigate('/vacancies/create')}></button>
         {/* {responses_qty === 0 ? (
           <button className={cn(styles.vacancy_main_btn, styles.vacancy_main_btn__disabled)} disabled>
@@ -67,8 +67,9 @@ const Vacancy = (props: IVacancy) => {
         ) : (
           <button className={styles.vacancy_main_btn}>Перейти к откликам</button>
         )} */}
+        <button className={styles.vacancy_main_btn}>Перейти к откликам</button>
       </div>
-    </div>
+    </article>
   );
 };
 

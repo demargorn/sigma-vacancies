@@ -3,7 +3,7 @@
   top: 0;
   left: 260px;
   width: calc(100vw - 260px);
-  max-width: 1636px;
+  max-width: 1660px;
   background: var(--main-background-color);
   padding: 20px 20px 0px 0px;
 }
@@ -146,8 +146,6 @@
 }
 
 .main {
-  max-width: 100%;
-  margin: 0 auto;
   padding-block: 12px;
 }
 
@@ -155,10 +153,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.2vw;
-  max-width: calc(100% - 268px);
+  gap: 1.5vw;
   margin-bottom: 1vw;
-  padding-right: 4vw;
+  padding-right: 20vw;
 }
 
 /* общие стили для всех заголовков */
@@ -173,8 +170,8 @@
 
 .owner {
   display: flex;
-  flex: 1 0 250px;
-  max-width: 400px;
+  min-width: 250px;
+  width: 400px;
 }
 
 .owner_title {
@@ -182,7 +179,7 @@
 }
 
 .main_checkbox {
-  flex: 0 0 40px;
+  flex-basis: 40px;
   width: 16px;
   height: 16px;
   margin-block: auto;
@@ -190,26 +187,22 @@
 }
 
 .recruter {
-  flex: 1 0 144px;
-  max-width: 144px;
+  width: 144px;
 }
 
 .created,
 .deadline {
-  flex: 1 0 60px;
-  max-width: 70px;
+  width: 70px;
   text-align: center;
 }
 
 .status {
-  flex-basis: 128px;
-  flex-shrink: 0;
+  width: 128px;
   text-align: center;
 }
 
 .responses {
-  flex: 1 0 60px;
-  max-width: 70px;
+  width: 60px;
   text-align: center;
 }
 

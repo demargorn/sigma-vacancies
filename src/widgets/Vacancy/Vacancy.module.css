@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.5vw;
+  gap: 1.2vw;
   background-color: white;
   border-radius: 8px;
   padding: 1.5vw 0.8vw 1.5vw 0;
@@ -20,8 +20,8 @@
 
 .vacancy_title {
   display: flex;
-  flex: 1 0 250px;
-  max-width: 400px;
+  min-width: 250px;
+  width: 400px;
 }
 
 .vacancy_title__description {
@@ -49,16 +49,15 @@
 }
 
 .vacancy_recruter {
-  flex: 1 0 144px;
-  max-width: 144px;
+  width: 144px;
 }
 
 .vacancy_recruter__name {
   display: inline-block;
-  max-width: 144px;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
+  vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -66,8 +65,7 @@
 
 .vacancy_created,
 .vacancy_deadline {
-  flex: 1 0 60px;
-  max-width: 70px;
+  width: 70px;
   text-align: center;
 }
 
@@ -81,8 +79,7 @@
 }
 
 .vacancy_status {
-  flex-basis: 128px;
-  flex-shrink: 0;
+  width: 128px;
 }
 
 .vacancy_status__default {
@@ -99,10 +96,8 @@
 }
 
 .vacancy_responses {
-  flex: 1 0 60px;
-  max-width: 70px;
+  width: 60px;
   text-align: center;
-  margin-right: 52px;
 }
 
 .vacancy_responses__quantity {
@@ -116,6 +111,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  padding-left: 40px;
 }
 
 .vacancy_copylink_btn {
@@ -124,7 +120,11 @@
   background-position: center;
   width: 40px;
   height: 40px;
-  margin-left: -52px;
+  margin-left: -40px;
+}
+
+.vacancy_copylink_btn__disable {
+  visibility: hidden;
 }
 
 .vacancy_edit_btn {
@@ -136,7 +136,6 @@
 }
 
 .vacancy_main_btn {
-  flex: 1 0 9vw;
   max-width: 164px;
   height: 36px;
   background-color: var(--main-color);
