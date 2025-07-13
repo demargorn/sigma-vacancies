@@ -7,10 +7,8 @@ import { GenericHome } from '@heathmont/moon-icons-tw';
 import Vacancy from '@/widgets/Vacancy/Vacancy';
 import type { TypeRootState } from '@/app/store/store';
 import styles from './Vacancies.module.css';
-import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 
 const Vacancies = () => {
-  const { vacancy } = useVacancyForm(); /** вакансия */
   const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
   const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
   const [checkedStates, setCheckedStates] = useState<Array<boolean>>(() => vacancies.map(() => false)); /** состояние дочерних чекбоксов */
@@ -76,6 +74,8 @@ const Vacancies = () => {
   useEffect(() => {
     setActiveCategory('Все вакансии');
   }, []);
+
+  console.log(vacancies);
 
   return (
     <section className={styles.container}>
@@ -155,7 +155,7 @@ const Vacancies = () => {
           {vacancies.length > 0 ? (
             visibleVacancies.map((v, i) => (
               <Vacancy
-                {...vacancy}
+                {...v}
                 key={v.id}
                 vacancy_name={v.vacancy_name}
                 company_name={v.company_name}

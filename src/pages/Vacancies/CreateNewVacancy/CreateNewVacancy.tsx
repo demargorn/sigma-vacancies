@@ -1,19 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router';
 import cn from 'classnames';
 import { editingConfig } from '@/widgets/SelectSidebar/config';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
-import { initialState, vacanciesActions } from '@/app/store/slices/vacancies.slice';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
+import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
+import type { TypeDispatch } from '@/app/store/store';
 import type { EditPageInfo, EditPollInfo } from '@/types/types';
 import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
 import ExitPopup from '@/shared/components/Popups/ExitPopup';
 import SavePopup from '@/shared/components/Popups/SavePopup';
 import styles from './CreateNewVacancy.module.css';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
-import { channel } from 'diagnostics_channel';
 
 type TypeCreateNewVacancyProps = {
   pollInfo?: EditPollInfo;
@@ -54,6 +53,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     setClicked(!clicked);
     dispatch(vacanciesActions.setCacheVacancy(vacancy));
     dispatch(vacanciesActions.addVacancy());
+    dispatch(vacanciesActions.updateVacancyInList(vacancy));
   };
 
   /** функция вызова нового компонента */
@@ -103,8 +103,6 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     };
   }, []);
 
-  console.log(vacancy);
-
   return (
     <section ref={windowRef} className={styles.container}>
       {!clicked && <SavePopup active={saveActive} setActive={setSaveActive} />}
@@ -142,7 +140,10 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
           <button className={!pageInfo?.info.prevLink ? `${styles.btn_display_none}` : `${styles.btn_prev}`} onClick={() => setEditPage(pageInfo!.info.prevLink)}>
             Назад
           </button>
-          <button className={!pageInfo?.info.nextLink ? `${cn(styles.btn_next, styles.btn_next_save)}` : `${styles.btn_next}`} onClick={() => setEditPage(pageInfo!.info.nextLink)}>
+          <button
+            className={!pageInfo?.info.nextLink ? `${cn(styles.btn_next, styles.btn_next_save)}` : `${styles.btn_next}`}
+            onClick={!pageInfo?.info.nextLink ? handleSaveVacancy : () => setEditPage(pageInfo!.info.nextLink)}
+          >
             {!pageInfo?.info.nextLink ? 'Сохранить' : 'Далее'}
           </button>
         </div>

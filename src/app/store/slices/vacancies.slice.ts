@@ -63,6 +63,11 @@ const vacanciesSlice = createSlice({
       }
     },
 
+    updateVacancyInList: (state, { payload }: PayloadAction<IVacancy>) => {
+      const updated = payload;
+      state.items = state.items.map((item) => (item.id === updated.id ? updated : item));
+    },
+
     updateField: <K extends keyof IVacancy>(state: Draft<typeof initialState>, { payload }: PayloadAction<{ field: K; value: IVacancy[K] }>) => {
       const { field, value } = payload;
       state.vacancy[field] = value;
