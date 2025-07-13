@@ -24,7 +24,7 @@ const ExitPopup = forwardRef<HTMLDivElement, TypeExitPopupProps>(({ active, setA
   /** выход без сохранения */
   const handleExitWithoutChanges = () => {
     setActive(false);
-    dispatch(vacanciesActions.clearVacancyFields());
+    dispatch(vacanciesActions.resetVacancy());
     navigate('/vacancies');
   };
 
