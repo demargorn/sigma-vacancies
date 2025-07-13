@@ -7,18 +7,18 @@ import { GenericHome } from '@heathmont/moon-icons-tw';
 import Vacancy from '@/widgets/Vacancy/Vacancy';
 import type { TypeRootState } from '@/app/store/store';
 import styles from './Vacancies.module.css';
+import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 
 const Vacancies = () => {
+  const { vacancy } = useVacancyForm(); /** вакансия */
   const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
-  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
   const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
   const [checkedStates, setCheckedStates] = useState<Array<boolean>>(() => vacancies.map(() => false)); /** состояние дочерних чекбоксов */
-
-  const navigate = useNavigate();
 
   const parentRef = useRef<HTMLInputElement>(null); /** реф на главный чекбокс */
   const allChecked = checkedStates.every(Boolean); /** какие-то выбраны */
   const someChecked = checkedStates.some(Boolean); /** все выбраны */
+  const navigate = useNavigate();
 
   const breadcrumbs = [
     <Link to="/" aria-label="Home" key="Home">

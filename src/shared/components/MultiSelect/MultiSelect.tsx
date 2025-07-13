@@ -4,6 +4,7 @@ import cn from 'classnames';
 import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import styles from '@/widgets/SelectSidebar/Sections/Sections.module.css';
+import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 
 type TypeMultiSelectProps = {
   skills: Array<string>;
@@ -12,7 +13,8 @@ type TypeMultiSelectProps = {
 };
 
 const MultiSelect = (props: TypeMultiSelectProps) => {
-  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
+  const { vacancy, handleSkillsFieldChange } = useVacancyForm();
+
   const dispatch = useDispatch<TypeDispatch>();
   const [isOpen, setIsOpen] = useState<boolean>(false); /** открыт/закрыт выпадающий список */
   const [query, setQuery] = useState<string>(''); /** поисковый запрос */
@@ -57,9 +59,9 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
   return (
     <div className={styles.label_container} ref={ref}>
       <div className={cn(styles.multiselect_checked_items_container, styles.select_status)} onClick={handleToggleDropdown}>
-        {vacancy.selectedSkills.length === 0 && <span className={styles.input_label}>Выберите навыки</span>}
+        {vacancy.selectedSkills?.length === 0 && <span className={styles.input_label}>Выберите навыки</span>}
 
-        {vacancy.selectedSkills.map((skill, i) => (
+        {vacancy.selectedSkills?.map((skill, i) => (
           <div key={i} className={styles.multiselect_checked_items_container}>
             <span className={styles.multiselect_checked_items}>{skill}</span>
             <button

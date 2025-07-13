@@ -1,34 +1,10 @@
-import { type ChangeEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
-import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
+import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 import styles from './Sections.module.css';
 
 /** Создание новой вакансии. Заказчик */
 
 const CustomerInfo = () => {
-  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
-  const dispatch = useDispatch<TypeDispatch>();
-
-  const handleVacancyCompanyNameChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    dispatch(vacanciesActions.addVacancyCompanyName(target.value));
-  };
-
-  const handleVacancyCustomerNameChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    dispatch(vacanciesActions.addVacancyCustomerName(target.value));
-  };
-
-  const handleVacancyCustomerTelChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    dispatch(vacanciesActions.addVacancyCustomerTel(target.value));
-  };
-
-  const handleVacancyCustomerMailChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    dispatch(vacanciesActions.addVacancyCustomerMail(target.value));
-  };
-
-  const handleVacancyCustomerTelegramChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    dispatch(vacanciesActions.addVacancyCustomerTelegram(target.value));
-  };
+  const { vacancy, handleFieldChange } = useVacancyForm();
 
   return (
     <article className={styles.container}>
@@ -43,7 +19,7 @@ const CustomerInfo = () => {
           value={vacancy.company_name}
           placeholder="Название компании, команды или проекта, для которого открыта вакансия"
           className={styles.input_text}
-          onChange={handleVacancyCompanyNameChange}
+          onChange={handleFieldChange}
         />
       </label>
 
@@ -52,7 +28,7 @@ const CustomerInfo = () => {
       <label className={styles.input_container}>
         <div className={styles.customer_name}>
           <div className={styles.input_label}>Контактное лицо</div>
-          <input type="text" name="customer_name" value={vacancy.customer_name} placeholder="Введите имя" className={styles.input_text} onChange={handleVacancyCustomerNameChange} />
+          <input type="text" name="customer_name" value={vacancy.customer_name} placeholder="Введите имя" className={styles.input_text} onChange={handleFieldChange} />
         </div>
         <div className={styles.customer_tel}>
           <div className={styles.input_label}>Номер телефона</div>
@@ -64,7 +40,7 @@ const CustomerInfo = () => {
             pattern="^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$"
             title="введите номер телефона"
             className={styles.input_text}
-            onChange={handleVacancyCustomerTelChange}
+            onChange={handleFieldChange}
           />
         </div>
       </label>
@@ -72,11 +48,11 @@ const CustomerInfo = () => {
       <label className={styles.input_container}>
         <div className={styles.customer_name}>
           <div className={styles.input_label}>Почта</div>
-          <input type="text" name="customer_mail" value={vacancy.customer_mail} placeholder="например, mail@mail.ru" className={styles.input_text} onChange={handleVacancyCustomerMailChange} />
+          <input type="text" name="customer_mail" value={vacancy.customer_mail} placeholder="например, mail@mail.ru" className={styles.input_text} onChange={handleFieldChange} />
         </div>
         <div className={styles.customer_telegram}>
           <div className={styles.input_label}>Telegram</div>
-          <input type="text" name="customer_telegram" value={vacancy.customer_telegram} placeholder="@" className={styles.input_text} onChange={handleVacancyCustomerTelegramChange} />
+          <input type="text" name="customer_telegram" value={vacancy.customer_telegram} placeholder="@" className={styles.input_text} onChange={handleFieldChange} />
         </div>
       </label>
     </article>

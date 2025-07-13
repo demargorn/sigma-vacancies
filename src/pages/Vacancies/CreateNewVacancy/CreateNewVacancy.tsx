@@ -5,25 +5,26 @@ import cn from 'classnames';
 import { editingConfig } from '@/widgets/SelectSidebar/config';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
-import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
+import { initialState, vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import type { EditPageInfo, EditPollInfo } from '@/types/types';
 import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
-import ExitPopup from '@/shared/Popups/ExitPopup';
-import SavePopup from '@/shared/Popups/SavePopup';
+import ExitPopup from '@/shared/components/Popups/ExitPopup';
+import SavePopup from '@/shared/components/Popups/SavePopup';
 import styles from './CreateNewVacancy.module.css';
+import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
+import { channel } from 'diagnostics_channel';
 
 type TypeCreateNewVacancyProps = {
   pollInfo?: EditPollInfo;
 };
 
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
-  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
-  // const initialVacancyState = useSelector((s: TypeRootState) => s.vacancies); /** начальное состояние вакансии */
-  const dispatch = useDispatch<TypeDispatch>();
+  const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
+
   const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
   const [pageInfo, setPageInfo] = useState<EditPageInfo>();
-  const [clicked, setClicked] = useState<boolean>(false); /** нажата ли кнопка Сохранить */
+  const [clicked, setClicked] = useState<boolean>(true); /** нажата ли кнопка Сохранить */
 
   const [exitActive, setExitActive] = useState<boolean>(false); /** управление открытием exit-поп-апа */
   const [saveActive, setSaveActive] = useState<boolean>(true); /** управление открытием save-поп-апа */
@@ -31,6 +32,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
   const windowRef = useRef<HTMLDivElement>(null); /** реф на окно основного контента  */
   const linkRef = useRef<HTMLAnchorElement>(null); /** реф на link  */
   const popupRef = useRef<HTMLDivElement>(null); /** реф на поп-ап */
+  const dispatch = useDispatch<TypeDispatch>();
 
   const breadcrumbs = [
     <Link to="/" aria-label="Home" key="Home" ref={linkRef}>
@@ -47,9 +49,10 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     </span>
   ];
 
-  /** функция сохранения вакансии в storаge */
+  /** функция сохранения вакансии в redux */
   const handleSaveVacancy = () => {
-    setClicked(true);
+    setClicked(!clicked);
+    dispatch(vacanciesActions.setCacheVacancy(vacancy));
     dispatch(vacanciesActions.addVacancy());
   };
 
@@ -61,11 +64,6 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
 
     return pageInfo.info.page({ ...pollInfo });
   };
-
-  /** Сравнение текущего состояния с начальным */
-  // const hasFormChanged = useCallback(() => {
-  //   return JSON.stringify(vacancy) !== JSON.stringify(initialVacancyState);
-  // }, [vacancy]);
 
   /** показываем попап ExitPopup при клике вне окна */
   const handleClickOutside = useCallback((e: MouseEvent) => {
@@ -105,10 +103,12 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
     };
   }, []);
 
+  console.log(vacancy);
+
   return (
     <section ref={windowRef} className={styles.container}>
-      {clicked && <SavePopup active={saveActive} setActive={setSaveActive} />}
-      {exitActive && <ExitPopup active={exitActive} ref={popupRef} setActive={setExitActive} />}
+      {!clicked && <SavePopup active={saveActive} setActive={setSaveActive} />}
+      {isChanged && exitActive && <ExitPopup active={exitActive} ref={popupRef} setActive={setExitActive} />}
 
       <header className={styles.header}>
         <div className={styles.breadcrumbs}>
@@ -123,8 +123,9 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
 
       <div className={styles.text_container}>
         <h1 className={styles.h1}>Создание новой вакансии</h1>
-        <button className={clicked ? cn(styles.header_btn_clicked, styles.header_btn_save) : `${styles.header_btn_save}`} onClick={handleSaveVacancy}>
-          {clicked ? 'Изменения сохранены' : vacancy.status === 'активная' ? 'Сохранить и опубликовать' : ' Сохранить'}
+
+        <button className={!isChanged ? cn(styles.header_btn_clicked, styles.header_btn_save) : `${styles.header_btn_save}`} onClick={handleSaveVacancy}>
+          {isChanged ? (vacancy.status === 'активная' ? 'Сохранить и опубликовать' : ' Сохранить') : 'Изменения сохранены'}
         </button>
       </div>
 
@@ -132,7 +133,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
         <div className={styles.selectSidebar_container}>
           <SelectSidebar page={editPage} setPage={setEditPage} />
 
-          <form action="" className={styles.form}>
+          <form action="" className={styles.form} onSubmit={handleSubmitForm}>
             {callComponent()}
           </form>
         </div>

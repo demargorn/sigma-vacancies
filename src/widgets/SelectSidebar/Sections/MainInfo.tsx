@@ -1,35 +1,10 @@
-import { useEffect, type ChangeEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
-import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
-import type { TypeStatus } from '@/types/status.type';
+import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 import styles from './Sections.module.css';
 
 /** Создание новой вакансии. Основная информация */
 
 const MainInfo = () => {
-  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
-  const dispatch = useDispatch<TypeDispatch>();
-
-  const handleVacancyNameChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    dispatch(vacanciesActions.addVacancyName(target.value));
-  };
-
-  const handleVacancyPlacesChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    dispatch(vacanciesActions.addVacancyPlaces(Number(target.value)));
-  };
-
-  const handleVacancyDescriptionChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(vacanciesActions.addVacancyDescription(target.value));
-  };
-
-  const handleVacancyStatusChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(vacanciesActions.addVacancyStatus(target.value as TypeStatus));
-  };
-
-  useEffect(() => {
-    localStorage.getItem('vacancy');
-  }, []);
+  const { vacancy, handleFieldChange } = useVacancyForm();
 
   return (
     <article className={styles.container}>
@@ -42,12 +17,12 @@ const MainInfo = () => {
           <div className={styles.input_label}>
             Название вакансии<span style={{ color: '#EA7F8B' }}>*</span>
           </div>
-          <input type="text" name="vacancy_name" value={vacancy.vacancy_name} placeholder="Введите текст" className={styles.input_text} onChange={handleVacancyNameChange} />
+          <input type="text" name="vacancy_name" value={vacancy.vacancy_name} placeholder="Введите текст" className={styles.input_text} onChange={handleFieldChange} />
         </div>
 
         <div className={styles.input_vacancy_qty}>
           <div className={styles.input_label}>Количество мест</div>
-          <input type="number" name="places_qty" value={vacancy.places_qty} min={1} className={styles.input_text} onChange={handleVacancyPlacesChange} />
+          <input type="number" name="places_qty" value={vacancy.places_qty} min={1} className={styles.input_text} onChange={handleFieldChange} />
         </div>
       </label>
 
@@ -59,13 +34,13 @@ const MainInfo = () => {
           rows={4}
           placeholder="Вы можете подробно описать требования, условия и обязанности для будущего кандидата"
           className={styles.input_textarea}
-          onChange={handleVacancyDescriptionChange}
+          onChange={handleFieldChange}
         />
       </label>
 
       <label className={styles.select_status_container}>
         <div className={styles.input_label}>Статус вакансии</div>
-        <select className={styles.select_status} name="status_select" value={vacancy.status} onChange={handleVacancyStatusChange}>
+        <select className={styles.select_status} name="status" value={vacancy.status} onChange={handleFieldChange}>
           <option value="активная" defaultChecked>
             Активная
           </option>

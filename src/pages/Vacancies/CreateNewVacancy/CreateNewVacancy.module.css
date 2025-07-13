@@ -77,6 +77,7 @@
 
 .header_btn_clicked {
   opacity: 0.5;
+  pointer-events: none;
 }
 
 .main {

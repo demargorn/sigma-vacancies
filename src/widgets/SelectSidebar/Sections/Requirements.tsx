@@ -1,15 +1,12 @@
-import { useEffect, useState, type ChangeEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
-import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
-import MultiSelect from '@/shared/MultiSelect/MultiSelect';
+import { useEffect, useState } from 'react';
+import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
+import MultiSelect from '@/shared/components/MultiSelect/MultiSelect';
 import styles from './Sections.module.css';
 
 /** Создание новой вакансии. Требования к кандидату */
 
 const Requirements = () => {
-  const vacancy = useSelector((s: TypeRootState) => s.vacancies.vacancy); /** вакансия */
-  const dispatch = useDispatch<TypeDispatch>();
+  const { vacancy, handleFieldChange } = useVacancyForm();
   const [skills, setSkills] = useState<Array<string>>([]); /** список навыков */
   const [selectedSkills, setSelectedSkills] = useState<Array<string>>([]); /** список выбранных навыков */
 
@@ -25,10 +22,6 @@ const Requirements = () => {
     } catch (error) {
       console.error('Error fetching:', error);
     }
-  };
-
-  const handleVacancyExperienceChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(vacanciesActions.addVacancyExperience(target.value));
   };
 
   const handleSelectionChange = (newOptions: Array<string>) => {
@@ -51,7 +44,7 @@ const Requirements = () => {
       </div>
 
       <div className={styles.input_label}>Требуемый опыт работы</div>
-      <select name="experience" value={vacancy.experience} className={styles.select_status} onChange={handleVacancyExperienceChange}>
+      <select name="experience" value={vacancy.experience} className={styles.select_status} onChange={handleFieldChange}>
         <option value="none" defaultChecked>
           Без опыта
         </option>
