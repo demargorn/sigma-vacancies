@@ -2,58 +2,69 @@
 @import 'tailwindcss';
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: var(--primary-text);
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   color: var(--primary-text);
 }
 
 :root {
-  font-family: Golos, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+   font-family: Golos, Helvetica, Arial, sans-serif;
+   line-height: 1.5;
+   font-weight: 400;
 
-  /* основные цвета*/
-  --main-color: #487bfe;
-  --disable-color: #edf2ff;
-  --main-background-color: #f6f7fa;
+   /* основные цвета*/
+   --main-color: #487bfe;
+   --disable-color: #edf2ff;
+   --main-background-color: #f6f7fa;
 
-  /* цвет текста*/
-  --primary-text: #0c151d;
-  --secondary-text: #767a7f;
+   /* цвет текста*/
+   --primary-text: #0c151d;
+   --secondary-text: #767a7f;
 
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--main-background-color);
+   background-color: var(--main-background-color);
 }
 
 a {
-  font-weight: 500;
-  text-decoration: none;
+   font-weight: 500;
+   text-decoration: none;
 }
 
 a:hover {
-  color: #535bf2;
+   color: #535bf2;
 }
 
 button {
-  border-radius: 8px;
-  cursor: pointer;
+   border-radius: 8px;
+   cursor: pointer;
+}
+
+select {
+   appearance: none;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   cursor: pointer;
+
+   background-image: url('/imgs/components/chevron-down.svg');
+   background-repeat: no-repeat;
+   background-position: 98%;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+   :root {
+      color: #213547;
+      background-color: #ffffff;
+   }
+   a:hover {
+      color: #747bff;
+   }
+   button {
+      background-color: #f9f9f9;
+   }
 }
