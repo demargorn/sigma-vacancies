@@ -20,6 +20,7 @@ export const useVacancyForm = () => {
       } else if (type === 'number') {
          parsedValue = Number(value);
       }
+      
       dispatch(vacanciesActions.updateField({ field: name as keyof IVacancy, value: parsedValue }));
    };
 

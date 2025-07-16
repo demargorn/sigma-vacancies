@@ -4,74 +4,74 @@ import { Conditions, CustomerInfo, MainInfo, OrganizationalInfo, Preview, Requir
 import type { EditPageProps } from '@/types/types';
 
 export const editingConfig = [
-  {
-    section: 'MainInfo',
-    info: {
-      name: 'Основная информация',
-      description: 'Название, описание и статус вакансии',
-      page: () => <MainInfo />,
-      nextLink: 'Customer',
-      prevLink: ''
-    }
-  },
-  {
-    section: 'Customer',
-    info: {
-      name: 'Заказчик',
-      description: 'Информация о заказчике вакансии, для внутреннего пользования',
-      page: () => <CustomerInfo />,
-      nextLink: 'Conditions',
-      prevLink: 'MainInfo'
-    }
-  },
-  {
-    section: 'Conditions',
-    info: {
-      name: 'Условия работы',
-      description: 'Локация, компания, формат и график работы, занятость, зарплата',
-      page: () => <Conditions />,
-      nextLink: 'Requirements',
-      prevLink: 'Customer'
-    }
-  },
-  {
-    section: 'Requirements',
-    info: {
-      name: 'Требования к кандидату',
-      description: 'Описание нужных навыков и опыта',
-      page: () => <Requirements />,
-      nextLink: 'Contacts',
-      prevLink: 'Conditions'
-    }
-  },
-  {
-    section: 'Contacts',
-    info: {
-      name: 'Контакты',
-      description: 'Контакты HR для публикации на витрине',
-      page: () => <Contacts />,
-      nextLink: 'OrganizationalInfo',
-      prevLink: 'Requirements'
-    }
-  },
-  {
-    section: 'OrganizationalInfo',
-    info: {
-      name: 'Организационная информация',
-      description: 'Информация о вакансии для рекрутера',
-      page: () => <OrganizationalInfo />,
-      nextLink: '',
-      prevLink: 'Contacts'
-    }
-  },
-  {
-    section: 'Preview',
-    info: {
-      name: 'Предпросмотр',
-      description: 'Так будет выглядеть вакансия на витрине',
-      page: () => <Preview />,
-      nextLink: '',
-      prevLink: 'OrganizationalInfo'
-    }
-  }
+   {
+      section: 'MainInfo',
+      info: {
+         name: 'Основная информация',
+         description: 'Название, описание и статус вакансии',
+         page: () => <MainInfo />,
+         nextLink: 'Customer',
+         prevLink: ''
+      }
+   },
+   {
+      section: 'Customer',
+      info: {
+         name: 'Заказчик',
+         description: 'Информация о заказчике вакансии, для внутреннего пользования',
+         page: () => <CustomerInfo />,
+         nextLink: 'Conditions',
+         prevLink: 'MainInfo'
+      }
+   },
+   {
+      section: 'Conditions',
+      info: {
+         name: 'Условия работы',
+         description: 'Локация, компания, формат и график работы, занятость, зарплата',
+         page: () => <Conditions />,
+         nextLink: 'Requirements',
+         prevLink: 'Customer'
+      }
+   },
+   {
+      section: 'Requirements',
+      info: {
+         name: 'Требования к кандидату',
+         description: 'Описание нужных навыков и опыта',
+         page: () => <Requirements />,
+         nextLink: 'Contacts',
+         prevLink: 'Conditions'
+      }
+   },
+   {
+      section: 'Contacts',
+      info: {
+         name: 'Контакты',
+         description: 'Контакты HR для публикации на витрине',
+         page: () => <Contacts />,
+         nextLink: 'OrganizationalInfo',
+         prevLink: 'Requirements'
+      }
+   },
+   {
+      section: 'OrganizationalInfo',
+      info: {
+         name: 'Организационная информация',
+         description: 'Информация о вакансии для рекрутера',
+         page: () => <OrganizationalInfo />,
+         nextLink: '',
+         prevLink: 'Contacts'
+      }
+   },
+   {
+      section: 'Preview',
+      info: {
+         name: 'Предпросмотр',
+         description: 'Так будет выглядеть вакансия на витрине',
+         page: () => <Preview />,
+         nextLink: '',
+         prevLink: 'OrganizationalInfo'
+      }
+   }
 ];

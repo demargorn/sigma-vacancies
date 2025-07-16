@@ -126,7 +126,11 @@
 }
 
 .salary {
-   width: 30%;
+   width: 35%;
+}
+
+.currency {
+   width: 10%;
 }
 
 .taxes {
