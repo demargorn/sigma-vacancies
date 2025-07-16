@@ -1,0 +1,79 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 260px;
+  width: calc(100% - 260px);
+  max-width: 1636px;
+  background: var(--main-background-color);
+  padding: 20px 20px 0px 0px;
+}
+
+.text_container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.h1 {
+  font-size: 28px;
+  line-height: 40px;
+  font-weight: 600;
+  margin-right: 12px;
+}
+
+.header_btn_save {
+  background-color: var(--main-color);
+  color: white;
+  padding: 8px;
+}
+
+.header_btn_clicked {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-background-color);
+  border-radius: 10px;
+}
+
+.selectSidebar_container {
+  display: flex;
+  max-height: 73vh;
+}
+
+.form {
+  position: relative;
+  width: calc(100% - 394px);
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 20px;
+  padding: 30px 60px;
+  overflow: auto;
+}
+
+.btn_container {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 414px);
+  margin-left: auto;
+}
+
+.btn_prev,
+.btn_next {
+  background-color: white;
+  color: var(--main-color);
+  padding: 8px 12px;
+  margin-top: 20px;
+}
+
+.btn_next_save {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.btn_display_none {
+  visibility: hidden;
+}

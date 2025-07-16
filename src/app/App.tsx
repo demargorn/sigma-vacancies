@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router';
 import Sidebar from '@/widgets/Sidebar/Sidebar';
 import Vacancies from '@/pages/Vacancies/Vacancies';
-import CreateNewVacancy from '@/pages/Vacancies/CreateNewVacancy/CreateNewVacancy';
+import CreateNewVacancy from '@/pages/CreateNewVacancy/CreateNewVacancy';
 
 const App = () => {
   return (
