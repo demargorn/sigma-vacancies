@@ -75,7 +75,7 @@ const MainInfo = () => {
             />
          </div>
 
-         <div className={styles.textarea_container}>
+         <div className={styles.textarea_container} style={{ marginBottom: '28px' }}>
             <label htmlFor="working_conditions" className={styles.input_label}>
                Условия работы
             </label>

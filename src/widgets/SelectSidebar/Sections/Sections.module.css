@@ -58,10 +58,6 @@
    margin-bottom: 16px;
 }
 
-.textarea_container:last-child {
-   margin-bottom: 28px;
-}
-
 .input_text::placeholder,
 .input_textarea::placeholder {
    color: var(--secondary-text);
