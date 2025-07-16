@@ -56,6 +56,15 @@ select {
    background-position: 98%;
 }
 
+.checkbox {
+   flex-basis: 40px;
+   width: 16px;
+   height: 16px;
+   padding: 8px;
+   margin-block: auto;
+   background: var(--main-background-color);
+}
+
 @media (prefers-color-scheme: light) {
    :root {
       color: #213547;

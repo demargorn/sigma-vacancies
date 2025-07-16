@@ -14,22 +14,31 @@ const initialVacancy: IVacancy = {
    vacancy_name: '',
    places_qty: 1,
    vacancy_description: '',
+   candidate_requirements: '',
+   candidate_responsibilities: '',
+   working_conditions: '',
    status: 'активная',
 
    company_name: '',
+   company_id: '',
    customer_name: '',
+   company_description: '',
    customer_tel: '',
    customer_mail: '',
    customer_telegram: '',
    customer_whatsapp: '',
 
    country: '',
+   region: '',
    city: '',
    format: 'office',
    employment: 'full',
    schedule: '',
    salary_from: 0,
    salary_to: 0,
+   currency: 'rub',
+   after_taxes: false,
+   period: 'month',
 
    selectedSkills: [],
    experience: 'none',
@@ -70,6 +79,9 @@ const vacanciesSlice = createSlice({
       updateField: <K extends keyof IVacancy>(state: Draft<typeof initialState>, { payload }: PayloadAction<{ field: K; value: IVacancy[K] }>) => {
          const { field, value } = payload;
          state.vacancy[field] = value;
+      },
+      updateCheckboxField: (state, { payload }: PayloadAction<boolean>) => {
+         state.vacancy.checked = payload;
       },
       setVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
          state.vacancy = { ...payload };

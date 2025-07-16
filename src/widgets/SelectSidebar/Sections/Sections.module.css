@@ -37,6 +37,7 @@
    font-weight: 400;
    line-height: 24px;
    margin-bottom: 4px;
+   cursor: pointer;
 }
 
 .input_text,
@@ -51,7 +52,14 @@
 
 .input_textarea {
    resize: vertical;
-   margin-bottom: 24px;
+}
+
+.textarea_container {
+   margin-bottom: 16px;
+}
+
+.textarea_container:last-child {
+   margin-bottom: 28px;
 }
 
 .input_text::placeholder,
@@ -73,7 +81,6 @@
    border-radius: 8px;
    padding: 16px;
    margin-bottom: 12px;
-
 }
 
 .notice_container {
@@ -108,18 +115,33 @@
 
 .customer_name,
 .customer_tel,
+.company,
+.company_id,
 .country,
+.region,
 .city,
 .format,
 .employment,
-.salary,
+.date,
 .customer_mail,
 .customer_telegram,
 .customer_whatsapp {
    width: 50%;
 }
 
+.salary {
+   width: 30%;
+}
+
+.taxes {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   margin-top: 15px;
+}
+
 .company,
+.budget,
 .schedule {
    display: block;
    margin-bottom: 32px;
