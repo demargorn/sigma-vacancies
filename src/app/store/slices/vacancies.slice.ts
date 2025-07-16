@@ -80,9 +80,7 @@ const vacanciesSlice = createSlice({
          const { field, value } = payload;
          state.vacancy[field] = value;
       },
-      updateCheckboxField: (state, { payload }: PayloadAction<boolean>) => {
-         state.vacancy.checked = payload;
-      },
+
       setVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
          state.vacancy = { ...payload };
       },
