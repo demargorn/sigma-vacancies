@@ -1,0 +1,6 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 180px);
+  padding-top: 302px;
+}

@@ -53,6 +53,7 @@ const Conditions = () => {
             <option value="partial">Частичная</option>
             <option value="flexible">Гибкий график</option>
             <option value="project">Проектная</option>
+            <option value="internship">Стажировка</option>
           </select>
         </div>
       </label>

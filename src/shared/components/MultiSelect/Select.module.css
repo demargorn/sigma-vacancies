@@ -1,0 +1,47 @@
+.label_container {
+   margin-bottom: 8px;
+}
+
+.label {
+   font-size: 16px;
+   line-height: 24px;
+}
+
+.container {
+   border: 1px solid rgb(226, 227, 230);
+   border-radius: 8px;
+   background: rgb(255, 255, 255);
+   padding: 12px;
+   z-index: 100 !important;
+}
+
+.options {
+   overflow-x: hidden !important;
+   background-color: #fff !important;
+   padding: 4px;
+   border-radius: 12px;
+   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4), 0px 8px 24px -6px rgba(0, 0, 0, 0.16) !important;
+   transform: translate3d(0px, 46px, 0px) !important;
+   z-index: 12 !important;
+   /* position: absolute; */
+}
+
+.options span {
+   width: 100%;
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+   z-index: 100 !important;
+}
+
+.button {
+   width: 100% !important;
+   display: flex;
+   justify-content: end;
+   transition: none !important;
+   transform: none !important;
+}
+
+.button[aria-expanded='true'] .btn_arrow {
+   transform: rotate(180deg);
+}

@@ -2,10 +2,10 @@ import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 import cn from 'classnames';
-import { Breadcrumb } from '@heathmont/moon-core-tw';
 import { GenericHome } from '@heathmont/moon-icons-tw';
-import Vacancy from '@/widgets/Vacancy/Vacancy';
 import type { TypeRootState } from '@/app/store/store';
+import Header from '@/widgets/Header/Header';
+import Vacancy from '@/widgets/Vacancy/Vacancy';
 import styles from './Vacancies.module.css';
 
 const Vacancies = () => {
@@ -75,20 +75,9 @@ const Vacancies = () => {
     setActiveCategory('Все вакансии');
   }, []);
 
-  console.log(vacancies);
-
   return (
     <section className={styles.container}>
-      <header className={styles.header}>
-        <div className={styles.breadcrumbs}>
-          <Breadcrumb breadcrumbs={breadcrumbs} />
-        </div>
-
-        <div className={styles.input_container}>
-          <input type="text" placeholder="Поиск" className={styles.input} />
-          <button className={styles.input_button}></button>
-        </div>
-      </header>
+      <Header breadcrumbs={breadcrumbs} />
 
       <div className={styles.text_container}>
         <h1 className={styles.h1}>Вакансии</h1>

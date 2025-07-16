@@ -17,7 +17,7 @@ const MainInfo = () => {
           <div className={styles.input_label}>
             Название вакансии<span style={{ color: '#EA7F8B' }}>*</span>
           </div>
-          <input type="text" name="vacancy_name" value={vacancy.vacancy_name} placeholder="Введите текст" className={styles.input_text} onChange={handleFieldChange} />
+          <input type="text" name="vacancy_name" value={vacancy.vacancy_name} placeholder="Введите текст" className={styles.input_text} onChange={handleFieldChange} required/>
         </div>
 
         <div className={styles.input_vacancy_qty}>
