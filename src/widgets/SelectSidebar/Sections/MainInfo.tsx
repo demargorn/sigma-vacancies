@@ -28,6 +28,26 @@ const MainInfo = () => {
             </div>
          </div>
 
+         <div className={styles.select_status_container}>
+            <label htmlFor="status" className={styles.input_label}>
+               Статус вакансии
+            </label>
+            <select id="status" className={styles.select_status} name="status" value={vacancy.status} onChange={handleFieldChange}>
+               <option value="активная" defaultChecked>
+                  Активная
+               </option>
+               <option value="черновик">Черновик</option>
+               <option value="на паузе">На паузе</option>
+               <option value="закрыта">Закрыта</option>
+            </select>
+         </div>
+
+         <div className={styles.notice_container}>
+            <p className={styles.notice_text}>
+               Обратите внимание: вакансия будет опубликована на витрине вакансий только в статусе «Активная». Во всех остальных статусах вакансию можете просматривать и редактировать только вы.
+            </p>
+         </div>
+
          <h4 className={styles.input_title}>Описание вакансии</h4>
 
          <div className={styles.textarea_container}>
@@ -88,26 +108,6 @@ const MainInfo = () => {
                className={styles.input_textarea}
                onChange={handleFieldChange}
             />
-         </div>
-
-         <div className={styles.select_status_container}>
-            <label htmlFor="status" className={styles.input_label}>
-               Статус вакансии
-            </label>
-            <select id="status" className={styles.select_status} name="status" value={vacancy.status} onChange={handleFieldChange}>
-               <option value="активная" defaultChecked>
-                  Активная
-               </option>
-               <option value="черновик">Черновик</option>
-               <option value="на паузе">На паузе</option>
-               <option value="закрыта">Закрыта</option>
-            </select>
-         </div>
-
-         <div className={styles.notice_container}>
-            <p className={styles.notice_text}>
-               Обратите внимание: вакансия будет опубликована на витрине вакансий только в статусе «Активная». Во всех остальных статусах вакансию можете просматривать и редактировать только вы.
-            </p>
          </div>
       </article>
    );

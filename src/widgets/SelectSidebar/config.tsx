@@ -1,6 +1,5 @@
 // @ts-nocheck
-import { Conditions, CustomerInfo, MainInfo, OrganizationalInfo, Preview, Requirements, Contacts } from '@/widgets/SelectSidebar/Sections';
-
+import { Company, CustomerInfo, MainInfo, Job, OrganizationalInfo, Preview, Requirements, Contacts, Additionally } from '@/widgets/SelectSidebar/Sections';
 import type { EditPageProps } from '@/types/types';
 
 export const editingConfig = [
@@ -25,13 +24,23 @@ export const editingConfig = [
       }
    },
    {
-      section: 'Conditions',
+      section: 'Company',
       info: {
-         name: 'Условия работы',
-         description: 'Локация, компания, формат и график работы, занятость, зарплата',
-         page: () => <Conditions />,
-         nextLink: 'Requirements',
+         name: 'О компании',
+         description: 'Информация об организации, в которую требуется сотрудник',
+         page: () => <Company />,
+         nextLink: 'Job',
          prevLink: 'Customer'
+      }
+   },
+   {
+      section: 'Job',
+      info: {
+         name: 'О должности',
+         description: 'Формат, занятость, график, заработная плата',
+         page: () => <Job />,
+         nextLink: 'Requirements',
+         prevLink: 'Company'
       }
    },
    {
@@ -41,7 +50,7 @@ export const editingConfig = [
          description: 'Описание нужных навыков и опыта',
          page: () => <Requirements />,
          nextLink: 'Contacts',
-         prevLink: 'Conditions'
+         prevLink: 'Job'
       }
    },
    {
@@ -60,8 +69,18 @@ export const editingConfig = [
          name: 'Организационная информация',
          description: 'Информация о вакансии для рекрутера',
          page: () => <OrganizationalInfo />,
-         nextLink: '',
+         nextLink: 'Additionally',
          prevLink: 'Contacts'
+      }
+   },
+   {
+      section: 'Additionally',
+      info: {
+         name: 'Дополнительно',
+         description: 'Изображения и ссылки',
+         page: () => <Additionally />,
+         nextLink: '',
+         prevLink: 'OrganizationalInfo'
       }
    },
    {
@@ -71,7 +90,7 @@ export const editingConfig = [
          description: 'Так будет выглядеть вакансия на витрине',
          page: () => <Preview />,
          nextLink: '',
-         prevLink: 'OrganizationalInfo'
+         prevLink: 'Additionally'
       }
    }
 ];

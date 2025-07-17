@@ -33,6 +33,7 @@ const initialVacancy: IVacancy = {
    city: '',
    format: 'office',
    employment: 'full',
+   employment_form: '',
    schedule: '',
    salary_from: 0,
    salary_to: 0,
@@ -46,7 +47,11 @@ const initialVacancy: IVacancy = {
    opened_date: '',
    closed_date: '',
    budget: 0,
-   responsible: 'hr'
+   responsible: 'hr',
+
+   details: '',
+   vacancy_img: '',
+   preview_img: ''
 };
 
 const initialState: IVacancyState = {

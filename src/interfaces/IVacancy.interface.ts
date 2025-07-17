@@ -24,6 +24,7 @@ export interface IVacancy {
    city?: string;
    format?: string;
    employment?: string;
+   employment_form?: string;
    schedule?: string;
    salary_from?: number;
    salary_to?: number;
@@ -38,6 +39,10 @@ export interface IVacancy {
    closed_date: string;
    budget?: number;
    responsible?: string;
+
+   details?: string;
+   vacancy_img?: string;
+   preview_img?: string;
 
    checked?: boolean;
    onChange?: (checked: boolean) => void;
