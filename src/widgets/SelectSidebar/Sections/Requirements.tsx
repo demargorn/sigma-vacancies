@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
+import { skills } from '@/shared/utilities/skills';
+import type { ISkill } from '@/interfaces/ISkill.interface';
 import MultiSelect from '@/shared/components/MultiSelect/MultiSelect';
 import styles from './Sections.module.css';
 
@@ -7,27 +9,31 @@ import styles from './Sections.module.css';
 
 const Requirements = () => {
    const { vacancy, handleFieldChange } = useVacancyForm(); /** вакансия */
-   const [skills, setSkills] = useState<Array<string>>([]); /** список навыков */
+   const [skillsArr, setSkillsArr] = useState<Array<ISkill>>([]); /** список навыков */
    const [selectedSkills, setSelectedSkills] = useState<Array<string>>([]); /** список выбранных навыков */
 
-   // const API = 'адрес реестра навыков';
+   // const API = 'https://reg.skills.skroy.ru/api/skills/?project_id=2c03471b-7792-4f9a-aa8a-6811810959f0';
 
    /**  запрашиваем навыки с реестра навыков */
-   const handleFetchSkills = async () => {
-      try {
-         // const response = await fetch(API);
-         // const data = await response.json();
+   // const handleFetchSkills = async () => {
+   //    try {
+   //       const { data } = await axios.get(API, {
+   //          headers: {
+   //             accept: 'application/json'
+   //          }
+   //       });
 
-         setSkills(['Программирование', 'Проектирование', 'Администрирование', 'Чтение', 'ООП']);
-      } catch (error) {
-         console.error('Error fetching:', error);
-      }
-   };
+   //       console.log(data);
+
+   //    } catch (error) {
+   //       console.error('Error fetching:', error);
+   //    }
+   // };
 
    const handleSelectionChange = (newOptions: Array<string>) => setSelectedSkills(newOptions);
 
    useEffect(() => {
-      handleFetchSkills();
+      setSkillsArr(skills);
    }, []);
 
    return (
@@ -41,7 +47,7 @@ const Requirements = () => {
                Навыки
             </label>
             <div id="skills" className={styles.multiselect_container}>
-               <MultiSelect skills={skills} selectedSkills={selectedSkills} onSelectionChange={handleSelectionChange} />
+               <MultiSelect skills={skillsArr.map((skill) => skill.data.title)} selectedSkills={selectedSkills} onSelectionChange={handleSelectionChange} />
             </div>
          </div>
 

@@ -163,7 +163,7 @@
 .multiselect_checked_items_container {
    display: flex;
    flex-wrap: wrap;
-   gap: 5px;
+   gap: 10px;
 }
 
 .dropdown_container {
@@ -206,7 +206,6 @@
    background-color: #f5f6f9;
    padding: 5px;
    padding-right: 30px;
-   width: 100%;
    border: 1px solid #e2e5ee;
    border-radius: 8px;
    color: var(--primary-text);

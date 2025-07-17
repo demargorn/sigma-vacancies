@@ -1,7 +1,7 @@
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 import styles from './Sections.module.css';
 
-/** Создание новой вакансии. О компании*/
+/** Создание новой вакансии. О компании */
 
 const Company = () => {
    const { vacancy, handleFieldChange } = useVacancyForm();
