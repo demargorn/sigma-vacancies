@@ -33,7 +33,7 @@ const OrganizationalInfo = () => {
             <input id="budget" type="number" name="budget" value={vacancy.budget} placeholder="0" className={styles.input_text} onChange={handleFieldChange} />
          </div>
 
-         <div className={styles.schedule}>
+         <div className={styles.responsible}>
             <label htmlFor="responsible" className={styles.input_label}>
                Ответственный
             </label>
