@@ -1,9 +1,9 @@
 .user {
   display: flex;
   align-items: center;
-  padding: 8px;
-  margin-top: 25px;
   border-radius: 10px;
+  padding: 8px;
+  margin-block: 20px;
 }
 
 .user:hover {

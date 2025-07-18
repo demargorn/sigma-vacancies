@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
+import axios from 'axios';
 import { skills } from '@/shared/utilities/skills';
 import type { ISkill } from '@/interfaces/ISkill.interface';
 import MultiSelect from '@/shared/components/MultiSelect/MultiSelect';
+import { PROJECT_ID } from '@/shared/utilities/constants';
 import styles from './Sections.module.css';
 
 /** Создание новой вакансии. Требования к кандидату */
@@ -12,19 +14,19 @@ const Requirements = () => {
    const [skillsArr, setSkillsArr] = useState<Array<ISkill>>([]); /** список навыков */
    const [selectedSkills, setSelectedSkills] = useState<Array<string>>([]); /** список выбранных навыков */
 
-   // const API = 'https://reg.skills.skroy.ru/api/skills/?project_id=2c03471b-7792-4f9a-aa8a-6811810959f0';
+   // const API = 'https://goods.test.hashhedge.com/goods';
 
-   /**  запрашиваем навыки с реестра навыков */
+   /** запрашиваем навыки с сервиса навыков */
    // const handleFetchSkills = async () => {
    //    try {
    //       const { data } = await axios.get(API, {
    //          headers: {
-   //             accept: 'application/json'
+   //             accept: 'application/json',
+   //             PROJECT_ID: PROJECT_ID
    //          }
    //       });
 
    //       console.log(data);
-
    //    } catch (error) {
    //       console.error('Error fetching:', error);
    //    }
