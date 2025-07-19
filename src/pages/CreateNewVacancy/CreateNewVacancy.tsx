@@ -20,11 +20,9 @@ type TypeCreateNewVacancyProps = {
 
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
-
    const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
    const [pageInfo, setPageInfo] = useState<EditPageInfo>();
    const [clicked, setClicked] = useState<boolean>(true); /** нажата ли кнопка Сохранить */
-
    const [exitActive, setExitActive] = useState<boolean>(false); /** управление открытием exit-поп-апа */
    const [saveActive, setSaveActive] = useState<boolean>(true); /** управление открытием save-поп-апа */
 

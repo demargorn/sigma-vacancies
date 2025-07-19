@@ -1,12 +1,11 @@
 import { appSettings } from '@/shared/settings/settings';
-import { SEARCHREASULTAMOUNT } from '@/shared/utilities/constants';
 import type { IApiServiceMethodData } from '@/types/types';
 
 /** методы запросов класса ApiService */
 
 //regular api
 const API_URL: string = appSettings.apiUrl;
-const API_USER_URL: string = appSettings.apiUserUrl;
+const API_USER_URL: string = appSettings.apiUserUrl; /** сервис авторизации */
 const API_SKILLS_URL: string = appSettings.apiSkillsUrl;
 const API_STATS_URL: string = appSettings.apiStatsUrl;
 const API_REPORT_URL: string = appSettings.apiReportUrl;
@@ -21,7 +20,7 @@ const API_STATS_URL_GATEWAY = appSettings.apiStatsUrlGateWay;
 const API_SKILLS_URL_GATEWAY = appSettings.apiSkillsUrlGateWay;
 
 // other
-const PROJECT_ID: string = appSettings.projectId;
+const PROJECT_ID: string = appSettings.projectId; /** id проекта sigma */
 // const ORGANIZATION_ID: string = appSettings.governmentId;
 
 const paramsWithToken = (token: string, account_id?: string) => {
@@ -163,7 +162,9 @@ export const methods: IApiServiceMethodData = {
 
    getSearchByParams({ url }: any) {
       return {
-         path: url || `${API_SEARCH_URL}/assessments/search?skill_search_type=all&add_profile_data=true&add_organization_data=true&add_specialty_data=true&limit=${SEARCHREASULTAMOUNT}`,
+         path:
+            url ||
+            `${API_SEARCH_URL}/assessments/search?skill_search_type=all&add_profile_data=true&add_organization_data=true&add_specialty_data=true&limit=${import.meta.env.VITE_SEARCHREASULTAMOUNT}`,
          method: 'post',
          params: params()
       };

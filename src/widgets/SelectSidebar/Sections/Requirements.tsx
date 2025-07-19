@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
-import axios from 'axios';
+import { apiService } from '@/shared/services';
 import { skills } from '@/shared/utilities/skills';
 import type { ISkill } from '@/interfaces/ISkill.interface';
 import MultiSelect from '@/shared/components/MultiSelect/MultiSelect';
-import { PROJECT_ID } from '@/shared/utilities/constants';
 import styles from './Sections.module.css';
 
 /** Создание новой вакансии. Требования к кандидату */
@@ -14,29 +13,29 @@ const Requirements = () => {
    const [skillsArr, setSkillsArr] = useState<Array<ISkill>>([]); /** список навыков */
    const [selectedSkills, setSelectedSkills] = useState<Array<string>>([]); /** список выбранных навыков */
 
-   // const API = 'https://goods.test.hashhedge.com/goods';
+   const token = localStorage.getItem('accessToken') as string;
 
    /** запрашиваем навыки с сервиса навыков */
-   // const handleFetchSkills = async () => {
-   //    try {
-   //       const { data } = await axios.get(API, {
-   //          headers: {
-   //             accept: 'application/json',
-   //             PROJECT_ID: PROJECT_ID
-   //          }
-   //       });
+   const handleFetchSkills = async () => {
+      try {
+         const data = await apiService.request({
+            name: 'postSkillInfo',
+            payload: { token }
+         });
 
-   //       console.log(data);
-   //    } catch (error) {
-   //       console.error('Error fetching:', error);
-   //    }
-   // };
+         console.log(data);
+      } catch (error) {
+         console.error('Error fetching:', error);
+      }
+   };
 
    const handleSelectionChange = (newOptions: Array<string>) => setSelectedSkills(newOptions);
 
    useEffect(() => {
-      setSkillsArr(skills);
+      handleFetchSkills();
+      setSkillsArr(skills)
    }, []);
+
 
    return (
       <article className={styles.container}>

@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router';
 import { apiService } from '@/shared/services';
 import type { TypeDispatch } from '@/app/store/store';
 import { loginActions } from '@/app/store/slices/login.slice';
+import { profileActions } from '@/app/store/slices/profile.slice';
 import type { LoginInfo } from '@/types/types';
-import Loader from '@/shared/components/Loader/Loader';
+import { getToken } from '@/shared/utilities/utils';
 import PasswordInput from '@/shared/components/PasswordInput/PasswordInput';
+import Loader from '@/shared/components/Loader/Loader';
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -17,7 +19,7 @@ const Login = () => {
    const [loading, setLoading] = useState<boolean>(false);
    const [passFocus, setPassFocus] = useState<boolean>(false);
    const [newPass, setNewPass] = useState<string>(''); /** новый пароль */
-   const [newPassRepeat, setNewPassRepeat] = useState(''); /** повтор нового пароля */
+   const [newPassRepeat, setNewPassRepeat] = useState<string>(''); /** повтор нового пароля */
 
    const dispatch = useDispatch<TypeDispatch>();
    const navigate = useNavigate();
@@ -37,14 +39,22 @@ const Login = () => {
          .then((response: any) => {
             const data: LoginInfo = response.data.data[0];
 
+            /** сохраняем токен авторизации */
             localStorage.setItem('accessToken', data.auth_data.access_token);
-            localStorage.setItem('userId', data.user_data.user_id);
-            localStorage.setItem('profileId', data.profile_data.profile_id || '');
-            localStorage.setItem('userLogin', data.user_data.login);
-            localStorage.setItem('userFirstName', data.profile_data.first_name || '');
-            localStorage.setItem('userLastName', data.profile_data.last_name || '');
-
             dispatch(loginActions.setToken(data.auth_data.access_token));
+
+            /** сохраняем данные пользователя */
+            localStorage.setItem('profileID', data.profile_data.profile_id);
+            localStorage.setItem('userID', data.user_data.user_id);
+            localStorage.setItem('login', data.user_data.login);
+            localStorage.setItem('first_name', data.profile_data.first_name);
+            localStorage.setItem('last_name', data.profile_data.last_name);
+
+            dispatch(profileActions.saveProfileId(data.profile_data.profile_id));
+            dispatch(profileActions.saveUserId(data.user_data.user_id));
+            dispatch(profileActions.saveLogin(data.user_data.login));
+            dispatch(profileActions.saveFirstName(data.profile_data.first_name));
+            dispatch(profileActions.saveLastName(data.profile_data.last_name));
 
             setLoading(false);
 
@@ -60,9 +70,10 @@ const Login = () => {
    };
 
    useEffect(() => {
-      if (localStorage.getItem('accessToken')) {
+      if (getToken()) {
          navigate('/vacancies');
       }
+
       if (window.location.pathname.includes('passwordChange')) {
          setMode('passwordChange');
       }
