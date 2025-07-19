@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { apiService } from '@/shared/services';
 import type { TypeDispatch } from '@/app/store/store';
 import { loginActions } from '@/app/store/slices/login.slice';
@@ -21,6 +21,9 @@ const Login = () => {
    const [newPass, setNewPass] = useState<string>(''); /** новый пароль */
    const [newPassRepeat, setNewPassRepeat] = useState<string>(''); /** повтор нового пароля */
 
+   const location = useLocation();
+   const currentURL = location.pathname + location.search + location.hash;
+
    const dispatch = useDispatch<TypeDispatch>();
    const navigate = useNavigate();
 
@@ -30,7 +33,6 @@ const Login = () => {
       }
 
       setLoading(true);
-
       await apiService
          .request({
             name: 'postLoginInfo',
@@ -57,7 +59,6 @@ const Login = () => {
             dispatch(profileActions.saveLastName(data.profile_data.last_name));
 
             setLoading(false);
-
             navigate('/');
          })
          .catch((err: any) => {
@@ -74,7 +75,7 @@ const Login = () => {
          navigate('/vacancies');
       }
 
-      if (window.location.pathname.includes('passwordChange')) {
+      if (currentURL.includes('/login/passwordChange')) {
          setMode('passwordChange');
       }
    }, []);
@@ -86,6 +87,8 @@ const Login = () => {
 
       setError(false);
    }, [login, password]);
+
+   console.log(mode);
 
    return (
       <article className={styles.container}>
