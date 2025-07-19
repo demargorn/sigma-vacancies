@@ -136,8 +136,6 @@ const Sidebar = () => {
          }
       ],
       accountInfo: {
-         name: 'Мария',
-         email: localStorage.getItem('userLogin') || 'mail@mail.ru',
          image: 'imgs/sidebar/avatar.png'
       }
    };
@@ -222,17 +220,8 @@ const Sidebar = () => {
             </ul>
 
             <div className={styles.user_menu_container}>
-               <User
-                  mode="sidebar"
-                  arrow={true}
-                  name={config.accountInfo.name}
-                  email={config.accountInfo.email}
-                  img={config.accountInfo.image}
-                  small={false}
-                  onClick={setMenuActive}
-                  menuActive={menuActive}
-               />
-               <UserMenu active={menuActive} setActive={setMenuActive} userName={config.accountInfo.name} userEmail={config.accountInfo.email} userPic={config.accountInfo.image} small={false} />
+               <User mode="sidebar" arrow={true} img={config.accountInfo.image} small={false} onClick={setMenuActive} menuActive={menuActive} />
+               <UserMenu active={menuActive} setActive={setMenuActive} userPic={config.accountInfo.image} small={false} />
             </div>
          </nav>
       </div>
