@@ -16,7 +16,7 @@
 
 .user_active,
 .user_active:hover {
-   background-color: var(--accent-color);
+   background-color: var(--main-color);
 }
 
 .list_arrow {
@@ -48,16 +48,16 @@
 }
 
 .user_name {
-   font-family: 'Gramatika Bold', serif;
+   font-size: 16px;
+   font-weight: 600;
+   line-height: 24px;
    color: var(--primary-text);
-   font-size: 15px;
-   font-weight: 700;
-   line-height: 150%;
    margin-bottom: 5px;
 }
 
 .user_email {
-   font-size: 14px;
+   font-size: 16px;
+   font-weight: 400;
    line-height: 24px;
    color: var(--primary-text);
    text-overflow: ellipsis;

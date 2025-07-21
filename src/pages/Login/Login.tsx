@@ -71,11 +71,7 @@ const Login = () => {
    };
 
    useEffect(() => {
-      if (getToken()) {
-         navigate('/vacancies');
-      }
-
-      if (currentURL.includes('/login/passwordChange')) {
+      if (currentURL.includes('passwordChange')) {
          setMode('passwordChange');
       }
    }, []);

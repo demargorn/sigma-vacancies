@@ -1,4 +1,4 @@
-import { useEffect, useState, type SyntheticEvent } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import cn from 'classnames';
 import { Tooltip } from '@heathmont/moon-core-tw';
@@ -7,39 +7,39 @@ import UserMenu from './User/UserMenu';
 import styles from './Sidebar.module.css';
 
 const Sidebar = () => {
-   const currentPath = window.location.hash;
    const location = useLocation();
    const currentURL = location.pathname + location.search + location.hash;
+   const access_token = localStorage.getItem('accessToken');
 
-   const [small, setSmall] = useState<boolean>(false);
-   const [currentMenu, setCurrentMenu] = useState<string>('');
-   const [menuActive, setMenuActive] = useState<boolean>(false);
+   const [small, setSmall] = useState<boolean>(false); /** большой/маленький интерфейс side-бара */
+   const [currentMenu, setCurrentMenu] = useState<string>(''); /** текущий активный пункт меню */
+   const [menuActive, setMenuActive] = useState<boolean>(false); /** показываем/скрываем меню пользователя */
 
-   /** скрываем сайд-бар при логине */
-   const style = currentURL.includes('login') ? { display: 'none' } : {};
+   /** скрываем side-бар при логине */
+   const style = !access_token ? { display: 'none' } : {};
 
    const config = {
       logo: {
          img: 'imgs/sidebar/logo.png',
          alt: 'сигма лого',
-         link: '/home'
+         link: '/'
       },
       setSmall: {
-         btnIcon: '/imgs/sidebar/menu-arrow.png',
+         btnIcon: 'imgs/sidebar/menu-arrow.png',
          onClick: () => setSmall(!small)
       },
       mainMenu: [
          {
             text: 'Главная',
-            icon: 'imgs/sidebar/menu_icon.svg',
-            // iconActive: '/imgs/sidebar/menu_icon_active.svg',
-            link: '/home',
+            icon: 'imgs/sidebar/menu.svg',
+            iconActive: 'imgs/sidebar/menu_active.svg',
+            link: '/',
             expands: false
          },
          {
             text: 'Аналитика',
             icon: 'imgs/sidebar/analytics.svg',
-            // iconActive: '/imgs/sidebar/analytics-active.svg',
+            iconActive: 'imgs/sidebar/analytics-active.svg',
             expands: true,
             link: '/analytics',
             options: [
@@ -68,21 +68,21 @@ const Sidebar = () => {
          {
             text: 'Орг. структура',
             icon: 'imgs/sidebar/orgs.svg',
-            iconActive: '/imgs/sidebar/orgs-active.svg',
+            iconActive: 'imgs/sidebar/orgs-active.svg',
             link: '/departments',
             expands: false
          },
          {
             text: 'Сотрудники',
             icon: 'imgs/sidebar/employees.svg',
-            iconActive: '/imgs/sidebar/employees-active.svg',
+            iconActive: 'imgs/sidebar/employees-active.svg',
             link: '/employees',
             expands: false
          },
          {
             text: 'Найм сотрудников',
             icon: 'imgs/sidebar/star.svg',
-            iconActive: '/imgs/sidebar/star-active.svg',
+            iconActive: 'imgs/sidebar/star-active.svg',
             link: '/vacancies',
             expands: false
          },
@@ -104,7 +104,7 @@ const Sidebar = () => {
          {
             text: 'Поиск',
             icon: 'imgs/sidebar/search.svg',
-            iconActive: '/imgs/sidebar/search-active.svg',
+            iconActive: 'imgs/sidebar/search-active.svg',
             expands: true,
             options: [
                {
@@ -116,21 +116,22 @@ const Sidebar = () => {
 
          {
             text: 'Справка',
-            icon: 'imgs/sidebar/i-info.svg',
-            iconActive: '/imgs/main/i-info-active.svg', // пока нет
+            icon: 'imgs/sidebar/help.svg',
+            iconActive: 'imgs/sidebar/help-active.svg',
             link: '/help',
             expands: false
          },
          {
             text: 'Уведомления',
-            icon: 'imgs/sidebar/notification.svg',
-            iconActive: '/imgs/sidebar/notification-active.svg', // пока нет
+            icon: 'imgs/sidebar/notifications.svg',
+            iconActive: 'imgs/sidebar/notifications-active.svg',
             link: '/notifications',
             service: true
          },
          {
             text: 'Настройки',
             icon: 'imgs/sidebar/settings.svg',
+            iconActive: 'imgs/sidebar/settings-active.svg',
             link: '/settings',
             service: true
          }
@@ -140,14 +141,18 @@ const Sidebar = () => {
       }
    };
 
-   /** функция установки активной вкладки сайд-бара */
-   const handleSetCurrentMenu = ({ target }: SyntheticEvent) => {
-      if (!(target instanceof HTMLElement)) {
-         return;
-      }
-
-      setCurrentMenu(target.innerText);
-   };
+   useEffect(() => {
+      if (currentURL.includes('/')) setCurrentMenu('Главная');
+      if (currentURL.includes('analytics')) setCurrentMenu('Аналитика');
+      if (currentURL.includes('departments')) setCurrentMenu('Орг. структура');
+      if (currentURL.includes('employees')) setCurrentMenu('Сотрудники');
+      if (currentURL.includes('vacancies')) setCurrentMenu('Найм сотрудников');
+      if (currentURL.includes('polls') || currentURL.includes('poll')) setCurrentMenu('Опросы');
+      if (currentURL === '/search/skills/') setCurrentMenu('Поиск');
+      if (currentURL.includes('help')) setCurrentMenu('Справка');
+      if (currentURL.includes('notifications')) setCurrentMenu('Уведомления');
+      if (currentURL.includes('settings')) setCurrentMenu('Настройки');
+   });
 
    return (
       <div className={!small ? `${styles.container}` : cn(styles.container, styles.container_small)} style={style}>
@@ -160,7 +165,7 @@ const Sidebar = () => {
                {config.mainMenu.map(
                   (item) =>
                      !item.service && (
-                        <li key={item.text} className={styles.menu_list_item} onClick={handleSetCurrentMenu}>
+                        <li key={item.text} className={styles.menu_list_item}>
                            {item.link ? (
                               <Tooltip>
                                  <Tooltip.Trigger>
@@ -169,7 +174,7 @@ const Sidebar = () => {
                                        className={small ? cn(styles.menu_list_link, styles.menu_list_link_small) : styles.menu_list_link}
                                        style={
                                           currentMenu === item.text
-                                             ? { backgroundImage: `url(${item.icon})`, backgroundColor: 'var(--main-color)', color: '#fff' }
+                                             ? { backgroundImage: `url(${item.iconActive})`, backgroundColor: 'var(--main-color)', color: '#fff' }
                                              : { backgroundImage: `url(${item.icon})` }
                                        }
                                     >
@@ -180,9 +185,9 @@ const Sidebar = () => {
                            ) : (
                               <div
                                  className={!small ? styles.menu_list_btn : cn(styles.menu_list_btn, styles.menu_list_btn_small)}
-                                 style={small && item.options?.find((el) => currentPath.includes(el.link)) ? { backgroundImage: `url(${item.iconActive})` } : { backgroundImage: `url(${item.icon})` }}
+                                 style={small && item.options?.find((el) => currentURL.includes(el.link)) ? { backgroundImage: `url(${item.iconActive})` } : { backgroundImage: `url(${item.icon})` }}
                                  onClick={() => {
-                                    currentPath !== item.text ? setCurrentMenu(item.text) : setCurrentMenu('');
+                                    currentURL !== item.text ? setCurrentMenu(item.text) : setCurrentMenu('');
                                  }}
                               >
                                  {!small ? item.text : ''}
@@ -198,7 +203,7 @@ const Sidebar = () => {
                {config.mainMenu.map(
                   (item) =>
                      item.service && (
-                        <li key={item.text} className={styles.menu_list_item} onClick={handleSetCurrentMenu}>
+                        <li key={item.text} className={styles.menu_list_item}>
                            <Tooltip>
                               <Tooltip.Trigger>
                                  <Link
