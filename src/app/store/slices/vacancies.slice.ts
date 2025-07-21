@@ -47,7 +47,7 @@ const initialVacancy: IVacancy = {
    opened_date: '',
    closed_date: '',
    budget: 0,
-   responsible: 'hr',
+   responsible: '',
 
    details: '',
    vacancy_img: '',
