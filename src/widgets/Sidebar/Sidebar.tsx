@@ -96,8 +96,12 @@ const Sidebar = () => {
                   link: `/poll/templates`
                },
                {
-                  text: 'Все опросы',
+                  text: 'Мои опросы',
                   link: `/polls/account`
+               },
+               {
+                  text: 'Опросы организации',
+                  link: `/polls/company-polls`
                }
             ]
          },
@@ -110,6 +114,10 @@ const Sidebar = () => {
                {
                   text: 'По компетенциям',
                   link: '/search/skills/'
+               },
+               {
+                  text: 'По личным данным',
+                  link: '/search/profile/'
                }
             ]
          },
@@ -191,13 +199,15 @@ const Sidebar = () => {
                                  }}
                               >
                                  {!small ? item.text : ''}
-                                 <div className={currentMenu === item.text ? `${styles.menu_list_btn_arrow} ${styles.menu_list_btn_arrow_active}` : `${styles.menu_list_btn_arrow}`}></div>
+                                 <div className={currentMenu === item.text ? cn(styles.menu_list_btn_arrow, styles.menu_list_btn_arrow_active) : `${styles.menu_list_btn_arrow}`}></div>
                               </div>
                            )}
                         </li>
                      )
                )}
             </ul>
+
+            <div className={styles.divider}></div>
 
             <ul className={cn(styles.menu_list, styles.menu_list_service)}>
                {config.mainMenu.map(
@@ -223,6 +233,8 @@ const Sidebar = () => {
                      )
                )}
             </ul>
+
+            <div className={styles.divider}></div>
 
             <div className={styles.user_menu_container}>
                <User mode="sidebar" arrow={true} img={config.accountInfo.image} small={false} onClick={setMenuActive} menuActive={menuActive} />

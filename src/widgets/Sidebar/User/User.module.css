@@ -3,7 +3,6 @@
    align-items: center;
    border-radius: 8px;
    padding: 8px;
-   margin-block: 20px;
 }
 
 .user:hover {
@@ -11,7 +10,7 @@
 }
 
 .user_popup:hover {
-   background-color: #fff;
+   background-color: white;
 }
 
 .user_active,

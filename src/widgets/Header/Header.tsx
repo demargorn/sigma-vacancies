@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router';
 import { Breadcrumb } from '@heathmont/moon-core-tw';
 import styles from './Header.module.css';
 
-type TypeBreadcrumbsProps = {
+type TypeHeaderProps = {
   breadcrumbs: Array<ReactNode>;
 };
 
-const Header = ({ breadcrumbs }: TypeBreadcrumbsProps) => {
+const Header = ({ breadcrumbs }: TypeHeaderProps) => {
   const navigate = useNavigate();
 
   return (
