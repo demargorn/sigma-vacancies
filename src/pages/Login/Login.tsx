@@ -6,7 +6,6 @@ import type { TypeDispatch } from '@/app/store/store';
 import { loginActions } from '@/app/store/slices/login.slice';
 import { profileActions } from '@/app/store/slices/profile.slice';
 import type { LoginInfo } from '@/types/types';
-import { getToken } from '@/shared/utilities/utils';
 import PasswordInput from '@/shared/components/PasswordInput/PasswordInput';
 import Loader from '@/shared/components/Loader/Loader';
 import styles from './Login.module.css';

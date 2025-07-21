@@ -27,18 +27,17 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const [saveActive, setSaveActive] = useState<boolean>(true); /** управление открытием save-поп-апа */
 
    const windowRef = useRef<HTMLDivElement>(null); /** реф на окно основного контента  */
-   const linkRef = useRef<HTMLAnchorElement>(null); /** реф на link  */
    const popupRef = useRef<HTMLDivElement>(null); /** реф на поп-ап */
    const dispatch = useDispatch<TypeDispatch>();
 
    const breadcrumbs = [
-      <Link to="/" aria-label="Home" key="Home" ref={linkRef}>
+      <Link to="/" aria-label="Home" key="Home">
          <GenericHome className="text-moon-24" />
       </Link>,
       <span style={{ marginLeft: '8px' }} key="Page 1">
          ...
       </span>,
-      <Link to={`/vacancies`} style={{ marginLeft: '8px' }} key="Page 2" ref={linkRef}>
+      <Link to={`/vacancies`} style={{ marginLeft: '8px' }} key="Page 2">
          Вакансии
       </Link>,
       <span key="Current" style={{ marginLeft: '8px' }}>

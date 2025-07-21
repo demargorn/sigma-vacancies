@@ -82,7 +82,7 @@ const MainInfo = () => {
 
          <div className={styles.textarea_container}>
             <label htmlFor="candidate_responsibilities" className={styles.input_label}>
-               Обязанности будущие обязанности кандидата
+               Будущие обязанности кандидата
             </label>
             <textarea
                id="candidate_responsibilities"
