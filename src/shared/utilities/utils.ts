@@ -37,4 +37,39 @@ function areVacanciesEqual(a: IVacancy, b: IVacancy) {
    return true;
 }
 
-export { getToken, clearUserProfile, areVacanciesEqual };
+/** форматирует дату */
+function formatDate(date: string = '-') {
+   const newDate = new Date(date);
+
+   const day = String(newDate.getDate()).padStart(2, '0');
+   const month = String(newDate.getMonth() + 1).padStart(2, '0');
+   const year = newDate.getFullYear();
+
+   return `${day}.${month}.${year}`;
+}
+
+/** склоняет числа по падежам */
+function numberPlural(number: number, one: string, two: string, five: string) {
+   if (Number.isNaN(number)) return number;
+
+   //	падежи не зависят от знака числа
+   let _number = number;
+   //	для чисел, больших, чем 100 принципы те же самые
+   _number %= 100;
+   //	числа, большие 20 склоняются так же, как числа до 10.
+   if (_number > 19) _number %= 10;
+   //	определеяем падежи
+   if (_number == 0 || _number > 4) return five;
+   if (_number == 1) return one;
+   return two;
+}
+
+function getFullname(firstname?: string, lastname?: string, middlename?: string) {
+   const fn = firstname || '';
+   const ln = lastname || '';
+   const mn = middlename || '';
+
+   return `${ln} ${fn} ${mn}`.trim();
+}
+
+export { getToken, clearUserProfile, areVacanciesEqual, formatDate, numberPlural, getFullname };
