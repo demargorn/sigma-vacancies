@@ -19,7 +19,7 @@ export const editingConfig = [
          name: 'Заказчик',
          description: 'Информация о заказчике вакансии, для внутреннего пользования',
          page: () => <CustomerInfo />,
-         nextLink: 'Conditions',
+         nextLink: 'Company',
          prevLink: 'MainInfo'
       }
    },
