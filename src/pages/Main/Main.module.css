@@ -1,6 +1,12 @@
+.container {
+   position: fixed;
+   top: 0;
+   left: 240px;
+   padding: 20px;
+}
+
 .main_title {
    font-size: 24px;
    font-weight: 600;
    line-height: 32px;
-   margin-left: 240px;
 }

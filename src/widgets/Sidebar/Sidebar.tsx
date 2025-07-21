@@ -46,10 +46,7 @@ const Sidebar = () => {
                   text: 'Движение персонала',
                   link: 'staff'
                },
-               {
-                  text: 'Вовлеченность и лояльность',
-                  link: 'engagement'
-               },
+
                {
                   text: 'Компетентность',
                   link: '360'
@@ -57,10 +54,6 @@ const Sidebar = () => {
                {
                   text: 'Команда',
                   link: 'team'
-               },
-               {
-                  text: 'Сравнение ОИВ',
-                  link: 'departmentcomparison'
                }
             ]
          },
@@ -163,7 +156,7 @@ const Sidebar = () => {
 
    return (
       <div className={!small ? `${styles.container}` : cn(styles.container, styles.container_small)} style={style}>
-         <button onClick={() => config.setSmall.onClick()} className={!small ? `${styles.menu_btn}` : `${styles.menu_btn} ${styles.menu_btn_small}`}></button>
+         <button onClick={() => config.setSmall.onClick()} className={!small ? `${styles.menu_btn}` : cn(styles.menu_btn, styles.menu_btn_small)}></button>
          <Link to="/" className={styles.logo}>
             <img src={config.logo.img} alt={config.logo.alt} />
          </Link>
@@ -190,15 +183,57 @@ const Sidebar = () => {
                                  </Tooltip.Trigger>
                               </Tooltip>
                            ) : (
-                              <div
-                                 className={!small ? styles.menu_list_btn : cn(styles.menu_list_btn, styles.menu_list_btn_small)}
-                                 style={small && item.options?.find((el) => currentURL.includes(el.link)) ? { backgroundImage: `url(${item.iconActive})` } : { backgroundImage: `url(${item.icon})` }}
-                                 onClick={() => {
-                                    currentURL !== item.text ? setCurrentMenu(item.text) : setCurrentMenu('');
-                                 }}
-                              >
-                                 {!small ? item.text : ''}
-                                 <div className={currentMenu === item.text ? cn(styles.menu_list_btn_arrow, styles.menu_list_btn_arrow_active) : `${styles.menu_list_btn_arrow}`}></div>
+                              <div className={styles.menu_list_btn_container}>
+                                 {small ? (
+                                    <Tooltip>
+                                       <Tooltip.Trigger>
+                                          <button
+                                             className={!small ? `${styles.menu_list_btn}` : cn(styles.menu_list_btn, styles.menu_list_btn_small)}
+                                             style={
+                                                small && item.options?.find((el) => currentURL.includes(el.link))
+                                                   ? { backgroundImage: `url(${item.iconActive})`, backgroundColor: 'var(--main-color)' }
+                                                   : { backgroundImage: `url(${item.icon})` }
+                                             }
+                                             onClick={() => {
+                                                if (small) setSmall(false);
+                                                currentMenu !== item.text ? setCurrentMenu(item.text) : setCurrentMenu('');
+                                             }}
+                                          >
+                                             {!small ? item.text : ''}
+                                          </button>
+                                       </Tooltip.Trigger>
+                                    </Tooltip>
+                                 ) : (
+                                    <a
+                                       className={!small ? `${styles.menu_list_btn}` : cn(styles.menu_list_btn, styles.menu_list_btn_small)}
+                                       style={
+                                          small && item.options?.find((el) => currentURL.includes(el.link))
+                                             ? { backgroundImage: `url(${item.iconActive})`, backgroundColor: 'var(--main-color)' }
+                                             : { backgroundImage: `url(${item.icon})` }
+                                       }
+                                       onClick={() => {
+                                          if (small) setSmall(false);
+                                          currentMenu !== item.text ? setCurrentMenu(item.text) : setCurrentMenu('');
+                                       }}
+                                    >
+                                       {!small ? item.text : ''}
+                                       <div className={currentMenu === item.text ? cn(styles.menu_list_btn_arrow, styles.menu_list_btn_arrow_active) : `${styles.menu_list_btn_arrow}`}></div>
+                                    </a>
+                                 )}
+
+                                 <ul className={styles.expandable_container} style={currentMenu === item.text && !small ? {} : { display: 'none' }}>
+                                    {item.options?.map((option) => (
+                                       <li className={styles.expandable_container_item} key={option.text}>
+                                          <a
+                                             className={styles.expandable_container_link}
+                                             key={option.text}
+                                             style={currentURL.includes(option.link) ? { backgroundColor: 'var(--accent-color)', color: '#fff', fontWeight: 500 } : {}}
+                                          >
+                                             {option.text}
+                                          </a>
+                                       </li>
+                                    ))}
+                                 </ul>
                               </div>
                            )}
                         </li>
