@@ -38,10 +38,9 @@ const OrganizationalInfo = () => {
                Ответственный
             </label>
             <select id="responsible" name="responsible" className={styles.select_status} onChange={handleFieldChange}>
-               <option value="hr" defaultChecked>
-                  HR - Ермолина Е.В.
+               <option value="" defaultChecked hidden>
+                  Выберите
                </option>
-               <option value="teamlead">TeamLead - Львов А.Н.</option>
             </select>
          </div>
       </article>
