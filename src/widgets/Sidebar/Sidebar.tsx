@@ -41,7 +41,6 @@ const Sidebar = () => {
             icon: 'imgs/sidebar/analytics.svg',
             iconActive: 'imgs/sidebar/analytics-active.svg',
             expands: true,
-            link: '/analytics',
             options: [
                {
                   text: 'Движение персонала',
@@ -160,7 +159,7 @@ const Sidebar = () => {
       if (currentURL.includes('help')) setCurrentMenu('Справка');
       if (currentURL.includes('notifications')) setCurrentMenu('Уведомления');
       if (currentURL.includes('settings')) setCurrentMenu('Настройки');
-   });
+   }, [currentURL]);
 
    return (
       <div className={!small ? `${styles.container}` : cn(styles.container, styles.container_small)} style={style}>
