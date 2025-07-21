@@ -1,7 +1,7 @@
 .user {
    display: flex;
    align-items: center;
-   border-radius: 10px;
+   border-radius: 8px;
    padding: 8px;
    margin-block: 20px;
 }
@@ -21,10 +21,10 @@
 
 .list_arrow {
    position: absolute;
-   background-image: url('/imgs/sidebar/user-arrow.svg');
+   right: 0;
    width: 24px;
    height: 24px;
-   right: 0;
+   background-image: url('/imgs/sidebar/user-arrow.svg');
 }
 
 .user:hover .list_arrow {
@@ -48,26 +48,26 @@
 }
 
 .user_name {
-   font-family: 'Gramatika Bold' !important;
-   color: var(--main-black);
-   font-size: 14px;
+   font-family: 'Gramatika Bold', serif;
+   color: var(--primary-text);
+   font-size: 15px;
    font-weight: 700;
    line-height: 150%;
    margin-bottom: 5px;
 }
 
 .user_email {
-   color: #595d62;
    font-size: 14px;
    line-height: 24px;
+   color: var(--primary-text);
    text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 1680px) {
    .user_email:not(.popup) {
-      overflow: hidden;
-      white-space: nowrap;
       width: 88px;
+      white-space: nowrap;
       text-overflow: ellipsis;
+      overflow: hidden;
    }
 }

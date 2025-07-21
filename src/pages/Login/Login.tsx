@@ -88,8 +88,6 @@ const Login = () => {
       setError(false);
    }, [login, password]);
 
-   console.log(mode);
-
    return (
       <article className={styles.container}>
          <main className={styles.main}>

@@ -19,7 +19,7 @@ const UserMenu = (props: Props) => {
    const navigate = useNavigate();
 
    const userData = {
-      text: 'Данные профиля',
+      text: 'Мой профиль',
       icon: 'imgs/sidebar/user.svg',
       link: '/profile'
    };
@@ -44,12 +44,12 @@ const UserMenu = (props: Props) => {
             <div className={styles.divider}></div>
             <ul className={styles.link_list}>
                <li className={styles.link_item}>
-                  <button className={styles.link} style={{ backgroundImage: `url(${userData.icon})`, marginBottom: 0 }}>
+                  <button className={styles.link} style={{ backgroundImage: `url(${userData.icon})` }}>
                      {userData.text}
                   </button>
                </li>
                <li className={styles.link_item}>
-                  <button className={styles.link} style={{ backgroundImage: `url(${logOut.icon})`, marginBottom: 0 }} onClick={handleLogOut}>
+                  <button className={styles.link} style={{ backgroundImage: `url(${logOut.icon})` }} onClick={handleLogOut}>
                      {logOut.text}
                   </button>
                </li>
