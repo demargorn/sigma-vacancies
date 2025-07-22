@@ -15,7 +15,7 @@ const patterns: Partial<Record<keyof IVacancy, RegExp>> = {
    company_name: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
    customer_name: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
    customer_contact_person: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
-   customer_tel: /^\+?[0-9]{7,9}$/,
+   customer_tel: /^\+?[0-9]{7,12}$/,
    customer_whatsapp: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
    customer_mail: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
    customer_telegram: /^@[a-zA-Z0-9_]{5,50}$/
