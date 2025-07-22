@@ -174,7 +174,7 @@ const Sidebar = () => {
                                        className={small ? cn(styles.menu_list_link, styles.menu_list_link_small) : styles.menu_list_link}
                                        style={
                                           currentMenu === item.text
-                                             ? { backgroundImage: `url(${item.iconActive})`, backgroundColor: 'var(--main-color)', color: '#fff' }
+                                             ? { backgroundImage: `url(${item.iconActive})`, backgroundColor: 'var(--main-color)', color: 'white' }
                                              : { backgroundImage: `url(${item.icon})` }
                                        }
                                     >
@@ -227,7 +227,7 @@ const Sidebar = () => {
                                           <a
                                              className={styles.expandable_container_link}
                                              key={option.text}
-                                             style={currentURL.includes(option.link) ? { backgroundColor: 'var(--accent-color)', color: '#fff', fontWeight: 500 } : {}}
+                                             style={currentURL.includes(option.link) ? { backgroundColor: 'var(--component-background)', color: 'white', fontWeight: 500 } : {}}
                                           >
                                              {option.text}
                                           </a>
@@ -255,7 +255,7 @@ const Sidebar = () => {
                                     className={small ? cn(styles.menu_list_link, styles.menu_list_link_small) : styles.menu_list_link}
                                     style={
                                        currentMenu === item.text
-                                          ? { backgroundImage: `url(${item.iconActive})`, backgroundColor: 'var(--main-color)', color: '#fff', fontWeight: 500 }
+                                          ? { backgroundImage: `url(${item.iconActive})`, backgroundColor: 'var(--main-color)', color: 'white', fontWeight: 500 }
                                           : { backgroundImage: `url(${item.icon})` }
                                     }
                                  >
@@ -272,7 +272,9 @@ const Sidebar = () => {
 
             <div className={styles.user_menu_container}>
                <User mode="sidebar" arrow={true} img={config.accountInfo.image} small={false} onClick={setMenuActive} menuActive={menuActive} />
-               <UserMenu active={menuActive} setActive={setMenuActive} userPic={config.accountInfo.image} small={false} />
+               <div className={styles.user_menu}>
+                  <UserMenu active={menuActive} setActive={setMenuActive} userPic={config.accountInfo.image} small={false} />
+               </div>
             </div>
          </nav>
       </div>

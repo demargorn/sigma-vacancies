@@ -13,6 +13,7 @@ export interface IVacancy {
    company_name: string;
    company_id: string;
    customer_name: string;
+   customer_contact_person: string;
    company_description: string;
    customer_tel?: string;
    customer_mail?: string;

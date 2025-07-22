@@ -1,6 +1,4 @@
-// @ts-nocheck
 import { Company, CustomerInfo, MainInfo, Job, OrganizationalInfo, Preview, Requirements, Contacts, Additionally } from '@/widgets/SelectSidebar/Sections';
-import type { EditPageProps } from '@/types/types';
 
 export const editingConfig = [
    {

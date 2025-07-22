@@ -1,14 +1,15 @@
 .container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 100vh;
-   width: 100vw;
    position: fixed;
    top: 0;
    left: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100vw;
+   height: 100vh;
    pointer-events: none;
    opacity: 0;
+   z-index: 10;
    transition: 0.5s;
 }
 
@@ -20,7 +21,7 @@
 .content {
    position: absolute;
    left: 230px;
-   bottom: 10px;
+   bottom: 18px;
    width: 225px;
    border-radius: 8px;
    background-color: #fff;
@@ -60,4 +61,12 @@
    height: 1px;
    background-color: #e1e1e1;
    margin-block: 8px;
+}
+
+.user_menu_container {
+   position: relative;
+}
+
+.user_menu {
+   position: fixed;
 }

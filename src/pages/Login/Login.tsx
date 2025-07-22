@@ -97,7 +97,7 @@ const Login = () => {
                <form className={styles.form} autoComplete="false">
                   <input
                      type="text"
-                     style={error ? { border: '1px solid #e65443' } : {}}
+                     style={error ? { border: '1px solid var(--error-color)' } : {}}
                      autoComplete="false"
                      placeholder="Логин"
                      className={styles.input}

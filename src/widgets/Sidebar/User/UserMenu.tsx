@@ -41,7 +41,9 @@ const UserMenu = (props: Props) => {
       <div className={props.active ? cn(styles.container, styles.active) : `${styles.container}`} onClick={() => props.setActive(false)}>
          <div className={props.active ? cn(styles.content, styles.active) : `${styles.content}`} onClick={(e) => e.stopPropagation()} style={props.small ? { left: '104px' } : {}}>
             <User mode="popup" arrow={false} img={props.userPic} small={false} />
+
             <div className={styles.divider}></div>
+
             <ul className={styles.link_list}>
                <li className={styles.link_item}>
                   <button className={styles.link} style={{ backgroundImage: `url(${userData.icon})` }}>

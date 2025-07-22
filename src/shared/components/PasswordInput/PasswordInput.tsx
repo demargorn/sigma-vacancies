@@ -24,10 +24,11 @@ const PasswordInput = (props: Props) => {
    return (
       <div className={styles.pass_container}>
          <input
+            ref={passwordEl}
             type={passStatus}
             autoComplete="new-password"
             className={styles.input_container}
-            style={props.error ? { border: '1px solid #e65443' } : {}}
+            style={props.error ? { border: '1px solid var(--error-color)' } : {}}
             placeholder={props.placeholder}
             onChange={({ target }) => props.setPassword(target.value)}
             onKeyDown={({ key }) => {
@@ -35,8 +36,6 @@ const PasswordInput = (props: Props) => {
                   props.onEnter();
                }
             }}
-            
-            ref={passwordEl}
          />
          <button
             type="button"

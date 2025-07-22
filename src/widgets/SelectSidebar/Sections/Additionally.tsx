@@ -16,7 +16,7 @@ const Additionally = () => {
             <label htmlFor="details" className={styles.input_label}>
                Детальная информация о вакансии
             </label>
-            <input id="details" type="text" name="details" value={vacancy.details} placeholder="Встаьте URL " className={styles.input_text} onChange={handleFieldChange} />
+            <input id="details" type="text" name="details" value={vacancy.details} placeholder="Вставьте URL " className={styles.input_text} onChange={handleFieldChange} />
          </div>
 
          <div className={styles.input_container}>

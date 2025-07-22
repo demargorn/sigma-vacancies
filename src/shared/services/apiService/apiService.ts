@@ -1,6 +1,6 @@
 import type { IApiServiceGetTokenMethod, IApiServiceMethodData, IApiServiceRequestMethod, IApiServiceRequestParams } from '@/types/types';
 
-export class ApiService {
+class ApiService {
    private getTokenMethod;
    private requestMethod;
    private methods;
@@ -32,3 +32,5 @@ export class ApiService {
       return this.requestMethod({ method, path, payload, params: _params });
    }
 }
+
+export { ApiService };

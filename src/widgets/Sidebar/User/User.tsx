@@ -30,7 +30,7 @@ const User = (props: Props) => {
          onClick={handleOpenMenu}
       >
          <div className={styles.list_arrow} style={props.small || !props.arrow ? { display: 'none' } : { marginRight: '20px' }}></div>
-         <img src={props.img} alt="" className={styles.user_pic} />
+         <img src={props.img} alt="user avatar" className={styles.user_pic} />
          <div className={styles.user_info}>
             <h6 className={styles.user_name} style={!props.small ? {} : { display: 'none' }}>
                {userFirstName} {userLastName}

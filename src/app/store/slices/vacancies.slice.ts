@@ -7,7 +7,47 @@ interface IVacancyState {
    items: Array<IVacancy>;
    vacancy: IVacancy;
    cacheVacancy: IVacancy;
+   errors: Partial<Record<keyof IVacancy, string>>;
 }
+
+const patterns: Partial<Record<keyof IVacancy, RegExp>> = {
+   vacancy_name: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
+   company_name: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
+   customer_name: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
+   customer_contact_person: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
+   customer_tel: /^\+?[0-9]{7,9}$/,
+   customer_whatsapp: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
+   customer_mail: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+   customer_telegram: /^@[a-zA-Z0-9_]{5,50}$/
+};
+
+const validateField = (field: keyof IVacancy, value: string) => {
+   if (!patterns[field]) {
+      return;
+   }
+
+   if (!patterns[field].test(value)) {
+      switch (field) {
+         case 'vacancy_name':
+            return 'возможны только буквы (2-30 символов)';
+         case 'company_name':
+            return 'возможны только буквы (2-30 символов)';
+         case 'customer_name':
+            return 'возможны только буквы (2-30 символов)';
+         case 'customer_contact_person':
+            return 'возможны только буквы (2-30 символов)';
+         case 'customer_tel':
+            return 'телефон в формате +79991234567';
+         case 'customer_mail':
+            return 'некорректный email';
+         case 'customer_telegram':
+            return '@username (5–32 символа)';
+         case 'customer_whatsapp':
+            return 'некорректный url';
+      }
+   }
+   return '';
+};
 
 const initialVacancy: IVacancy = {
    id: '',
@@ -22,6 +62,7 @@ const initialVacancy: IVacancy = {
    company_name: '',
    company_id: '',
    customer_name: '',
+   customer_contact_person: '',
    company_description: '',
    customer_tel: '',
    customer_mail: '',
@@ -33,7 +74,7 @@ const initialVacancy: IVacancy = {
    city: '',
    format: 'office',
    employment: 'full',
-   employment_form: '',
+   employment_form: 'state',
    schedule: '',
    salary_from: 0,
    salary_to: 0,
@@ -60,7 +101,8 @@ const initialState: IVacancyState = {
       // { id: '02', vacancy_name: 'Python Developer', company_name: 'Avito', customer_name: 'Рожкина И.В.', opened_date: '10.12.25', closed_date: '10.01.26', status: 'черновик' }
    ],
    vacancy: { ...initialVacancy },
-   cacheVacancy: { ...initialVacancy }
+   cacheVacancy: { ...initialVacancy },
+   errors: {}
 };
 
 const vacanciesSlice = createSlice({
@@ -83,7 +125,18 @@ const vacanciesSlice = createSlice({
 
       updateField: <K extends keyof IVacancy>(state: Draft<typeof initialState>, { payload }: PayloadAction<{ field: K; value: IVacancy[K] }>) => {
          const { field, value } = payload;
-         state.vacancy[field] = value;
+
+         // автоподстановка @ для Telegram
+         const finalValue = field === 'customer_telegram' && typeof value === 'string' && !value.startsWith('@') ? (('@' + value.replace(/@/g, '')) as IVacancy[K]) : value;
+         state.vacancy[field] = finalValue;
+
+         // валидация
+         const errorMsg = validateField(field, String(finalValue));
+         if (errorMsg) {
+            state.errors[field] = errorMsg;
+         } else {
+            delete state.errors[field];
+         }
       },
 
       setVacancy: (state, { payload }: PayloadAction<IVacancy>) => {

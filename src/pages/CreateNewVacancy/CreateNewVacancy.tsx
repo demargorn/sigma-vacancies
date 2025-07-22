@@ -100,6 +100,8 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
       };
    }, []);
 
+   console.log(vacancy);
+
    return (
       <section ref={windowRef} className={styles.container}>
          {!clicked && <SavePopup active={saveActive} setActive={setSaveActive} />}

@@ -4,19 +4,21 @@
 * {
    margin: 0;
    padding: 0;
-   box-sizing: border-box;
    color: var(--primary-text);
+   box-sizing: border-box;
 }
 
 :root {
    font-family: Golos, Helvetica, Arial, sans-serif;
-   line-height: 1.5;
    font-weight: 400;
+   line-height: 1.5;
 
    /* основные цвета*/
    --main-color: #487bfe;
    --disable-color: #edf2ff;
    --main-background-color: #f6f7fa;
+   --component-background: #eceef4;
+   --error-color: #e65443;
 
    /* цвет текста*/
    --primary-text: #0c151d;

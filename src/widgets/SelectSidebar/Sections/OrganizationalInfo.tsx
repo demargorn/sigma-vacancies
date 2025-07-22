@@ -30,7 +30,7 @@ const OrganizationalInfo = () => {
             <label htmlFor="budget" className={styles.input_label}>
                Бюджет на вакансию (до)
             </label>
-            <input id="budget" type="number" name="budget" value={vacancy.budget} placeholder="0" className={styles.input_text} onChange={handleFieldChange} />
+            <input id="budget" type="number" name="budget" value={vacancy.budget} placeholder="0" min={0} className={styles.input_text} onChange={handleFieldChange} />
          </div>
 
          <div className={styles.responsible}>
