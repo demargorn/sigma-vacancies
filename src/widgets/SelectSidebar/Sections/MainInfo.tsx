@@ -28,6 +28,18 @@ const MainInfo = () => {
             </div>
          </div>
 
+         <div className={styles.position}>
+            <label htmlFor="position" className={styles.input_label}>
+               Профессия
+            </label>
+            <select id="position" name="position" value={vacancy.position} className={styles.select_status} onChange={handleFieldChange}>
+               <option value="" defaultChecked hidden>
+                  Выберите
+               </option>
+              
+            </select>
+         </div>
+
          <div className={styles.select_status_container}>
             <label htmlFor="status" className={styles.input_label}>
                Статус вакансии

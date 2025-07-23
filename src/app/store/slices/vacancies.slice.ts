@@ -11,14 +11,14 @@ interface IVacancyState {
 }
 
 const patterns: Partial<Record<keyof IVacancy, RegExp>> = {
-   vacancy_name: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
-   company_name: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
-   customer_name: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
-   customer_contact_person: /^[A-Za-zА-Яа-яЁё]{2,50}$/,
+   customer_contact_person: /^[A-Za-zА-Яа-яЁё]{2,50}$/ /** оставлю для примера валидации стоки */,
    customer_tel: /^\+?[0-9]{7,12}$/,
    customer_whatsapp: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
    customer_mail: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-   customer_telegram: /^@[a-zA-Z0-9_]{5,50}$/
+   customer_telegram: /^@[a-zA-Z0-9_]{5,50}$/,
+   details: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
+   vacancy_img: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
+   preview_img: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/
 };
 
 const validateField = (field: keyof IVacancy, value: string) => {
@@ -28,14 +28,6 @@ const validateField = (field: keyof IVacancy, value: string) => {
 
    if (!patterns[field].test(value)) {
       switch (field) {
-         case 'vacancy_name':
-            return 'возможны только буквы (2-30 символов)';
-         case 'company_name':
-            return 'возможны только буквы (2-30 символов)';
-         case 'customer_name':
-            return 'возможны только буквы (2-30 символов)';
-         case 'customer_contact_person':
-            return 'возможны только буквы (2-30 символов)';
          case 'customer_tel':
             return 'телефон в формате +79991234567';
          case 'customer_mail':
@@ -43,6 +35,9 @@ const validateField = (field: keyof IVacancy, value: string) => {
          case 'customer_telegram':
             return '@user_name (не менее 5 символов)';
          case 'customer_whatsapp':
+         case 'details':
+         case 'vacancy_img':
+         case 'preview_img':
             return 'некорректный url';
       }
    }
@@ -53,6 +48,7 @@ const initialVacancy: IVacancy = {
    id: '',
    vacancy_name: '',
    places_qty: 1,
+   position: '',
    vacancy_description: '',
    candidate_requirements: '',
    candidate_responsibilities: '',
@@ -72,18 +68,20 @@ const initialVacancy: IVacancy = {
    country: '',
    region: '',
    city: '',
-   format: 'office',
-   employment: 'full',
-   employment_form: 'state',
+   format: '',
+   employment: '',
+   employment_form: '',
    schedule: '',
    salary_from: 0,
    salary_to: 0,
    currency: 'rub',
    after_taxes: false,
-   period: 'month',
+   period: '',
+   frequency: '',
 
    selectedSkills: [],
-   experience: 'none',
+   education: '',
+   experience: '',
 
    opened_date: '',
    closed_date: '',

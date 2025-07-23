@@ -26,11 +26,23 @@ const OrganizationalInfo = () => {
             </div>
          </div>
 
-         <div className={styles.budget}>
-            <label htmlFor="budget" className={styles.input_label}>
-               Бюджет на вакансию (до)
-            </label>
-            <input id="budget" type="number" name="budget" value={vacancy.budget} placeholder="0" min={0} className={styles.input_text} onChange={handleFieldChange} />
+         <div className={styles.input_container}>
+            <div className={styles.budget}>
+               <label htmlFor="budget" className={styles.input_label}>
+                  Бюджет на вакансию (до)
+               </label>
+               <input id="budget" type="number" name="budget" value={vacancy.budget} placeholder="0" min={0} className={styles.input_text} onChange={handleFieldChange} />
+            </div>
+            <div className={styles.currency}>
+               <label htmlFor="currency" className={styles.input_label}>
+                  валюта
+               </label>
+               <select id="currency" name="currency" value={vacancy.currency} className={styles.select_status} onChange={handleFieldChange}>
+                  <option value="rub">₽</option>
+                  <option value="dollar">$</option>
+                  <option value="euro">€</option>
+               </select>
+            </div>
          </div>
 
          <div className={styles.responsible}>

@@ -4,6 +4,7 @@ export interface IVacancy {
    id: string;
    vacancy_name: string;
    places_qty?: number;
+   position: string;
    vacancy_description?: string;
    candidate_requirements: string;
    candidate_responsibilities: string;
@@ -32,8 +33,10 @@ export interface IVacancy {
    currency: string;
    after_taxes: boolean;
    period: string;
+   frequency: string;
 
    selectedSkills?: Array<string>;
+   education: string;
    experience?: string;
 
    opened_date: string;

@@ -13,29 +13,28 @@ const Requirements = () => {
    const [skillsArr, setSkillsArr] = useState<Array<ISkill>>([]); /** список навыков */
    const [selectedSkills, setSelectedSkills] = useState<Array<string>>([]); /** список выбранных навыков */
 
-   const token = localStorage.getItem('accessToken') as string;
+   const token = localStorage.getItem('accessToken');
 
    /** запрашиваем навыки с сервиса навыков */
-   const handleFetchSkills = async () => {
-      try {
-         const data = await apiService.request({
-            name: 'postSkillInfo',
-            payload: { token }
-         });
+   // const handleFetchSkills = async () => {
+   //    try {
+   //       const data = await apiService.request({
+   //          name: 'postSkillInfo',
+   //          payload: { token }
+   //       });
 
-         console.log(data);
-      } catch (error) {
-         console.error('Error fetching:', error);
-      }
-   };
+   //       console.log(data);
+   //    } catch (error) {
+   //       console.error('Error fetching:', error);
+   //    }
+   // };
 
    const handleSelectionChange = (newOptions: Array<string>) => setSelectedSkills(newOptions);
 
    useEffect(() => {
-      handleFetchSkills();
-      setSkillsArr(skills)
+      // handleFetchSkills();
+      setSkillsArr(skills);
    }, []);
-
 
    return (
       <article className={styles.container}>
@@ -52,14 +51,29 @@ const Requirements = () => {
             </div>
          </div>
 
+         <div className={styles.education_container}>
+            <label htmlFor="education" className={styles.input_label}>
+               Образование
+            </label>
+            <select id="education" name="education" value={vacancy.education} className={styles.select_status} onChange={handleFieldChange}>
+               <option value="" defaultChecked hidden>
+                  Выберите
+               </option>
+               <option value="higher">Высшее</option>
+               <option value="secondary">Среднее профессиональное</option>
+               <option value="none">Не имеет значение</option>
+            </select>
+         </div>
+
          <div className={styles.experience_container}>
             <label htmlFor="experience" className={styles.input_label}>
                Требуемый опыт работы
             </label>
             <select id="experience" name="experience" value={vacancy.experience} className={styles.select_status} onChange={handleFieldChange}>
-               <option value="none" defaultChecked>
-                  Без опыта
+               <option value="" defaultChecked hidden>
+                  Выберите
                </option>
+               <option value="none">Без опыта</option>
                <option value="1-3">1 - 3 года</option>
                <option value="3-6">3 - 6 лет</option>
                <option value="over_6">более 6 лет</option>

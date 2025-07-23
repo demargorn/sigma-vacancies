@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import cn from 'classnames';
 import { editingConfig } from '@/widgets/SelectSidebar/config';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
-import type { TypeDispatch } from '@/app/store/store';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import type { EditPageInfo, EditPollInfo } from '@/types/types';
 import Header from '@/widgets/Header/Header';
 import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
@@ -20,6 +20,8 @@ type TypeCreateNewVacancyProps = {
 
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
+   const { errors } = useSelector((state: TypeRootState) => state.vacancies);
+
    const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
    const [pageInfo, setPageInfo] = useState<EditPageInfo>();
    const [clicked, setClicked] = useState<boolean>(true); /** нажата ли кнопка Сохранить */
@@ -131,7 +133,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
                   Назад
                </button>
                <button
-                  className={!pageInfo?.info.nextLink ? `${cn(styles.btn_next, styles.btn_next_save)}` : `${styles.btn_next}`}
+                  className={!pageInfo?.info.nextLink ? cn(styles.btn_next, styles.btn_next_save) : `${styles.btn_next}`}
                   onClick={!pageInfo?.info.nextLink ? handleSaveVacancy : () => setEditPage(pageInfo!.info.nextLink)}
                >
                   {!pageInfo?.info.nextLink ? 'Сохранить' : 'Далее'}

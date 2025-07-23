@@ -21,6 +21,10 @@
    margin-bottom: 28px;
 }
 
+.position {
+   margin-bottom: 32px;
+}
+
 .input_container:last-child {
    margin-top: -8px;
 }
@@ -125,6 +129,8 @@
 .customer_mail,
 .customer_telegram,
 .customer_whatsapp,
+.period,
+.frequency,
 .vacancy_img,
 .preview_img {
    width: 50%;
@@ -145,11 +151,9 @@
    margin-top: 15px;
 }
 
-/* .company, */
 .budget {
-   /* .schedule { */
    display: block;
-   margin-bottom: 32px;
+   width: 90%;
 }
 
 .label_container {
@@ -221,5 +225,9 @@
 }
 
 .details {
+   margin-bottom: 32px;
+}
+
+.education_container {
    margin-bottom: 32px;
 }
