@@ -89,7 +89,7 @@ const Contacts = () => {
             </div>
             <div className={styles.customer_whatsapp}>
                <label htmlFor="customer_whatsapp" className={styles.input_label}>
-                  Whatsapp
+                  What's app
                </label>
                <input
                   id="customer_whatsapp"

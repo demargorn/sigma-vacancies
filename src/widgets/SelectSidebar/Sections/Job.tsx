@@ -89,6 +89,9 @@ const Job = () => {
                   <option value="outsourcing" defaultChecked>
                      Договор ГПХ
                   </option>
+                  <option value="self-employed" defaultChecked>
+                     Самозанятый
+                  </option>
                </select>
             </div>
          </div>

@@ -41,7 +41,7 @@ const validateField = (field: keyof IVacancy, value: string) => {
          case 'customer_mail':
             return 'некорректный email';
          case 'customer_telegram':
-            return '@username (5–32 символа)';
+            return '@user_name (не менее 5 символов)';
          case 'customer_whatsapp':
             return 'некорректный url';
       }
