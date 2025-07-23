@@ -125,12 +125,17 @@ const vacanciesSlice = createSlice({
       updateField: <K extends keyof IVacancy>(state: Draft<typeof initialState>, { payload }: PayloadAction<{ field: K; value: IVacancy[K] }>) => {
          const { field, value } = payload;
 
-         // автоподстановка @ для Telegram
-         const finalValue = field === 'customer_telegram' && typeof value === 'string' && !value.startsWith('@') ? (('@' + value.replace(/@/g, '')) as IVacancy[K]) : value;
+         /** автоподстановка @ для Telegram и + для телефона */
+         const finalValue =
+            field === 'customer_telegram' && typeof value === 'string' && !value.startsWith('@')
+               ? (('@' + value.replace(/@/g, '')) as IVacancy[K])
+               : field === 'customer_tel' && typeof value === 'string' && !value.startsWith('+')
+               ? (('+' + value.replace(/\+/g, '')) as IVacancy[K])
+               : value;
 
          state.vacancy[field] = finalValue;
 
-         // валидация
+         /** валидация */
          const errorMsg = validateField(field, String(finalValue));
          if (errorMsg) {
             state.errors[field] = errorMsg;
