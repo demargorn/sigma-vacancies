@@ -35,7 +35,7 @@ const OrganizationalInfo = () => {
             </div>
             <div className={styles.currency}>
                <label htmlFor="currency" className={styles.input_label}>
-                  валюта
+                  Валюта
                </label>
                <select id="currency" name="currency" value={vacancy.currency} className={styles.select_status} onChange={handleFieldChange}>
                   <option value="rub">₽</option>

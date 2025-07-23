@@ -1,4 +1,7 @@
-import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+import type { TypeDispatch } from '@/app/store/store';
+import { buttonActions } from '@/app/store/slices/button.mods.slice';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import styles from './Vacancy.module.css';
@@ -8,6 +11,10 @@ import styles from './Vacancy.module.css';
 const Vacancy = (props: IVacancy) => {
    const { vacancy } = useVacancyForm();
    const navigate = useNavigate();
+   const dispatch = useDispatch<TypeDispatch>();
+
+   const { id } = useParams();
+
    let status_mode: string;
 
    /** функция выбора статуса вакансии */
@@ -33,7 +40,7 @@ const Vacancy = (props: IVacancy) => {
    return (
       <article className={styles.vacancy}>
          <div className={styles.vacancy_title}>
-            <input type="checkbox" name="checkbox" className={styles.vacancy_checkbox} checked={props.checked} onChange={(e) => props.onChange?.(e.target.checked)} />
+            <input type="checkbox" name="checkbox" className={styles.vacancy_checkbox} checked={props.checked} onChange={({ target }) => props.onChange?.(target.checked)} />
             <div className={styles.vacancy_title__description}>
                <h5 className={styles.vacancy_title__name}>{props.vacancy_name}</h5>
                <p className={styles.vacancy_title__customer_name}>{props.company_name}</p>
@@ -61,7 +68,14 @@ const Vacancy = (props: IVacancy) => {
 
          <div className={styles.vacancy_buttons}>
             <button title="копировать ссылку" className={props.status === 'активная' ? `${styles.vacancy_copylink_btn}` : `${styles.vacancy_copylink_btn__disable}`}></button>
-            <button title="редактировать" className={styles.vacancy_edit_btn} onClick={() => navigate('/vacancies/create')}></button>
+            <button
+               title="редактировать"
+               className={styles.vacancy_edit_btn}
+               onClick={() => {
+                  dispatch(buttonActions.setMode('edit'));
+                  navigate(`/vacancies/edit/${vacancy.id}`);
+               }}
+            ></button>
 
             {/* {responses_qty === 0 ? (
           <button className={cn(styles.vacancy_main_btn, styles.vacancy_main_btn__disabled)} disabled>

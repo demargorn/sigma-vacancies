@@ -10,8 +10,8 @@ import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import type { EditPageInfo, EditPollInfo } from '@/types/types';
 import Header from '@/widgets/Header/Header';
 import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
-import ExitPopup from '@/shared/components/Popups/ExitPopup';
-import SavePopup from '@/shared/components/Popups/SavePopup';
+import ExitPopup from '@/widgets/Popups/ExitPopup';
+import SavePopup from '@/widgets/Popups/SavePopup';
 import styles from './CreateNewVacancy.module.css';
 
 type TypeCreateNewVacancyProps = {
@@ -19,8 +19,10 @@ type TypeCreateNewVacancyProps = {
 };
 
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
+   const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
+
    const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
-   const { errors } = useSelector((state: TypeRootState) => state.vacancies);
+   const mode = useSelector<TypeRootState>((s) => s.button.mode); /** управление состоянием кнопки */
 
    const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
    const [pageInfo, setPageInfo] = useState<EditPageInfo>();
@@ -43,7 +45,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
          Вакансии
       </Link>,
       <span key="Current" style={{ marginLeft: '8px' }}>
-         Создание новой вакансии
+         {mode === 'create' ? 'Создание новой вакансии' : 'Редактирование вакансии'}
       </span>
    ];
 
@@ -51,8 +53,10 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const handleSaveVacancy = () => {
       setClicked(!clicked);
       dispatch(vacanciesActions.setCacheVacancy(vacancy));
-      dispatch(vacanciesActions.addVacancy());
       dispatch(vacanciesActions.updateVacancyInList(vacancy));
+      dispatch(vacanciesActions.addVacancy(vacancy));
+      // dispatch(vacanciesActions.resetVacancy());
+      // dispatch(vacanciesActions.resetCacheVacancy());
    };
 
    /** функция вызова нового компонента */
@@ -103,6 +107,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    }, []);
 
    console.log(vacancy);
+   console.log(vacancies);
 
    return (
       <section ref={windowRef} className={styles.container}>
@@ -112,7 +117,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
          <Header breadcrumbs={breadcrumbs} />
 
          <div className={styles.text_container}>
-            <h1 className={styles.h1}>Создание новой вакансии</h1>
+            <h1 className={styles.h1}>{mode === 'create' ? 'Создание новой вакансии' : 'Редактирование вакансии'}</h1>
 
             <button className={!isChanged ? cn(styles.header_btn_clicked, styles.header_btn_save) : `${styles.header_btn_save}`} onClick={handleSaveVacancy}>
                {isChanged ? (vacancy.status === 'активная' ? 'Сохранить и опубликовать' : ' Сохранить') : 'Изменения сохранены'}

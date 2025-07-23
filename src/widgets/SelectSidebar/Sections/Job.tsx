@@ -81,19 +81,19 @@ const Job = () => {
          <div className={styles.input_container}>
             <div className={styles.salary}>
                <label htmlFor="salary_from" className={styles.input_label}>
-                  от
+                  От
                </label>
                <input id="salary_from" type="number" name="salary_from" value={vacancy.salary_from} min={0} placeholder="0" className={styles.input_text} onChange={handleFieldChange} />
             </div>
             <div className={styles.salary}>
                <label htmlFor="salary_to" className={styles.input_label}>
-                  до
+                  До
                </label>
                <input id="salary_to" type="number" name="salary_to" value={vacancy.salary_to} min={0} placeholder="все деньги мира" className={styles.input_text} onChange={handleFieldChange} />
             </div>
             <div className={styles.currency}>
                <label htmlFor="currency" className={styles.input_label}>
-                  валюта
+                  Валюта
                </label>
                <select id="currency" name="currency" value={vacancy.currency} className={styles.select_status} onChange={handleFieldChange}>
                   <option value="rub">₽</option>

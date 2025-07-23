@@ -7,7 +7,7 @@ import { loginActions } from '@/app/store/slices/login.slice';
 import { profileActions } from '@/app/store/slices/profile.slice';
 import type { LoginInfo } from '@/types/types';
 import PasswordInput from '@/shared/components/PasswordInput/PasswordInput';
-import Loader from '@/shared/components/Loader/Loader';
+import Loader from '@/widgets/Loader/Loader';
 import styles from './Login.module.css';
 
 const Login = () => {

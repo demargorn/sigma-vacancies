@@ -1,4 +1,4 @@
-import Loader from '@/shared/components/Loader/Loader';
+import Loader from '@/widgets/Loader/Loader';
 import styles from './LoadingPage.module.css';
 
 type Props = {

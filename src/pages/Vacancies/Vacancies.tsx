@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 import cn from 'classnames';
 import { GenericHome } from '@heathmont/moon-icons-tw';
-import type { TypeRootState } from '@/app/store/store';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
+import { buttonActions } from '@/app/store/slices/button.mods.slice';
 import Header from '@/widgets/Header/Header';
 import Vacancy from '@/widgets/Vacancy/Vacancy';
 import styles from './Vacancies.module.css';
+import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 
 const Vacancies = () => {
    const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
@@ -16,6 +18,7 @@ const Vacancies = () => {
    const parentRef = useRef<HTMLInputElement>(null); /** реф на главный чекбокс */
    const allChecked = checkedStates.every(Boolean); /** какие-то выбраны */
    const someChecked = checkedStates.some(Boolean); /** все выбраны */
+   const dispatch = useDispatch<TypeDispatch>();
    const navigate = useNavigate();
 
    const breadcrumbs = [
@@ -116,7 +119,15 @@ const Vacancies = () => {
             </ul>
 
             <div className={styles.actions}>
-               <button className={cn(styles.action, styles.action_add)} title="создать новую вакансию" onClick={() => navigate('/vacancies/create')}>
+               <button
+                  className={cn(styles.action, styles.action_add)}
+                  title="создать новую вакансию"
+                  onClick={() => {
+                     dispatch(buttonActions.setMode('create'));
+                     navigate(`/vacancies/create`);
+                     dispatch(vacanciesActions.resetVacancy());
+                  }}
+               >
                   Создать вакансию
                </button>
                <button className={cn(styles.action, styles.action_sort)} title="сортировать вакансии"></button>
@@ -167,7 +178,14 @@ const Vacancies = () => {
                            нажав на кнопку ниже
                         </span>
                      </div>
-                     <button className={styles.empty_container__btn} onClick={() => navigate('/vacancies/create')}>
+                     <button
+                        className={styles.empty_container__btn}
+                        onClick={() => {
+                           dispatch(buttonActions.setMode('create'));
+                           navigate('/vacancies/create');
+                           dispatch(vacanciesActions.resetVacancy());
+                        }}
+                     >
                         Создать вакансию
                      </button>
                   </div>

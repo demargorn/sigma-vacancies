@@ -1,4 +1,5 @@
 import { createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 
 /** срез вакансий */
@@ -45,7 +46,7 @@ const validateField = (field: keyof IVacancy, value: string) => {
 };
 
 const initialVacancy: IVacancy = {
-   id: '',
+   id: uuidv4().slice(0, 8),
    vacancy_name: '',
    places_qty: 1,
    position: '',
@@ -108,11 +109,11 @@ const vacanciesSlice = createSlice({
    initialState,
    reducers: {
       /** добавляем новую вакансию */
-      addVacancy: (state) => {
+      addVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
          const existed = state.items.some((item) => item.id === state.vacancy.id);
          /** если не существует - добавляем новую */
          if (!existed) {
-            state.items.push(state.vacancy);
+            state.items.push(payload);
          }
       },
 
@@ -126,6 +127,7 @@ const vacanciesSlice = createSlice({
 
          // автоподстановка @ для Telegram
          const finalValue = field === 'customer_telegram' && typeof value === 'string' && !value.startsWith('@') ? (('@' + value.replace(/@/g, '')) as IVacancy[K]) : value;
+
          state.vacancy[field] = finalValue;
 
          // валидация
@@ -141,14 +143,14 @@ const vacanciesSlice = createSlice({
          state.vacancy = { ...payload };
       },
       resetVacancy: (state) => {
-         state.vacancy = { ...initialVacancy };
+         state.vacancy = { ...initialVacancy, id: uuidv4().slice(0, 8) };
       },
 
       setCacheVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
          state.cacheVacancy = { ...payload };
       },
       resetCacheVacancy: (state) => {
-         state.cacheVacancy = { ...initialVacancy };
+         state.cacheVacancy = { ...initialVacancy, id: uuidv4().slice(0, 8) };
       },
 
       addVacancySelectedSkills: (state, { payload }: PayloadAction<string>) => {
