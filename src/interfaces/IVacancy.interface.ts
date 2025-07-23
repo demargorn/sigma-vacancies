@@ -1,4 +1,4 @@
-import type { TypeStatus } from '@/types/status.type';
+import type { TypeStatus } from '@/types/types';
 
 export interface IVacancy {
    id: string;

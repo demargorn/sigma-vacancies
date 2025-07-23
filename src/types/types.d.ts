@@ -338,6 +338,7 @@ export interface IAssessments {
    assessment: any;
    assessments_additional?: string[];
 }
+export type TypeStatus = 'активная' | 'на паузе' | 'черновик' | 'закрыта';
 
 export interface IWidgetAdditionalOption {
    label: string;
