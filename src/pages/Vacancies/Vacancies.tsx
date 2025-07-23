@@ -5,10 +5,10 @@ import cn from 'classnames';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import { buttonActions } from '@/app/store/slices/button.mods.slice';
+import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import Header from '@/widgets/Header/Header';
 import Vacancy from '@/widgets/Vacancy/Vacancy';
 import styles from './Vacancies.module.css';
-import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 
 const Vacancies = () => {
    const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */

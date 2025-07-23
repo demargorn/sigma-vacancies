@@ -5,6 +5,7 @@ import cn from 'classnames';
 import type { TypeDispatch } from '@/app/store/store';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import styles from './Popups.module.css';
+import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 
 type TypeExitPopupProps = {
    active: boolean;
@@ -12,12 +13,13 @@ type TypeExitPopupProps = {
 };
 
 const ExitPopup = forwardRef<HTMLDivElement, TypeExitPopupProps>(({ active, setActive }, ref) => {
+   const { vacancy } = useVacancyForm();
    const dispatch = useDispatch<TypeDispatch>();
    const navigate = useNavigate();
 
    /** сохранить черновик при выходе */
    const handleSaveVacancy = () => {
-      dispatch(vacanciesActions.addVacancy());
+      dispatch(vacanciesActions.addVacancy(vacancy));
       navigate('/vacancies');
    };
 
