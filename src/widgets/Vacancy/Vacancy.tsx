@@ -73,7 +73,7 @@ const Vacancy = (props: IVacancy) => {
                className={styles.vacancy_edit_btn}
                onClick={() => {
                   dispatch(buttonActions.setMode('edit'));
-                  navigate(`/vacancies/edit/${vacancy.id}`);
+                  navigate(`/vacancies/edit/${id}`);
                }}
             ></button>
 

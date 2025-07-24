@@ -19,6 +19,7 @@ type TypeCreateNewVacancyProps = {
 };
 
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
+   const cacheVacancy = useSelector((s: TypeRootState) => s.vacancies.cacheVacancy); /** массив вакансий */
    const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
 
    const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
@@ -33,6 +34,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const windowRef = useRef<HTMLDivElement>(null); /** реф на окно основного контента  */
    const popupRef = useRef<HTMLDivElement>(null); /** реф на поп-ап */
    const dispatch = useDispatch<TypeDispatch>();
+
 
    const breadcrumbs = [
       <Link to="/" aria-label="Home" key="Home">
@@ -106,7 +108,6 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
       };
    }, []);
 
-   console.log(vacancy);
    console.log(vacancies);
 
    return (

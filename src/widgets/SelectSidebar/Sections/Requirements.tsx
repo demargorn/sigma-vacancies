@@ -59,9 +59,9 @@ const Requirements = () => {
                <option value="" defaultChecked hidden>
                   Выберите
                </option>
-               <option value="higher">Высшее</option>
-               <option value="secondary">Среднее профессиональное</option>
-               <option value="none">Не имеет значение</option>
+               <option value="вышее">Высшее</option>
+               <option value="среднее профессиональное">Среднее профессиональное</option>
+               <option value="не имеет значение">Не имеет значение</option>
             </select>
          </div>
 
@@ -73,10 +73,10 @@ const Requirements = () => {
                <option value="" defaultChecked hidden>
                   Выберите
                </option>
-               <option value="none">Без опыта</option>
-               <option value="1-3">1 - 3 года</option>
-               <option value="3-6">3 - 6 лет</option>
-               <option value="over_6">более 6 лет</option>
+               <option value="без опыта">Без опыта</option>
+               <option value="1 - 3 года">1 - 3 года</option>
+               <option value="3 - 6 лет">3 - 6 лет</option>
+               <option value="более 6 лет">более 6 лет</option>
             </select>
          </div>
       </article>

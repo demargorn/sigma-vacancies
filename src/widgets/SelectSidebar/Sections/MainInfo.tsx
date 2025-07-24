@@ -1,11 +1,15 @@
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
+import { useDispatch, useSelector } from 'react-redux';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
+import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import styles from './Sections.module.css';
 
 /** Создание новой вакансии. Основная информация */
 
 const MainInfo = () => {
-   const { vacancy, handleFieldChange } = useVacancyForm();
-
+   const { vacancy, errors } = useSelector((state: TypeRootState) => state.vacancies);
+   const { handleFieldChange } = useVacancyForm();
+   const dispatch = useDispatch<TypeDispatch>();
    return (
       <article className={styles.container}>
          <h2 className={styles.heading} style={{ marginBottom: '32px' }}>
@@ -17,7 +21,18 @@ const MainInfo = () => {
                <label htmlFor="vacancy_name" className={styles.input_label}>
                   Название вакансии<span style={{ color: '#EA7F8B' }}>*</span>
                </label>
-               <input id="vacancy_name" type="text" name="vacancy_name" value={vacancy.vacancy_name} placeholder="Введите текст" className={styles.input_text} onChange={handleFieldChange} required />
+               <input
+                  id="vacancy_name"
+                  type="text"
+                  name="vacancy_name"
+                  value={vacancy.vacancy_name}
+                  placeholder="Введите текст"
+                  className={styles.input_text}
+                  style={errors.vacancy_name ? { border: '1px solid var(--error-color)' } : {}}
+                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'vacancy_name', value: target.value }))}
+                  required
+               />
+               {errors.vacancy_name && <p style={{ color: 'var(--error-color)' }}>{errors.vacancy_name}</p>}
             </div>
 
             <div className={styles.input_vacancy_qty}>
@@ -36,7 +51,6 @@ const MainInfo = () => {
                <option value="" defaultChecked hidden>
                   Выберите
                </option>
-              
             </select>
          </div>
 

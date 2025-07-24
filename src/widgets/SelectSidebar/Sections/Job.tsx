@@ -1,6 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
-import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 import styles from './Sections.module.css';
 
@@ -8,7 +5,6 @@ import styles from './Sections.module.css';
 
 const Job = () => {
    const { vacancy, handleFieldChange } = useVacancyForm();
-   const dispatch = useDispatch<TypeDispatch>();
 
    return (
       <article className={styles.container}>
@@ -25,10 +21,10 @@ const Job = () => {
                   <option value="" defaultChecked hidden>
                      Выберите
                   </option>
-                  <option value="office">Офис</option>
-                  <option value="hibrid">Гибрид</option>
-                  <option value="distance">Удаленный формат</option>
-                  <option value="look-out">Вахта</option>
+                  <option value="офис">Офис</option>
+                  <option value="гибридный">Гибридный</option>
+                  <option value="удаленно">Удаленно</option>
+                  <option value="вахта">Вахта</option>
                </select>
             </div>
             <div className={styles.employment}>
@@ -39,11 +35,10 @@ const Job = () => {
                   <option value="" defaultChecked hidden>
                      Выберите
                   </option>
-                  <option value="full">Полная</option>
-                  <option value="partial">Частичная</option>
-                  <option value="flexible">Гибкий график</option>
-                  <option value="project">Проектная</option>
-                  <option value="internship">Стажировка</option>
+                  <option value="полная">Полная</option>
+                  <option value="частичная">Частичная</option>
+                  <option value="проектная">Проектная</option>
+                  <option value="стажировка">Стажировка</option>
                </select>
             </div>
          </div>
@@ -89,16 +84,16 @@ const Job = () => {
                <label htmlFor="salary_to" className={styles.input_label}>
                   До
                </label>
-               <input id="salary_to" type="number" name="salary_to" value={vacancy.salary_to} min={0} placeholder="все деньги мира" className={styles.input_text} onChange={handleFieldChange} />
+               <input id="salary_to" type="number" name="salary_to" value={vacancy.salary_to} min={0} placeholder="0" className={styles.input_text} onChange={handleFieldChange} />
             </div>
             <div className={styles.currency}>
                <label htmlFor="currency" className={styles.input_label}>
                   Валюта
                </label>
                <select id="currency" name="currency" value={vacancy.currency} className={styles.select_status} onChange={handleFieldChange}>
-                  <option value="rub">₽</option>
-                  <option value="dollar">$</option>
-                  <option value="euro">€</option>
+                  <option value="₽">₽</option>
+                  <option value="$">$</option>
+                  <option value="€">€</option>
                </select>
             </div>
             <div className={styles.taxes}>
@@ -118,12 +113,10 @@ const Job = () => {
                   <option value="" defaultChecked hidden>
                      Выберите
                   </option>
-                  <option value="month" defaultChecked>
-                     в месяц
-                  </option>
-                  <option value="hour">в час</option>
-                  <option value="tour">за смену</option>
-                  <option value="project">за проект</option>
+                  <option value="в месяц">в месяц</option>
+                  <option value="в час">в час</option>
+                  <option value="за смену">за смену</option>
+                  <option value="за проект">за проект</option>
                </select>
             </div>
             <div className={styles.frequency}>
@@ -134,10 +127,9 @@ const Job = () => {
                   <option value="" defaultChecked hidden>
                      Выберите
                   </option>
-                  <option value="month" defaultChecked>
-                     в месяц
-                  </option>
-                  <option value="hour">в час</option>
+                  <option value="каждую неделю">каждую неделю</option>
+                  <option value="раз в месяц">раз в месяц</option>
+                  <option value="два раза в месяц">два раза в месяц</option>
                </select>
             </div>
          </div>

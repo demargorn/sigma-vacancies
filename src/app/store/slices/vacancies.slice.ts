@@ -1,5 +1,4 @@
 import { createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 
 /** срез вакансий */
@@ -12,7 +11,7 @@ interface IVacancyState {
 }
 
 const patterns: Partial<Record<keyof IVacancy, RegExp>> = {
-   customer_contact_person: /^[A-Za-zА-Яа-яЁё]{2,50}$/ /** оставлю для примера валидации стоки */,
+   vacancy_name: /^[A-Za-zА-Яа-яЁё0-9-\/:;'"[\]{}+]{2,60}$/ /** валидация стоки */,
    customer_tel: /^\+?[0-9]{7,12}$/,
    customer_whatsapp: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
    customer_mail: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -23,12 +22,16 @@ const patterns: Partial<Record<keyof IVacancy, RegExp>> = {
 };
 
 const validateField = (field: keyof IVacancy, value: string) => {
+   if (!value) return 'обязательное поле';
+
    if (!patterns[field]) {
       return;
    }
 
    if (!patterns[field].test(value)) {
       switch (field) {
+         case 'vacancy_name':
+            return 'ведите название вакансии';
          case 'customer_tel':
             return 'телефон в формате +79991234567';
          case 'customer_mail':
@@ -46,7 +49,7 @@ const validateField = (field: keyof IVacancy, value: string) => {
 };
 
 const initialVacancy: IVacancy = {
-   id: uuidv4().slice(0, 8),
+   id: '',
    vacancy_name: '',
    places_qty: 1,
    position: '',
@@ -75,7 +78,7 @@ const initialVacancy: IVacancy = {
    schedule: '',
    salary_from: 0,
    salary_to: 0,
-   currency: 'rub',
+   currency: '₽',
    after_taxes: false,
    period: '',
    frequency: '',
@@ -148,14 +151,14 @@ const vacanciesSlice = createSlice({
          state.vacancy = { ...payload };
       },
       resetVacancy: (state) => {
-         state.vacancy = { ...initialVacancy, id: uuidv4().slice(0, 8) };
+         state.vacancy = { ...initialVacancy };
       },
 
       setCacheVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
          state.cacheVacancy = { ...payload };
       },
       resetCacheVacancy: (state) => {
-         state.cacheVacancy = { ...initialVacancy, id: uuidv4().slice(0, 8) };
+         state.cacheVacancy = { ...initialVacancy };
       },
 
       addVacancySelectedSkills: (state, { payload }: PayloadAction<string>) => {

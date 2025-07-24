@@ -5,6 +5,7 @@ import Login from '@/pages/Login/Login';
 import Main from '@/pages/Main/Main';
 import Vacancies from '@/pages/Vacancies/Vacancies';
 import CreateNewVacancy from '@/pages/CreateNewVacancy/CreateNewVacancy';
+import ActiveVacancies from '@/pages/ActiveVacancies/ActiveVacancies';
 import NotFound from '@/pages/NotFound/NotFound';
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/vacancies" element={<Vacancies />} />
             <Route path="/vacancies/create" element={<CreateNewVacancy />} />
             <Route path="/vacancies/edit/:id" element={<CreateNewVacancy />} />
+            <Route path="/active-vacancies" element={<ActiveVacancies />} />
             <Route path="*" element={<NotFound />} />
          </Routes>
       </>

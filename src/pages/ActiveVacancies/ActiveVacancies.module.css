@@ -1,0 +1,22 @@
+.container {
+   position: fixed;
+   top: 0;
+   left: 260px;
+   width: calc(100vw - 260px);
+   max-width: 100%;
+   background: var(--main-background-color);
+   padding: 40px 0px 40px 82px;
+}
+
+.main_title {
+   font-size: 60px;
+   font-weight: 600;
+   line-height: 78px;
+   color: black;
+}
+
+.vacancies_container {
+   display: flex;
+   flex-wrap: wrap;
+   max-width: 1756px;
+}
