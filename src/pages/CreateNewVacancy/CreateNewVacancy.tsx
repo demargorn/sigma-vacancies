@@ -19,9 +19,6 @@ type TypeCreateNewVacancyProps = {
 };
 
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
-   const cacheVacancy = useSelector((s: TypeRootState) => s.vacancies.cacheVacancy); /** массив вакансий */
-   const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
-
    const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
    const mode = useSelector<TypeRootState>((s) => s.button.mode); /** управление состоянием кнопки */
 
@@ -34,7 +31,6 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const windowRef = useRef<HTMLDivElement>(null); /** реф на окно основного контента  */
    const popupRef = useRef<HTMLDivElement>(null); /** реф на поп-ап */
    const dispatch = useDispatch<TypeDispatch>();
-
 
    const breadcrumbs = [
       <Link to="/" aria-label="Home" key="Home">
@@ -57,8 +53,6 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
       dispatch(vacanciesActions.setCacheVacancy(vacancy));
       dispatch(vacanciesActions.updateVacancyInList(vacancy));
       dispatch(vacanciesActions.addVacancy(vacancy));
-      // dispatch(vacanciesActions.resetVacancy());
-      // dispatch(vacanciesActions.resetCacheVacancy());
    };
 
    /** функция вызова нового компонента */
@@ -107,8 +101,6 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
          window.removeEventListener('mousedown', handleClickOutside);
       };
    }, []);
-
-   console.log(vacancies);
 
    return (
       <section ref={windowRef} className={styles.container}>

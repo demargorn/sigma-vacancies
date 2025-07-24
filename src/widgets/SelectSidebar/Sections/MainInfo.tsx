@@ -10,6 +10,7 @@ const MainInfo = () => {
    const { vacancy, errors } = useSelector((state: TypeRootState) => state.vacancies);
    const { handleFieldChange } = useVacancyForm();
    const dispatch = useDispatch<TypeDispatch>();
+
    return (
       <article className={styles.container}>
          <h2 className={styles.heading} style={{ marginBottom: '32px' }}>
@@ -39,7 +40,15 @@ const MainInfo = () => {
                <label htmlFor="places_qty" className={styles.input_label}>
                   Количество мест
                </label>
-               <input id="places_qty" type="number" name="places_qty" value={vacancy.places_qty} min={1} className={styles.input_text} onChange={handleFieldChange} />
+               <input
+                  id="places_qty"
+                  type="number"
+                  name="places_qty"
+                  value={vacancy.places_qty}
+                  min={1}
+                  className={styles.input_text}
+                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'places_qty', value: target.value }))}
+               />
             </div>
          </div>
 

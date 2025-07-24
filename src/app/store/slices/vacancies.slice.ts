@@ -1,4 +1,5 @@
 import { createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 
 /** срез вакансий */
@@ -49,7 +50,7 @@ const validateField = (field: keyof IVacancy, value: string) => {
 };
 
 const initialVacancy: IVacancy = {
-   id: '',
+   id: uuidv4().slice(0, 6),
    vacancy_name: '',
    places_qty: 1,
    position: '',
@@ -107,6 +108,7 @@ const initialState: IVacancyState = {
    errors: {}
 };
 
+
 const vacanciesSlice = createSlice({
    name: 'vacancies',
    initialState,
@@ -150,15 +152,24 @@ const vacanciesSlice = createSlice({
       setVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
          state.vacancy = { ...payload };
       },
+      setVacancyById: (state, action: PayloadAction<string>) => {
+         const id = action.payload;
+         const vacancy = state.items.find((v) => v.id === id);
+
+         if (vacancy) {
+            state.vacancy = { ...vacancy };
+            state.cacheVacancy = { ...vacancy };
+         } else {
+            console.warn(`Вакансия с id=${id} не найдена`);
+         }
+      },
       resetVacancy: (state) => {
-         state.vacancy = { ...initialVacancy };
+         state.vacancy = { ...initialVacancy, id: uuidv4().slice(0, 6) };
+         state.cacheVacancy = { ...initialVacancy, id: uuidv4().slice(0, 6) };
       },
 
       setCacheVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
          state.cacheVacancy = { ...payload };
-      },
-      resetCacheVacancy: (state) => {
-         state.cacheVacancy = { ...initialVacancy };
       },
 
       addVacancySelectedSkills: (state, { payload }: PayloadAction<string>) => {
