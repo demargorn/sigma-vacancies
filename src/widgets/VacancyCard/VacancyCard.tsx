@@ -65,7 +65,9 @@ const VacancyCard = (props: TypeVacancyCardProps) => {
             <span className={styles.salary_from}>от {props.salary_from} </span>
             <span className={styles.salary_to}>до {props.salary_to} </span>
             <span>{vacancy.currency}</span> / <span className={styles.period}>{shortPeriod(props.period)}</span>
-            <span className={styles.after_taxes}>{props.after_taxes ? 'на руки' : 'до вычета налогов'}</span>
+            <span className={styles.after_taxes} style={props.after_taxes ? {} : { display: 'block', marginLeft: 0 }}>
+               {props.after_taxes ? 'на руки' : 'до вычета налогов'}
+            </span>
          </div>
 
          <div className={styles.parameters}>

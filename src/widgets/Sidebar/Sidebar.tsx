@@ -16,7 +16,7 @@ const Sidebar = () => {
    const [menuActive, setMenuActive] = useState<boolean>(false); /** показываем/скрываем меню пользователя */
 
    /** скрываем side-бар при логине */
-   const style = !access_token ? { display: 'none' } : {};
+   const style = !access_token || currentURL.includes('/active-vacancies') ? { display: 'none' } : {};
 
    const config = {
       logo: {
