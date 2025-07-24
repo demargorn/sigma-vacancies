@@ -30,7 +30,7 @@ const useVacancyForm = () => {
 
    const handleSubmitForm = () => {
       dispatch(vacanciesActions.setVacancy(vacancy));
-      dispatch(vacanciesActions.resetCacheVacancy());
+      dispatch(vacanciesActions.resetVacancy());
    };
 
    const handleResetForm = () => {
