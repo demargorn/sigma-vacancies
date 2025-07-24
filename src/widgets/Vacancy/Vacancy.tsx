@@ -10,7 +10,6 @@ import styles from './Vacancy.module.css';
 /** Вакансия */
 
 const Vacancy = (props: IVacancy) => {
-  
    const { vacancy } = useVacancyForm();
    const navigate = useNavigate();
    const dispatch = useDispatch<TypeDispatch>();

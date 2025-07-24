@@ -5,7 +5,7 @@
    width: calc(100vw - 260px);
    max-width: 100%;
    background: var(--main-background-color);
-   padding: 40px 0px 40px 82px;
+   padding: 40px 0px 40px 60px;
 }
 
 .main_title {
@@ -19,5 +19,5 @@
    display: flex;
    flex-wrap: wrap;
    gap: 20px;
-   max-width: 1756px;
+   max-width: 1760px;
 }
