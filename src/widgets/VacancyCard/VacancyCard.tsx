@@ -5,8 +5,8 @@ type TypeVacancyCardProps = {
    preview_img?: string;
    vacancy_name?: string;
    company_name?: string;
-   salary_from?: number;
-   salary_to?: number;
+   salary_from?: string;
+   salary_to?: string;
    period?: string;
    after_taxes?: boolean;
    places_qty?: number;

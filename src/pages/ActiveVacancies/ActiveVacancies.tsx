@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
+import { useSelector } from 'react-redux';
+import type { TypeRootState } from '@/app/store/store';
 import VacancyCard from '@/widgets/VacancyCard/VacancyCard';
 import styles from './ActiveVacancies.module.css';
 
 const ActiveVacancies = () => {
    const vacancies = useSelector((s: TypeRootState) => s.vacancies.items);
-   const dispatch = useDispatch<TypeDispatch>();
 
    return (
       <section className={styles.container}>
