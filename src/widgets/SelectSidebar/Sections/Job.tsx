@@ -88,7 +88,7 @@ const Job = () => {
                   type="text"
                   name="salary_from"
                   value={vacancy.salary_from === '0' ? '' : vacancy.salary_from}
-                  placeholder="от"
+                  placeholder="0"
                   className={styles.input_text}
                   onChange={({ target }) => {
                      let val = target.value;
@@ -111,7 +111,7 @@ const Job = () => {
                   type="text"
                   name="salary_to"
                   value={vacancy.salary_to === '0' ? '' : vacancy.salary_to}
-                  placeholder="до"
+                  placeholder="0"
                   className={styles.input_text}
                   onChange={({ target }) => {
                      let val = target.value;
