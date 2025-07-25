@@ -1,10 +1,15 @@
+import { useDispatch } from 'react-redux';
+import type { TypeDispatch } from '@/app/store/store';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
+import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import styles from './Sections.module.css';
+import type { IVacancy } from '@/interfaces/IVacancy.interface';
 
 /** Создание новой вакансии. О должности */
 
 const Job = () => {
    const { vacancy, handleFieldChange } = useVacancyForm();
+   const dispatch = useDispatch<TypeDispatch>();
 
    return (
       <article className={styles.container}>
@@ -78,13 +83,47 @@ const Job = () => {
                <label htmlFor="salary_from" className={styles.input_label}>
                   От
                </label>
-               <input id="salary_from" type="number" name="salary_from" value={vacancy.salary_from} min={0} placeholder="0" className={styles.input_text} onChange={handleFieldChange} />
+               <input
+                  id="salary_from"
+                  type="text"
+                  name="salary_from"
+                  value={vacancy.salary_from === '0' ? '' : vacancy.salary_from}
+                  placeholder="от"
+                  className={styles.input_text}
+                  onChange={({ target }) => {
+                     let val = target.value;
+                     val = val.replace(/\D/g, '');
+
+                     if (val.length > 1 && val.startsWith('0')) {
+                        val = val.replace(/^0+/, '');
+                     }
+
+                     dispatch(vacanciesActions.updateField({ field: 'salary_from', value: val === '' ? 0 : Number(val) }));
+                  }}
+               />
             </div>
             <div className={styles.salary}>
                <label htmlFor="salary_to" className={styles.input_label}>
                   До
                </label>
-               <input id="salary_to" type="number" name="salary_to" value={vacancy.salary_to} min={0} placeholder="0" className={styles.input_text} onChange={handleFieldChange} />
+               <input
+                  id="salary_to"
+                  type="text"
+                  name="salary_to"
+                  value={vacancy.salary_to === '0' ? '' : vacancy.salary_to}
+                  placeholder="до"
+                  className={styles.input_text}
+                  onChange={({ target }) => {
+                     let val = target.value;
+                     val = val.replace(/\D/g, '');
+
+                     if (val.length > 1 && val.startsWith('0')) {
+                        val = val.replace(/^0+/, '');
+                     }
+
+                     dispatch(vacanciesActions.updateField({ field: 'salary_to', value: val === '' ? 0 : Number(val) }));
+                  }}
+               />
             </div>
             <div className={styles.currency}>
                <label htmlFor="currency" className={styles.input_label}>

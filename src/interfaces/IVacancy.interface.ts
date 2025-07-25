@@ -28,8 +28,8 @@ export interface IVacancy {
    employment?: string;
    employment_form?: string;
    schedule?: string;
-   salary_from?: number;
-   salary_to?: number;
+   salary_from?: string;
+   salary_to?: string;
    currency: string;
    after_taxes: boolean;
    period: string;
@@ -41,7 +41,7 @@ export interface IVacancy {
 
    opened_date: string;
    closed_date: string;
-   budget?: number;
+   budget?: string;
    responsible?: string;
 
    details?: string;

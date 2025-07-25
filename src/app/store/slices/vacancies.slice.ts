@@ -77,8 +77,8 @@ const initialVacancy: IVacancy = {
    employment: '',
    employment_form: '',
    schedule: '',
-   salary_from: 0,
-   salary_to: 0,
+   salary_from: '',
+   salary_to: '',
    currency: '₽',
    after_taxes: false,
    period: '',
@@ -90,7 +90,7 @@ const initialVacancy: IVacancy = {
 
    opened_date: '',
    closed_date: '',
-   budget: 0,
+   budget: '',
    responsible: '',
 
    details: '',
@@ -107,7 +107,6 @@ const initialState: IVacancyState = {
    cacheVacancy: { ...initialVacancy },
    errors: {}
 };
-
 
 const vacanciesSlice = createSlice({
    name: 'vacancies',
@@ -131,7 +130,7 @@ const vacanciesSlice = createSlice({
          const { field, value } = payload;
 
          /** автоподстановка @ для Telegram и + для телефона */
-         const finalValue =
+         let finalValue =
             field === 'customer_telegram' && typeof value === 'string' && !value.startsWith('@')
                ? (('@' + value.replace(/@/g, '')) as IVacancy[K])
                : field === 'customer_tel' && typeof value === 'string' && !value.startsWith('+')
@@ -142,6 +141,7 @@ const vacanciesSlice = createSlice({
 
          /** валидация */
          const errorMsg = validateField(field, String(finalValue));
+
          if (errorMsg) {
             state.errors[field] = errorMsg;
          } else {
