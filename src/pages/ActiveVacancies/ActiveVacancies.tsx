@@ -1,32 +1,24 @@
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import type { TypeRootState } from '@/app/store/store';
 import VacancyCard from '@/widgets/VacancyCard/VacancyCard';
 import styles from './ActiveVacancies.module.css';
 
 const ActiveVacancies = () => {
    const vacancies = useSelector((s: TypeRootState) => s.vacancies.items);
+   const { id } = useParams();
 
    return (
       <section className={styles.container}>
-         <h1 className={styles.main_title}>Активныe вакансии</h1>
-         <div className={styles.vacancies_container}>
-            {vacancies.map((v) => (
-               <VacancyCard
-                  key={v.id}
-                  preview_img={v.preview_img}
-                  vacancy_name={v.vacancy_name}
-                  company_name={v.company_name}
-                  salary_from={v.salary_from}
-                  salary_to={v.salary_to}
-                  period={v.period}
-                  after_taxes={v.after_taxes}
-                  places_qty={v.places_qty}
-                  experience={v.experience}
-                  format={v.format}
-                  employment={v.employment}
-               />
-            ))}
-         </div>
+         {id ? null : <h1 className={styles.main_title}>Активныe вакансии</h1>}
+         <div className={styles.vacancies_container}>{id ? vacancies.map((v) => v.id === id && <VacancyCard {...v} key={v.id} />) : vacancies.map((v) => <VacancyCard {...v} key={v.id} />)}</div>
+
+         {id && (
+            <>
+               <h3 className={styles.secondary_title}>Другие вакансии</h3>
+               <div className={styles.vacancies_container}>{vacancies.map((v) => v.id !== id && <VacancyCard {...v} key={v.id} />)}</div>
+            </>
+         )}
       </section>
    );
 };

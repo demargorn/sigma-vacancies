@@ -37,6 +37,7 @@ const App = () => {
             <Route path="/vacancies/create" element={<CreateNewVacancy />} />
             <Route path="/vacancies/edit/:id" element={<CreateNewVacancy />} />
             <Route path="/active-vacancies" element={<ActiveVacancies />} />
+            <Route path="/active-vacancies/:id" element={<ActiveVacancies />} />
             <Route path="*" element={<NotFound />} />
          </Routes>
       </>

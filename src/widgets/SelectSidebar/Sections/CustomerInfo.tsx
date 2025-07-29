@@ -20,15 +20,17 @@ const CustomerInfo = () => {
             <label htmlFor="company_name" className={styles.input_label}>
                Заказчик
             </label>
-            <input
+            <select
                id="company_name"
-               type="text"
                name="company_name"
                value={vacancy.company_name}
-               placeholder="Название компании, команды или проекта, для которого открыта вакансия"
-               className={styles.input_text}
+               className={styles.select_status}
                onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'company_name', value: target.value }))}
-            />
+            >
+               <option value="" defaultChecked hidden>
+                  Выберите
+               </option>
+            </select>
          </div>
 
          <h4 className={styles.input_title}>Контакты заказчика</h4>

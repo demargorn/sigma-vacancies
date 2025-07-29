@@ -3,7 +3,6 @@ import type { TypeDispatch } from '@/app/store/store';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import styles from './Sections.module.css';
-import type { IVacancy } from '@/interfaces/IVacancy.interface';
 
 /** Создание новой вакансии. О должности */
 

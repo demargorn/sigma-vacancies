@@ -21,6 +21,7 @@ type TypeCreateNewVacancyProps = {
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
    const mode = useSelector<TypeRootState>((s) => s.button.mode); /** управление состоянием кнопки */
+   const cacheVacancy = useSelector<TypeRootState>((s) => s.vacancies.cacheVacancy); /** управление состоянием кнопки */
 
    const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
    const [pageInfo, setPageInfo] = useState<EditPageInfo>();
@@ -101,6 +102,9 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
          window.removeEventListener('mousedown', handleClickOutside);
       };
    }, []);
+
+   console.log(vacancy);
+   console.log(cacheVacancy);
 
    return (
       <section ref={windowRef} className={styles.container}>

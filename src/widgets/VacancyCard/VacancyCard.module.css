@@ -1,8 +1,146 @@
+/** full view*/
+.container_full {
+   width: 100%;
+   max-width: 1164px;
+}
+
+.block {
+   background-color: white;
+   border-radius: 8px;
+   padding: 24px;
+   margin-bottom: 12px;
+}
+
+.vacancy_title_full {
+   margin-bottom: 16px;
+}
+
+.headling {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 4px;
+}
+
+.vacancy_name_full {
+   font-size: 40px;
+   font-weight: 600;
+   line-height: 48px;
+}
+
+.company {
+   font-size: 24px;
+   font-weight: 400;
+   line-height: 32px;
+}
+
+.company_name_full {
+   font-size: 24px;
+   font-weight: 400;
+   line-height: 32px;
+   color: var(--link-text);
+}
+
+.salary_full {
+   font-size: 24px;
+   font-weight: 600;
+   line-height: 32px;
+   margin-bottom: 16px;
+}
+
+.parameters_full {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   gap: 8px;
+   margin-bottom: 0;
+}
+
+.response_btn {
+   width: 240px;
+   height: 36px;
+}
+
+.about_job {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   gap: 12px;
+   height: 220px;
+}
+
+.job_setting {
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+   color: var(--secondary-text);
+}
+
+.job_setting span {
+   color: var(--primary-text);
+}
+
+.vacancy_description {
+   margin-bottom: 20px;
+}
+
+.vacancy_description_title {
+   margin-bottom: 8px;
+}
+
+.vacancy_description_title {
+   font-size: 18px;
+   font-weight: 600;
+   line-height: 28px;
+}
+
+.about_company {
+   background-color: var(--component-background);
+}
+
+.skills {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 8px;
+}
+
+.skill {
+   border: 1px solid #f5f6f9;
+   background-color: #f5f6f9;
+   border-radius: 8px;
+   padding: 4px 12px;
+}
+
+.company_title {
+   font-size: 24px;
+   font-weight: 400;
+   line-height: 32px;
+   color: var(--link-text);
+   margin-bottom: 8px;
+}
+
+.city_country {
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+   color: var(--secondary-text);
+   margin-bottom: 12px;
+}
+
+.company_description {
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+   color: var(--primary-text);
+}
+
+/** small view*/
 .container {
    flex: 1 1 320px;
    background-color: white;
    border-radius: 8px;
    padding: 30px;
+   cursor: pointer;
 }
 
 .preview_img {
@@ -75,7 +213,7 @@
    color: var(--main-color);
 }
 
-.send {
+.response_btn {
    font-size: 14px;
    font-weight: 400;
    line-height: 20px;
@@ -84,6 +222,8 @@
    border-radius: 8px;
    padding: 8px;
 }
+
+
 
 @media (min-width: 1367px) and (max-width: 1980px) {
    .container {
