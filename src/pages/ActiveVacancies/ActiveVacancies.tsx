@@ -13,9 +13,9 @@ const ActiveVacancies = () => {
          {id ? null : <h1 className={styles.main_title}>Активныe вакансии</h1>}
          <div className={styles.vacancies_container}>{id ? vacancies.map((v) => v.id === id && <VacancyCard {...v} key={v.id} />) : vacancies.map((v) => <VacancyCard {...v} key={v.id} />)}</div>
 
-         {id && (
+         {id && vacancies.length > 1 &&  (
             <>
-               <h3 className={styles.secondary_title}>Другие вакансии</h3>
+               {<h3 className={styles.secondary_title}>Другие вакансии</h3>}
                <div className={styles.vacancies_container}>{vacancies.map((v) => v.id !== id && <VacancyCard {...v} key={v.id} />)}</div>
             </>
          )}
