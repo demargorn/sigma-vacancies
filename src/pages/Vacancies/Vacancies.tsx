@@ -157,11 +157,11 @@ const Vacancies = () => {
                      <Vacancy
                         {...v}
                         key={v.id}
-                        vacancy_name={v.vacancy_name}
-                        company_name={v.company_name}
-                        customer_name={v.customer_name}
+                        title={v.title}
+                        organization_name={v.organization_name}
+                        recruiter_name={v.recruiter_name}
                         opened_date={v.opened_date}
-                        closed_date={v.closed_date}
+                        deadline_date={v.deadline_date}
                         status={v.status}
                         checked={checkedStates[i]}
                         onChange={(checked) => handleVacancyCheckboxChange(i, checked)}
