@@ -46,38 +46,38 @@ const VacancyCard = (props: IVacancy) => {
          <article className={styles.block}>
             <header className={styles.vacancy_title_full}>
                <div className={styles.headling}>
-                  <h1 className={styles.vacancy_name_full}>{props.vacancy_name}</h1>
+                  <h1 className={styles.vacancy_name_full}>{props.title}</h1>
                   <button className={styles.response_btn}>Откликнуться</button>
                </div>
                <p className={styles.company}>
-                  в <span className={styles.company_name_full}>{props.company_name}</span>
+                  в <span className={styles.company_name_full}>{props.organization_name}</span>
                </p>
             </header>
 
             <div className={styles.salary_full}>
                <span className={styles.salary_from_full}>от {props.salary_from} </span>
                <span className={styles.salary_to_full}>до {props.salary_to} </span>
-               <span>{props.currency}</span> / <span className={styles.period}>{shortPeriod(props.period)}</span>
-               <span className={styles.after_taxes}>{props.after_taxes ? 'на руки' : 'до вычета налогов'}</span>
+               <span>{props.currency}</span> / <span className={styles.period}>{shortPeriod(props.salary_period)}</span>
+               <span className={styles.after_taxes}>{props.taxes ? 'на руки' : 'до вычета налогов'}</span>
             </div>
 
             <div className={styles.parameters_full}>
-               <span className={styles.places_count}>{declinePlace(props.places_qty)}</span>
-               <span className={styles.experience}>{props.experience === 'без опыта' ? 'можно без опыта' : `опыт от ${props.experience}`}</span>
-               <span className={styles.format}>{props.format}</span>
-               <span className={styles.employment}>{props.employment === 'стажировка' ? 'стажировка' : `${props.employment} занятость`}</span>
+               <span className={styles.places_count}>{declinePlace(props.required_employees)}</span>
+               <span className={styles.experience}>{props.experience_required === 'без опыта' ? 'можно без опыта' : `опыт от ${props.experience_required}`}</span>
+               <span className={styles.format}>{props.work_format}</span>
+               <span className={styles.employment}>{props.employment_type === 'стажировка' ? 'стажировка' : `${props.employment_type} занятость`}</span>
             </div>
          </article>
 
          <article className={cn(styles.block, styles.about_job)}>
             <span className={styles.job_setting}>
-               Формат работы: <span>{props.format}</span>
+               Формат работы: <span>{props.work_format}</span>
             </span>
             <span className={styles.job_setting}>
-               Занятость: <span>{props.employment}</span>
+               Занятость: <span>{props.employment_type}</span>
             </span>
             <span className={styles.job_setting}>
-               Форма трудоустройства: <span>{props.employment_form}</span>
+               Форма трудоустройства: <span>{props.employment_basis}</span>
             </span>
             <span className={styles.job_setting}>График работы: {props.schedule}</span>
             <span className={styles.job_setting}>
@@ -87,7 +87,7 @@ const VacancyCard = (props: IVacancy) => {
                Профессия: <span>{props.position}</span>
             </span>
             <span className={styles.job_setting}>
-               Требуемый опыт: <span>{props.experience}</span>
+               Требуемый опыт: <span>{props.experience_required}</span>
             </span>
             <span className={styles.job_setting}>
                Требуемое образование: <span>{props.education}</span>
@@ -97,32 +97,32 @@ const VacancyCard = (props: IVacancy) => {
          <article className={styles.block}>
             <h3 className={styles.vacancy_description_title}>Ключевые навыки</h3>
             <ul className={styles.skills}>
-               {props.selectedSkills?.map((s) => (
+               {props.skills?.map((s) => (
                   <li className={styles.skill}>{s}</li>
                ))}
             </ul>
          </article>
 
          <article className={styles.block}>
-            <p className={styles.vacancy_short_description}>{props.vacancy_description}</p>
+            <p className={styles.vacancy_short_description}>{props.short_description}</p>
 
             <h3 className={styles.vacancy_description_title}>Чем предстоит заниматься</h3>
-            <p className={styles.candidate_responsibilities}>{props.candidate_responsibilities}</p>
+            <p className={styles.candidate_responsibilities}>{props.responsibilities}</p>
 
             <h3 className={styles.vacancy_description_title}>Что для нас важно</h3>
-            <p className={styles.candidate_responsibilities}>{props.candidate_requirements}</p>
+            <p className={styles.candidate_responsibilities}>{props.requirements}</p>
 
             <h3 className={styles.vacancy_description_title}>Что мы предлагаем</h3>
-            <p className={styles.candidate_responsibilities}>{props.working_conditions}</p>
+            <p className={styles.candidate_responsibilities}>{props.benefits}</p>
          </article>
 
          <article className={cn(styles.block, styles.about_company)}>
-            <h3 className={styles.company_title}>{props.company_name}</h3>
+            <h3 className={styles.company_title}>{props.organization_name}</h3>
             <span className={styles.city_country}>
                {props.city}, {props.country}
             </span>
 
-            <p className={styles.company_description}>{props.company_description}</p>
+            <p className={styles.company_description}>{props.organization_description}</p>
          </article>
       </section>
    ) : (
@@ -130,24 +130,24 @@ const VacancyCard = (props: IVacancy) => {
          <img src={props.preview_img} alt="картинка вакансии" className={styles.preview_img} />
 
          <div className={styles.vacancy_title}>
-            <h3 className={styles.title}>{props.vacancy_name}</h3>
-            <p className={styles.company_name}>{props.company_name}</p>
+            <h3 className={styles.title}>{props.title}</h3>
+            <p className={styles.company_name}>{props.organization_name}</p>
          </div>
 
          <div className={styles.salary}>
             <span className={styles.salary_from}>от {props.salary_from} </span>
             <span className={styles.salary_to}>до {props.salary_to} </span>
-            <span>{props.currency}</span> / <span className={styles.period}>{shortPeriod(props.period)}</span>
-            <span className={styles.after_taxes} style={props.after_taxes ? {} : { display: 'block', marginLeft: 0 }}>
-               {props.after_taxes ? 'на руки' : 'до вычета налогов'}
+            <span>{props.currency}</span> / <span className={styles.period}>{shortPeriod(props.salary_period)}</span>
+            <span className={styles.after_taxes} style={props.taxes ? {} : { display: 'block', marginLeft: 0 }}>
+               {props.taxes ? 'на руки' : 'до вычета налогов'}
             </span>
          </div>
 
          <div className={styles.parameters}>
-            <span className={styles.places_count}>{declinePlace(props.places_qty)}</span>
-            <span className={styles.experience}>{props.experience === 'без опыта' ? 'можно без опыта' : `опыт от ${props.experience}`}</span>
-            <span className={styles.format}>{props.format}</span>
-            <span className={styles.employment}>{props.employment === 'стажировка' ? 'стажировка' : `${props.employment} занятость`}</span>
+            <span className={styles.places_count}>{declinePlace(props.required_employees)}</span>
+            <span className={styles.experience}>{props.experience_required === 'без опыта' ? 'можно без опыта' : `опыт ${props.experience_required}`}</span>
+            <span className={styles.format}>{props.work_format}</span>
+            <span className={styles.employment}>{props.employment_type === 'стажировка' ? 'стажировка' : `${props.employment_type} занятость`}</span>
          </div>
 
          <button className={styles.response_btn} onClick={() => {}}>

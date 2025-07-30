@@ -18,10 +18,10 @@ const Job = () => {
 
          <div className={styles.input_container}>
             <div className={styles.format}>
-               <label htmlFor="format" className={styles.input_label}>
+               <label htmlFor="work_format" className={styles.input_label}>
                   Формат работы
                </label>
-               <select id="format" name="format" value={vacancy.format} className={styles.select_status} onChange={handleFieldChange}>
+               <select id="work_format" name="work_format" value={vacancy.work_format} className={styles.select_status} onChange={handleFieldChange}>
                   <option value="" defaultChecked hidden>
                      Выберите
                   </option>
@@ -32,10 +32,10 @@ const Job = () => {
                </select>
             </div>
             <div className={styles.employment}>
-               <label htmlFor="employment" className={styles.input_label}>
+               <label htmlFor="employment_type" className={styles.input_label}>
                   Занятость
                </label>
-               <select id="employment" name="employment" value={vacancy.employment} className={styles.select_status} onChange={handleFieldChange}>
+               <select id="employment_type" name="employment_type" value={vacancy.employment_type} className={styles.select_status} onChange={handleFieldChange}>
                   <option value="" defaultChecked hidden>
                      Выберите
                   </option>
@@ -55,20 +55,20 @@ const Job = () => {
                <input id="schedule" type="text" name="schedule" value={vacancy.schedule} placeholder="Введите текст" className={styles.input_text} onChange={handleFieldChange} />
             </div>
             <div className={styles.employment_form}>
-               <label htmlFor="employment_form" className={styles.input_label}>
+               <label htmlFor="employment_basis" className={styles.input_label}>
                   Форма трудоустройства
                </label>
-               <select id="employment_form" name="employment_form" value={vacancy.employment_form} className={styles.select_status} onChange={handleFieldChange}>
+               <select id="employment_basis" name="employment_basis" value={vacancy.employment_basis} className={styles.select_status} onChange={handleFieldChange}>
                   <option value="" defaultChecked hidden>
                      Выберите
                   </option>
-                  <option value="state" defaultChecked>
+                  <option value="трудовой договор" defaultChecked>
                      Трудовой договор
                   </option>
-                  <option value="outsourcing" defaultChecked>
+                  <option value="договор ГПХ" defaultChecked>
                      Договор ГПХ
                   </option>
-                  <option value="self-employed" defaultChecked>
+                  <option value="самозанятый" defaultChecked>
                      Самозанятый
                   </option>
                </select>
@@ -135,7 +135,7 @@ const Job = () => {
                </select>
             </div>
             <div className={styles.taxes}>
-               <input id="after_taxes" type="checkbox" name="after_taxes" checked={vacancy.after_taxes} className={styles.checkbox} onChange={handleFieldChange} />
+               <input id="taxes" type="checkbox" name="taxes" checked={vacancy.taxes} className={styles.checkbox} onChange={handleFieldChange} />
                <label htmlFor="after_taxes" className={styles.input_label}>
                   на руки
                </label>
@@ -144,10 +144,10 @@ const Job = () => {
 
          <div className={styles.input_container}>
             <div className={styles.period}>
-               <label htmlFor="period" className={styles.input_label}>
+               <label htmlFor="salary_period" className={styles.input_label}>
                   Период оплаты
                </label>
-               <select id="period" name="period" value={vacancy.period} className={styles.select_status} onChange={handleFieldChange}>
+               <select id="salary_period" name="salary_period" value={vacancy.salary_period} className={styles.select_status} onChange={handleFieldChange}>
                   <option value="" defaultChecked hidden>
                      Выберите
                   </option>

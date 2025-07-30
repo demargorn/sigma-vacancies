@@ -15,15 +15,15 @@ const Contacts = () => {
          <p className={styles.description}>Эти контакты будут опубликованы на витрине вакансии. Они нужны для связи кандидата с компанией</p>
 
          <div className={styles.customer}>
-            <label htmlFor="customer_contact_person" className={styles.input_label}>
+            <label htmlFor="recruiter_name" className={styles.input_label}>
                Контактное лицо
             </label>
             <select
-               id="customer_contact_person"
-               name="customer_contact_person"
-               value={vacancy.customer_contact_person}
+               id="recruiter_name"
+               name="recruiter_name"
+               value={vacancy.recruiter_name}
                className={styles.select_status}
-               onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'customer_contact_person', value: target.value }))}
+               onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'recruiter_name', value: target.value }))}
             >
                <option value="" defaultChecked hidden>
                   Выберите сотрудника из списка
@@ -33,75 +33,75 @@ const Contacts = () => {
 
          <div className={styles.input_container}>
             <div className={styles.customer_tel}>
-               <label htmlFor="customer_tel" className={styles.input_label}>
+               <label htmlFor="recruiter_phone" className={styles.input_label}>
                   Номер телефона
                </label>
                <input
-                  id="customer_tel"
+                  id="recruiter_phone"
                   type="tel"
-                  name="customer_tel"
-                  value={vacancy.customer_tel}
+                  name="recruiter_phone"
+                  value={vacancy.recruiter_phone}
                   placeholder="+7 (___) ___-__-__"
                   title="введите номер телефона в формате +79991234567"
                   className={styles.input_text}
-                  style={errors.customer_tel ? { border: '1px solid var(--error-color)' } : {}}
-                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'customer_tel', value: target.value }))}
+                  style={errors.recruiter_phone ? { border: '1px solid var(--error-color)' } : {}}
+                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'recruiter_phone', value: target.value }))}
                   required
                />
-               {errors.customer_tel && <p style={{ color: 'var(--error-color)' }}>{errors.customer_tel}</p>}
+               {errors.recruiter_phone && <p style={{ color: 'var(--error-color)' }}>{errors.recruiter_phone}</p>}
             </div>
             <div className={styles.customer_mail}>
-               <label htmlFor="customer_mail" className={styles.input_label}>
+               <label htmlFor="recruiter_email" className={styles.input_label}>
                   Почта
                </label>
                <input
-                  id="customer_mail"
+                  id="recruiter_email"
                   type="text"
-                  name="customer_mail"
-                  value={vacancy.customer_mail}
+                  name="recruiter_email"
+                  value={vacancy.recruiter_email}
                   placeholder="например, mail@mail.ru"
                   title="введите вашу электронную почту"
                   className={styles.input_text}
-                  style={errors.customer_mail ? { border: '1px solid var(--error-color)' } : {}}
-                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'customer_mail', value: target.value }))}
+                  style={errors.recruiter_email ? { border: '1px solid var(--error-color)' } : {}}
+                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'recruiter_email', value: target.value }))}
                />
-               {errors.customer_mail && <p style={{ color: 'var(--error-color)' }}>{errors.customer_mail}</p>}
+               {errors.recruiter_email && <p style={{ color: 'var(--error-color)' }}>{errors.recruiter_email}</p>}
             </div>
          </div>
 
          <div className={styles.input_container}>
             <div className={styles.customer_telegram}>
-               <label htmlFor="customer_telegram" className={styles.input_label}>
+               <label htmlFor="recruiter_tg" className={styles.input_label}>
                   Telegram
                </label>
                <input
-                  id="customer_telegram"
+                  id="recruiter_tg"
                   type="text"
-                  name="customer_telegram"
-                  value={vacancy.customer_telegram}
+                  name="recruiter_tg"
+                  value={vacancy.recruiter_tg}
                   placeholder="@"
                   title="ник должен начинаться с @, содержать только латинские буквы, цифры или _, длиной от 5 до 32 символов"
                   className={styles.input_text}
-                  style={errors.customer_telegram ? { border: '1px solid var(--error-color)' } : {}}
-                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'customer_telegram', value: target.value }))}
+                  style={errors.recruiter_tg ? { border: '1px solid var(--error-color)' } : {}}
+                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'recruiter_tg', value: target.value }))}
                />
-               {errors.customer_telegram && <p style={{ color: 'var(--error-color)' }}>{errors.customer_telegram}</p>}
+               {errors.recruiter_tg && <p style={{ color: 'var(--error-color)' }}>{errors.recruiter_tg}</p>}
             </div>
             <div className={styles.customer_whatsapp}>
-               <label htmlFor="customer_whatsapp" className={styles.input_label}>
+               <label htmlFor="recruiter_wa" className={styles.input_label}>
                   What's app
                </label>
                <input
-                  id="customer_whatsapp"
+                  id="recruiter_wa"
                   type="text"
-                  name="customer_whatsapp"
-                  value={vacancy.customer_whatsapp}
+                  name="recruiter_wa"
+                  value={vacancy.recruiter_wa}
                   placeholder="Введите URL"
                   className={styles.input_text}
-                  style={errors.customer_whatsapp ? { border: '1px solid var(--error-color)' } : {}}
-                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'customer_whatsapp', value: target.value }))}
+                  style={errors.recruiter_wa ? { border: '1px solid var(--error-color)' } : {}}
+                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'recruiter_wa', value: target.value }))}
                />
-               {errors.customer_whatsapp && <p style={{ color: 'var(--error-color)' }}>{errors.customer_whatsapp}</p>}
+               {errors.recruiter_wa && <p style={{ color: 'var(--error-color)' }}>{errors.recruiter_wa}</p>}
             </div>
          </div>
       </article>

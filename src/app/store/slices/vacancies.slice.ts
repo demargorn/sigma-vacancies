@@ -12,12 +12,13 @@ interface IVacancyState {
 }
 
 const patterns: Partial<Record<keyof IVacancy, RegExp>> = {
-   vacancy_name: /^[A-Za-zА-Яа-яЁё0-9-\/:;'"[\]{}+]{2,60}$/ /** валидация стоки */,
-   customer_tel: /^\+?[0-9]{7,12}$/,
-   customer_whatsapp: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
-   customer_mail: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-   customer_telegram: /^@[a-zA-Z0-9_]{5,50}$/,
-   details: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
+   title: /^[A-Za-zА-Яа-яЁё0-9-\/:;'"[\]{}+]{2,60}$/ /** валидация стоки */,
+   contact_person_phone: /^\+?[0-9]{7,12}$/,
+   recruiter_phone: /^\+?[0-9]{7,12}$/,
+   recruiter_wa: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
+   contact_person_email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+   contact_person_tg: /^@[a-zA-Z0-9_]{5,50}$/,
+   vacancy_url: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
    vacancy_img: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/,
    preview_img: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d{1,5})?(\/[^\s]*)?$/
 };
@@ -31,16 +32,16 @@ const validateField = (field: keyof IVacancy, value: string) => {
 
    if (!patterns[field].test(value)) {
       switch (field) {
-         case 'vacancy_name':
-            return 'ведите название вакансии';
-         case 'customer_tel':
+         case 'title':
+            return 'введите название вакансии';
+         case 'contact_person_phone':
             return 'телефон в формате +79991234567';
-         case 'customer_mail':
+         case 'contact_person_email':
             return 'некорректный email';
-         case 'customer_telegram':
+         case 'contact_person_tg':
             return '@user_name (не менее 5 символов)';
-         case 'customer_whatsapp':
-         case 'details':
+         case 'recruiter_wa':
+         case 'vacancy_url':
          case 'vacancy_img':
          case 'preview_img':
             return 'некорректный url';
@@ -51,49 +52,55 @@ const validateField = (field: keyof IVacancy, value: string) => {
 
 const initialVacancy: IVacancy = {
    id: uuidv4().slice(0, 6),
-   vacancy_name: '',
-   places_qty: 1,
+   title: '',
+   required_employees: 1,
    position: '',
-   vacancy_description: '',
-   candidate_requirements: '',
-   candidate_responsibilities: '',
-   working_conditions: '',
+   short_description: '',
+   requirements: '',
+   responsibilities: '',
+   benefits: '',
    status: 'активная',
 
-   company_name: '',
-   company_id: '',
+   organization_name: '',
+   organization_uuid: '',
+   teams: '',
    customer_name: '',
-   customer_contact_person: '',
-   company_description: '',
-   customer_tel: '',
-   customer_mail: '',
-   customer_telegram: '',
-   customer_whatsapp: '',
+   contact_person_name: '',
+   organization_description: '',
+   contact_person_phone: '',
+   contact_person_email: '',
+   contact_person_tg: '',
 
    country: '',
    region: '',
    city: '',
-   format: '',
-   employment: '',
-   employment_form: '',
+   work_format: '',
+   employment_type: '',
+   employment_basis: '',
    schedule: '',
    salary_from: '',
    salary_to: '',
    currency: '₽',
-   after_taxes: false,
-   period: '',
+   taxes: false,
+   salary_period: '',
    frequency: '',
 
-   selectedSkills: [],
+   skills: [],
    education: '',
-   experience: '',
+   experience_required: '',
+
+   recruiter_name: '',
+   recruiter_phone: '',
+   recruiter_email: '',
+   recruiter_tg: '',
+   recruiter_wa: '',
 
    opened_date: '',
-   closed_date: '',
-   budget: '',
+   deadline_date: '',
+   budget_to: '',
    responsible: '',
 
-   details: '',
+   vacancy_url: '',
    vacancy_img: '',
    preview_img: ''
 };
@@ -131,9 +138,9 @@ const vacanciesSlice = createSlice({
 
          /** автоподстановка @ для Telegram и + для телефона */
          let finalValue =
-            field === 'customer_telegram' && typeof value === 'string' && !value.startsWith('@')
+            field === 'contact_person_tg' && typeof value === 'string' && !value.startsWith('@')
                ? (('@' + value.replace(/@/g, '')) as IVacancy[K])
-               : field === 'customer_tel' && typeof value === 'string' && !value.startsWith('+')
+               : field === 'contact_person_phone' && typeof value === 'string' && !value.startsWith('+')
                ? (('+' + value.replace(/\+/g, '')) as IVacancy[K])
                : value;
 
@@ -173,16 +180,16 @@ const vacanciesSlice = createSlice({
       },
 
       addVacancySelectedSkills: (state, { payload }: PayloadAction<string>) => {
-         const existed = state.vacancy.selectedSkills?.some((skill) => skill === payload); /** ищем совпадения по навыку */
+         const existed = state.vacancy.skills?.some((skill) => skill === payload); /** ищем совпадения по навыку */
 
          if (existed) {
             return; /** запрещаем добавление одикаковых навыков */
          }
 
-         state.vacancy.selectedSkills?.push(payload);
+         state.vacancy.skills?.push(payload);
       },
       deleteVacancySelectedSkills: (state, { payload }: PayloadAction<string>) => {
-         state.vacancy.selectedSkills = state.vacancy.selectedSkills?.filter((skill) => skill !== payload);
+         state.vacancy.skills = state.vacancy.skills?.filter((skill) => skill !== payload);
       },
 
       /** очищаем список вакансий */

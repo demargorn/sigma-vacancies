@@ -19,35 +19,35 @@ const MainInfo = () => {
 
          <div className={styles.input_container}>
             <div className={styles.input_vacancy_name}>
-               <label htmlFor="vacancy_name" className={styles.input_label}>
+               <label htmlFor="title" className={styles.input_label}>
                   Название вакансии<span style={{ color: '#EA7F8B' }}>*</span>
                </label>
                <input
-                  id="vacancy_name"
+                  id="title"
                   type="text"
-                  name="vacancy_name"
-                  value={vacancy.vacancy_name}
+                  name="title"
+                  value={vacancy.title}
                   placeholder="Введите текст"
                   className={styles.input_text}
-                  style={errors.vacancy_name ? { border: '1px solid var(--error-color)' } : {}}
-                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'vacancy_name', value: target.value }))}
+                  style={errors.title ? { border: '1px solid var(--error-color)' } : {}}
+                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'title', value: target.value }))}
                   required
                />
-               {errors.vacancy_name && <p style={{ color: 'var(--error-color)' }}>{errors.vacancy_name}</p>}
+               {errors.title && <p style={{ color: 'var(--error-color)' }}>{errors.title}</p>}
             </div>
 
             <div className={styles.input_vacancy_qty}>
-               <label htmlFor="places_qty" className={styles.input_label}>
+               <label htmlFor="required_employees" className={styles.input_label}>
                   Количество мест
                </label>
                <input
-                  id="places_qty"
+                  id="required_employees"
                   type="number"
-                  name="places_qty"
-                  value={vacancy.places_qty}
+                  name="required_employees"
+                  value={vacancy.required_employees}
                   min={1}
                   className={styles.input_text}
-                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'places_qty', value: target.value }))}
+                  onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'required_employees', value: target.value }))}
                />
             </div>
          </div>
@@ -86,13 +86,13 @@ const MainInfo = () => {
          <h4 className={styles.input_title}>Описание вакансии</h4>
 
          <div className={styles.textarea_container}>
-            <label htmlFor="vacancy_description" className={styles.input_label}>
+            <label htmlFor="short_description" className={styles.input_label}>
                Краткое описание вакансии
             </label>
             <textarea
-               id="vacancy_description"
-               name="vacancy_description"
-               value={vacancy.vacancy_description}
+               id="short_description"
+               name="short_description"
+               value={vacancy.short_description}
                rows={4}
                placeholder="Введите текст"
                className={styles.input_textarea}
@@ -101,13 +101,13 @@ const MainInfo = () => {
          </div>
 
          <div className={styles.textarea_container}>
-            <label htmlFor="candidate_requirements" className={styles.input_label}>
+            <label htmlFor="requirements" className={styles.input_label}>
                Требования к кандидату
             </label>
             <textarea
-               id="candidate_requirements"
-               name="candidate_requirements"
-               value={vacancy.candidate_requirements}
+               id="requirements"
+               name="requirements"
+               value={vacancy.requirements}
                rows={4}
                placeholder="Опишите требования"
                className={styles.input_textarea}
@@ -116,13 +116,13 @@ const MainInfo = () => {
          </div>
 
          <div className={styles.textarea_container}>
-            <label htmlFor="candidate_responsibilities" className={styles.input_label}>
+            <label htmlFor="responsibilities" className={styles.input_label}>
                Будущие обязанности кандидата
             </label>
             <textarea
-               id="candidate_responsibilities"
-               name="candidate_responsibilities"
-               value={vacancy.candidate_responsibilities}
+               id="responsibilities"
+               name="responsibilities"
+               value={vacancy.responsibilities}
                rows={4}
                placeholder="Опишите обязанности"
                className={styles.input_textarea}
@@ -131,13 +131,13 @@ const MainInfo = () => {
          </div>
 
          <div className={styles.textarea_container} style={{ marginBottom: '28px' }}>
-            <label htmlFor="working_conditions" className={styles.input_label}>
+            <label htmlFor="benefits" className={styles.input_label}>
                Условия работы
             </label>
             <textarea
-               id="working_conditions"
-               name="working_conditions"
-               value={vacancy.working_conditions}
+               id="benefits"
+               name="benefits"
+               value={vacancy.benefits}
                rows={4}
                placeholder="Опишите условия и преимущества работы в компании"
                className={styles.input_textarea}

@@ -23,13 +23,13 @@ const Additionally = () => {
                id="details"
                type="text"
                name="details"
-               value={vacancy.details}
+               value={vacancy.vacancy_url}
                placeholder="Вставьте URL"
                className={styles.input_text}
-               style={errors.details ? { border: '1px solid var(--error-color)' } : {}}
-               onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'details', value: target.value }))}
+               style={errors.vacancy_url ? { border: '1px solid var(--error-color)' } : {}}
+               onChange={({ target }) => dispatch(vacanciesActions.updateField({ field: 'vacancy_url', value: target.value }))}
             />
-            {errors.details && <p style={{ color: 'var(--error-color)' }}>{errors.details}</p>}
+            {errors.vacancy_url && <p style={{ color: 'var(--error-color)' }}>{errors.vacancy_url}</p>}
          </div>
 
          <div className={styles.input_container}>

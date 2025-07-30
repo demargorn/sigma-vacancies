@@ -59,9 +59,9 @@ const MultiSelect = (props: TypeMultiSelectProps) => {
    return (
       <div className={styles.label_container} ref={ref}>
          <div className={cn(styles.multiselect_checked_items_container, styles.select_status)} onClick={handleToggleDropdown}>
-            {vacancy.selectedSkills?.length === 0 && <span className={styles.input_label}>Выберите навыки</span>}
+            {vacancy.skills?.length === 0 && <span className={styles.input_label}>Выберите навыки</span>}
 
-            {vacancy.selectedSkills?.map((skill, i) => (
+            {vacancy.skills?.map((skill, i) => (
                <div key={i} className={styles.multiselect_checked_items_container}>
                   <span className={styles.multiselect_checked_items}>{skill}</span>
                   <button

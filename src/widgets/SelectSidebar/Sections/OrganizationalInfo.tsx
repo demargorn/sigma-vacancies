@@ -24,23 +24,23 @@ const OrganizationalInfo = () => {
                <input id="opened_date" type="date" name="opened_date" value={vacancy.opened_date} placeholder="дд.мм.гггг" className={styles.input_text} onChange={handleFieldChange} />
             </div>
             <div className={styles.date}>
-               <label htmlFor="closed_date" className={styles.input_label}>
+               <label htmlFor="deadline_date" className={styles.input_label}>
                   Дата закрытия вакансии
                </label>
-               <input id="closed_date" type="date" name="closed_date" value={vacancy.closed_date} placeholder="дд.мм.гггг" className={styles.input_text} onChange={handleFieldChange} />
+               <input id="deadline_date" type="date" name="deadline_date" value={vacancy.deadline_date} placeholder="дд.мм.гггг" className={styles.input_text} onChange={handleFieldChange} />
             </div>
          </div>
 
          <div className={styles.input_container}>
             <div className={styles.budget}>
-               <label htmlFor="budget" className={styles.input_label}>
+               <label htmlFor="budget_to" className={styles.input_label}>
                   Бюджет на вакансию (до)
                </label>
                <input
-                  id="budget"
+                  id="budget_to"
                   type="text"
-                  name="budget"
-                  value={vacancy.budget}
+                  name="budget_to"
+                  value={vacancy.budget_to}
                   placeholder="0"
                   className={styles.input_text}
                   onChange={({ target }) => {
@@ -51,7 +51,7 @@ const OrganizationalInfo = () => {
                         val = val.replace(/^0+/, '');
                      }
 
-                     dispatch(vacanciesActions.updateField({ field: 'budget', value: val === '' ? 0 : Number(val) }));
+                     dispatch(vacanciesActions.updateField({ field: 'budget_to', value: val === '' ? 0 : Number(val) }));
                   }}
                />
             </div>
@@ -60,9 +60,9 @@ const OrganizationalInfo = () => {
                   Валюта
                </label>
                <select id="currency" name="currency" value={vacancy.currency} className={styles.select_status} onChange={handleFieldChange}>
-                  <option value="rub">₽</option>
-                  <option value="dollar">$</option>
-                  <option value="euro">€</option>
+                  <option value="₽">₽</option>
+                  <option value="$">$</option>
+                  <option value="€">€</option>
                </select>
             </div>
          </div>

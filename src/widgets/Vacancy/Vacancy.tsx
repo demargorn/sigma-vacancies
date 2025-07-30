@@ -41,8 +41,8 @@ const Vacancy = (props: IVacancy) => {
          <div className={styles.vacancy_title}>
             <input type="checkbox" name="checkbox" className={styles.vacancy_checkbox} checked={props.checked} onChange={({ target }) => props.onChange?.(target.checked)} />
             <div className={styles.vacancy_title__description}>
-               <h5 className={styles.vacancy_title__name}>{props.vacancy_name}</h5>
-               <p className={styles.vacancy_title__customer_name}>{props.company_name}</p>
+               <h5 className={styles.vacancy_title__name}>{props.title}</h5>
+               <p className={styles.vacancy_title__customer_name}>{props.organization_name}</p>
             </div>
          </div>
          <div className={styles.vacancy_recruter}>
@@ -55,7 +55,7 @@ const Vacancy = (props: IVacancy) => {
          </div>
          <div className={styles.vacancy_deadline}>
             <span className={styles.vacancy_deadline__date} title="дата окончания">
-               {props.closed_date ? new Date(vacancy.closed_date).toLocaleString('ru-Ru', { day: 'numeric', month: 'numeric', year: 'numeric' }) : 'нет'}
+               {props.deadline_date ? new Date(vacancy.deadline_date).toLocaleString('ru-Ru', { day: 'numeric', month: 'numeric', year: 'numeric' }) : 'нет'}
             </span>
          </div>
          <div className={styles.vacancy_status}>

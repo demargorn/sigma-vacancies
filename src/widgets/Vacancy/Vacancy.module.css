@@ -1,179 +1,181 @@
 .vacancy {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.2vw;
-  background-color: white;
-  border-radius: 8px;
-  padding: 1.5vw 0.8vw 1.5vw 0;
-  margin-bottom: 1vw;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 1.2vw;
+   background-color: white;
+   border-radius: 8px;
+   padding: 1.5vw 0.8vw 1.5vw 0;
+   margin-bottom: 1vw;
 }
 
 .vacancy_checkbox {
-  flex-basis: 40px;
-  width: 16px;
-  height: 16px;
-  padding: 8px;
-  margin-block: auto;
-  background: var(--main-background-color);
+   flex-basis: 40px;
+   width: 16px;
+   height: 16px;
+   padding: 8px;
+   margin-block: auto;
+   background: var(--main-background-color);
 }
 
 .vacancy_title {
-  display: flex;
-  min-width: 250px;
-  width: 400px;
+   display: flex;
+   min-width: 250px;
+   width: 400px;
 }
 
 .vacancy_title__description {
-  margin-left: 6px;
+   margin-left: 6px;
 }
 
 .vacancy_title__name {
-  display: inline-block;
-  max-width: 330px;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+   display: inline-block;
+   max-width: 330px;
+   font-size: 16px;
+   font-weight: 600;
+   line-height: 24px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 .vacancy_title__customer_name {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  color: #767a7f;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 20px;
+   max-width: 330px;
+   color: #767a7f;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 .vacancy_recruter {
-  width: 144px;
+   width: 144px;
 }
 
 .vacancy_recruter__name {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  vertical-align: middle;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+   display: inline-block;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 20px;
+   vertical-align: middle;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 
 .vacancy_created,
 .vacancy_deadline {
-  width: 70px;
-  text-align: center;
+   width: 70px;
+   text-align: center;
 }
 
 .vacancy_created__date,
 .vacancy_deadline__date {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 20px;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 .vacancy_status {
-  width: 128px;
+   width: 128px;
 }
 
 .vacancy_status__default {
-  display: block;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  border-radius: 10px;
-  padding: 4px 12px;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+   display: block;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 20px;
+   border-radius: 10px;
+   padding: 4px 12px;
+   text-align: center;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 
 .vacancy_responses {
-  width: 60px;
-  text-align: center;
+   width: 60px;
+   text-align: center;
 }
 
 .vacancy_responses__quantity {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  text-align: center;
+   font-size: 14px;
+   font-weight: 600;
+   line-height: 20px;
+   text-align: center;
 }
 
 .vacancy_buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-left: 40px;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   padding-left: 40px;
 }
 
 .vacancy_copylink_btn {
-  background-image: url('/imgs/vacancies/copy-link.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 40px;
-  height: 40px;
-  margin-left: -40px;
+   background-image: url('/imgs/vacancies/copy-link.svg');
+   background-repeat: no-repeat;
+   background-position: center;
+   width: 40px;
+   height: 40px;
+   margin-left: -40px;
 }
 
 .vacancy_copylink_btn__disable {
-  visibility: hidden;
+   visibility: hidden;
 }
 
 .vacancy_edit_btn {
-  background-image: url('/imgs/vacancies/edit.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 40px;
-  height: 40px;
+   background-image: url('/imgs/vacancies/edit.svg');
+   background-repeat: no-repeat;
+   background-position: center;
+   width: 40px;
+   height: 40px;
 }
 
 .vacancy_main_btn {
-  max-width: 164px;
-  height: 36px;
-  background-color: var(--main-color);
-  border-radius: 8px;
-  color: white;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  padding: 8px 12px;
-  white-space: nowrap;
+   max-width: 164px;
+   height: 36px;
+   background-color: var(--main-color);
+   border-radius: 8px;
+   color: white;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 20px;
+   padding: 8px 12px;
+   white-space: nowrap;
 }
 
 .vacancy_main_btn:disabled {
-  opacity: 50%;
-  cursor: not-allowed;
+   opacity: 50%;
+   cursor: not-allowed;
 }
 
 .vacancy_main_btn:hover:not(:disabled) {
-  color: var(--primary-text);
+   color: var(--primary-text);
 }
 
 /* цвета статусов */
 .vacancy_status__active {
-  background-color: #edf2ff;
-  color: var(--main-color);
+   background-color: #edf2ff;
+   color: var(--main-color);
 }
 
 .vacancy_status__paused {
-  background-color: #fcf0ca;
-  color: #d0a130;
+   background-color: #fcf0ca;
+   color: #d0a130;
 }
 
 .vacancy_status__draft {
-  background-color: #f5f6f9;
-  color: #767a7f;
+   background-color: #f5f6f9;
+   color: #767a7f;
 }
 
 .vacancy_status__closed {
-  background-color: #eaf7eb;
-  color: #5cba61;
+   background-color: #eaf7eb;
+   color: #5cba61;
 }

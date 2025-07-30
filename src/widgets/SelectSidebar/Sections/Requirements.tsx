@@ -61,7 +61,7 @@ const Requirements = () => {
                </option>
                <option value="вышее">Высшее</option>
                <option value="среднее профессиональное">Среднее профессиональное</option>
-               <option value="не имеет значение">Не имеет значение</option>
+               <option value="не имеет значение">Не имеет значения</option>
             </select>
          </div>
 
@@ -69,7 +69,7 @@ const Requirements = () => {
             <label htmlFor="experience" className={styles.input_label}>
                Требуемый опыт работы
             </label>
-            <select id="experience" name="experience" value={vacancy.experience} className={styles.select_status} onChange={handleFieldChange}>
+            <select id="experience" name="experience" value={vacancy.experience_required} className={styles.select_status} onChange={handleFieldChange}>
                <option value="" defaultChecked hidden>
                   Выберите
                </option>
