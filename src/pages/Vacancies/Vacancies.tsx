@@ -7,9 +7,9 @@ import { GenericHome } from '@heathmont/moon-icons-tw';
 import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import { buttonActions } from '@/app/store/slices/button.mods.slice';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
+import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import Header from '@/widgets/Header/Header';
 import Vacancy from '@/widgets/Vacancy/Vacancy';
-import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import styles from './Vacancies.module.css';
 
 /** Все вакансии */
@@ -17,12 +17,12 @@ import styles from './Vacancies.module.css';
 const Vacancies = () => {
    const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
 
-   const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
+   const [activeCategory, setActiveCategory] = useState<string>('Все вакансии'); /** активная категория */
    const [checkedStates, setCheckedStates] = useState<Array<boolean>>(() => vacancies.map(() => false)); /** состояние дочерних чекбоксов */
 
    const parentRef = useRef<HTMLInputElement>(null); /** реф на главный чекбокс */
-   const allChecked = checkedStates.every(Boolean); /** какие-то выбраны */
-   const someChecked = checkedStates.some(Boolean); /** все выбраны */
+   const allChecked = checkedStates.every(Boolean); /** все выбраны */
+   const someChecked = checkedStates.some(Boolean); /** какие-то выбраны */
    const dispatch = useDispatch<TypeDispatch>();
    const navigate = useNavigate();
 
@@ -60,8 +60,8 @@ const Vacancies = () => {
    };
 
    /** функция контроля главного чекбокса */
-   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const checked = e.target.checked;
+   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+      const checked = target.checked;
       setCheckedStates(vacancies.map(() => checked));
    };
 
@@ -77,9 +77,7 @@ const Vacancies = () => {
    const handleFetchVacancies = async () => {
       try {
          const { data } = await axios.get(import.meta.env.VITE_API_VACANCIES_URL);
-         dispatch(vacanciesActions.addVacancy(data.data[0].map((d: any) => d.data)));
-
-         console.log(data.data[0].map((d: any) => d.id));
+         dispatch(vacanciesActions.addVacancy(data.data[0].map((d: any) => d.data as IVacancy)));
       } catch (error) {
          console.log(error);
       }
@@ -92,11 +90,8 @@ const Vacancies = () => {
    }, [allChecked, someChecked]);
 
    useEffect(() => {
-      setActiveCategory('Все вакансии');
       handleFetchVacancies();
    }, []);
-
-   // console.log(vacancies);
 
    return (
       <section className={styles.container}>

@@ -11,7 +11,7 @@ import styles from './Vacancy.module.css';
 
 const Vacancy = (props: IVacancy) => {
    const { vacancy } = useVacancyForm();
-   // const vacancy = useSelector((s: TypeRootState)=> s.vacancies.items);
+   // const vacancies = useSelector((s: TypeRootState) => s.vacancies.items);
    const navigate = useNavigate();
    const dispatch = useDispatch<TypeDispatch>();
 
