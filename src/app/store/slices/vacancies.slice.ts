@@ -1,8 +1,12 @@
 import { createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 
 /** срез вакансий */
+
+// interface IVacancyItem {
+//    id: string;
+//    data: IVacancy;
+// }
 
 interface IVacancyState {
    items: Array<IVacancy>;
@@ -51,7 +55,6 @@ const validateField = (field: keyof IVacancy, value: string) => {
 };
 
 const initialVacancy: IVacancy = {
-   id: uuidv4().slice(0, 6),
    title: '',
    required_employees: 1,
    position: '',
@@ -59,12 +62,11 @@ const initialVacancy: IVacancy = {
    requirements: '',
    responsibilities: '',
    benefits: '',
-   status: 'активная',
+   vacancy_status: 'активная',
 
    organization_name: '',
    organization_uuid: '',
    teams: '',
-   customer_name: '',
    contact_person_name: '',
    organization_description: '',
    contact_person_phone: '',
@@ -106,10 +108,7 @@ const initialVacancy: IVacancy = {
 };
 
 const initialState: IVacancyState = {
-   items: [
-      // { id: '01', vacancy_name: 'HR Manager', company_name: 'Рога И Копыта', customer_name: 'Рожкина И.В.', opened_date: '10.12.25', closed_date: '10.01.26', status: 'активная' },
-      // { id: '02', vacancy_name: 'Python Developer', company_name: 'Avito', customer_name: 'Рожкина И.В.', opened_date: '10.12.25', closed_date: '10.01.26', status: 'черновик' }
-   ],
+   items: [],
    vacancy: { ...initialVacancy },
    cacheVacancy: { ...initialVacancy },
    errors: {}
@@ -119,13 +118,15 @@ const vacanciesSlice = createSlice({
    name: 'vacancies',
    initialState,
    reducers: {
-      /** добавляем новую вакансию */
-      addVacancy: (state, { payload }: PayloadAction<IVacancy>) => {
-         const existed = state.items.some((item) => item.id === state.vacancy.id);
-         /** если не существует - добавляем новую */
-         if (!existed) {
-            state.items.push(payload);
-         }
+      addVacancy: (state, { payload }: PayloadAction<Array<IVacancy>>) => {
+         payload.map((p) => {
+            const existed = state.items.some((item) => item.id === p.id);
+            /** если не существует - добавляем новую */
+            if (!existed) {
+               state.items.push(...payload);
+               return;
+            }
+         });
       },
 
       updateVacancyInList: (state, { payload }: PayloadAction<IVacancy>) => {
@@ -171,8 +172,8 @@ const vacanciesSlice = createSlice({
          }
       },
       resetVacancy: (state) => {
-         state.vacancy = { ...initialVacancy, id: uuidv4().slice(0, 6) };
-         state.cacheVacancy = { ...initialVacancy, id: uuidv4().slice(0, 6) };
+         state.vacancy = { ...initialVacancy };
+         state.cacheVacancy = { ...initialVacancy };
       },
 
       setCacheVacancy: (state, { payload }: PayloadAction<IVacancy>) => {

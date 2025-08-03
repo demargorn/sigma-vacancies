@@ -1,4 +1,3 @@
-import type { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import type { TypeDispatch } from '@/app/store/store';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';

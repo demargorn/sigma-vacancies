@@ -13,6 +13,7 @@ const API_SEARCH_URL: string = appSettings.apiSearchUrl;
 const API_POLLS_URL: string = appSettings.apiPollsUrl;
 const API_REPORTS_URL: string = appSettings.apiReportsUrl;
 const API_ANALYSIS_URL: string = appSettings.apiAnalysisUrl;
+const API_VACANCY_URL: string = appSettings.apiVacancyUrl; /** сервис вакансий */
 
 // gateway api
 const API_URL_GATEWAY = appSettings.apiUrlGateway;
@@ -193,6 +194,13 @@ export const methods: IApiServiceMethodData = {
    postLoginInfo() {
       return {
          path: `${API_USER_URL}/auth/login`,
+         method: 'post',
+         params: newParams
+      };
+   },
+   postVacancy() {
+      return {
+         path: `${API_VACANCY_URL}`,
          method: 'post',
          params: newParams
       };

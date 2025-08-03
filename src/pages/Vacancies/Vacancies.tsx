@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
+import axios from 'axios';
 import cn from 'classnames';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import type { TypeDispatch, TypeRootState } from '@/app/store/store';
@@ -8,10 +9,14 @@ import { buttonActions } from '@/app/store/slices/button.mods.slice';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import Header from '@/widgets/Header/Header';
 import Vacancy from '@/widgets/Vacancy/Vacancy';
+import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import styles from './Vacancies.module.css';
+
+/** Все вакансии */
 
 const Vacancies = () => {
    const vacancies = useSelector((s: TypeRootState) => s.vacancies.items); /** массив вакансий */
+
    const [activeCategory, setActiveCategory] = useState<string>(''); /** активная категория */
    const [checkedStates, setCheckedStates] = useState<Array<boolean>>(() => vacancies.map(() => false)); /** состояние дочерних чекбоксов */
 
@@ -42,13 +47,13 @@ const Vacancies = () => {
          case 'Все вакансии':
             return vacancies;
          case 'Активные':
-            return vacancies.filter((v) => v.status === 'активная');
+            return vacancies.filter((v) => v.vacancy_status === 'активная');
          case 'На паузе':
-            return vacancies.filter((v) => v.status === 'на паузе');
+            return vacancies.filter((v) => v.vacancy_status === 'на паузе');
          case 'Закрытые':
-            return vacancies.filter((v) => v.status === 'закрыта');
+            return vacancies.filter((v) => v.vacancy_status === 'закрыта');
          case 'Черновики':
-            return vacancies.filter((v) => v.status === 'черновик');
+            return vacancies.filter((v) => v.vacancy_status === 'черновик');
          default:
             return vacancies;
       }
@@ -68,6 +73,18 @@ const Vacancies = () => {
    /** создаем массив отфильтрованных вакансий */
    const visibleVacancies = handleFilterCategory(activeCategory);
 
+   /** получаем вакансии из реестра вакансий */
+   const handleFetchVacancies = async () => {
+      try {
+         const { data } = await axios.get(import.meta.env.VITE_API_VACANCIES_URL);
+         dispatch(vacanciesActions.addVacancy(data.data[0].map((d: any) => d.data)));
+
+         console.log(data.data[0].map((d: any) => d.id));
+      } catch (error) {
+         console.log(error);
+      }
+   };
+
    useEffect(() => {
       if (parentRef.current) {
          parentRef.current.indeterminate = !allChecked && someChecked;
@@ -76,7 +93,10 @@ const Vacancies = () => {
 
    useEffect(() => {
       setActiveCategory('Все вакансии');
+      handleFetchVacancies();
    }, []);
+
+   // console.log(vacancies);
 
    return (
       <section className={styles.container}>
@@ -156,13 +176,13 @@ const Vacancies = () => {
                   visibleVacancies.map((v, i) => (
                      <Vacancy
                         {...v}
-                        key={v.id}
+                        key={i}
                         title={v.title}
                         organization_name={v.organization_name}
                         recruiter_name={v.recruiter_name}
                         opened_date={v.opened_date}
                         deadline_date={v.deadline_date}
-                        status={v.status}
+                        vacancy_status={v.vacancy_status}
                         checked={checkedStates[i]}
                         onChange={(checked) => handleVacancyCheckboxChange(i, checked)}
                      />

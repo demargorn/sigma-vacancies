@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import type { TypeDispatch } from '@/app/store/store';
+import type { TypeDispatch, TypeRootState } from '@/app/store/store';
 import { buttonActions } from '@/app/store/slices/button.mods.slice';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
@@ -11,6 +11,7 @@ import styles from './Vacancy.module.css';
 
 const Vacancy = (props: IVacancy) => {
    const { vacancy } = useVacancyForm();
+   // const vacancy = useSelector((s: TypeRootState)=> s.vacancies.items);
    const navigate = useNavigate();
    const dispatch = useDispatch<TypeDispatch>();
 
@@ -18,7 +19,7 @@ const Vacancy = (props: IVacancy) => {
 
    /** функция выбора статуса вакансии */
    const style_mode = function getStatus(): string {
-      switch (props.status) {
+      switch (props.vacancy_status) {
          case 'активная':
             status_mode = `${styles.vacancy_status__active}`;
             break;
@@ -46,33 +47,39 @@ const Vacancy = (props: IVacancy) => {
             </div>
          </div>
          <div className={styles.vacancy_recruter}>
-            <span className={styles.vacancy_recruter__name}>{props.customer_name}</span>
+            <span className={styles.vacancy_recruter__name}>{props.recruiter_name}</span>
          </div>
          <div className={styles.vacancy_created}>
-            <span className={styles.vacancy_created__date} title="дата создания">
+            {/* <span className={styles.vacancy_created__date} title="дата создания">
                {props.opened_date ? new Date(vacancy.opened_date).toLocaleString('ru-Ru', { day: 'numeric', month: 'numeric', year: 'numeric' }) : new Date().toLocaleDateString('ru-Ru')}
+            </span> */}
+            <span className={styles.vacancy_created__date} title="дата создания">
+               {props.opened_date ? vacancy.opened_date : new Date().toLocaleDateString('ru-Ru')}
             </span>
          </div>
          <div className={styles.vacancy_deadline}>
-            <span className={styles.vacancy_deadline__date} title="дата окончания">
+            {/* <span className={styles.vacancy_deadline__date} title="дата окончания">
                {props.deadline_date ? new Date(vacancy.deadline_date).toLocaleString('ru-Ru', { day: 'numeric', month: 'numeric', year: 'numeric' }) : 'нет'}
+            </span> */}
+            <span className={styles.vacancy_deadline__date} title="дата окончания">
+               {props.deadline_date ? vacancy.deadline_date : 'нет'}
             </span>
          </div>
          <div className={styles.vacancy_status}>
-            <span className={`${styles.vacancy_status__default} ${style_mode()}`}>{props.status}</span>
+            <span className={`${styles.vacancy_status__default} ${style_mode()}`}>{props.vacancy_status}</span>
          </div>
          <div className={styles.vacancy_responses}>
             <span className={styles.vacancy_responses__quantity}>{255}</span>
          </div>
 
          <div className={styles.vacancy_buttons}>
-            <button title="копировать ссылку" className={props.status === 'активная' ? `${styles.vacancy_copylink_btn}` : `${styles.vacancy_copylink_btn__disable}`}></button>
+            <button title="копировать ссылку" className={props.vacancy_status === 'активная' ? `${styles.vacancy_copylink_btn}` : `${styles.vacancy_copylink_btn__disable}`}></button>
             <button
                title="редактировать"
                className={styles.vacancy_edit_btn}
                onClick={() => {
                   dispatch(buttonActions.setMode('edit'));
-                  dispatch(vacanciesActions.setVacancyById(props.id))
+                  dispatch(vacanciesActions.setVacancyById(props.id!));
                   navigate(`/vacancies/edit/${props.id}`);
                }}
             ></button>

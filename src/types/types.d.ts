@@ -18,7 +18,7 @@ export interface IAppSettings {
    surveyUrl: string;
    apiReportsUrl: string;
    apiAnalysisUrl: string;
-   // assets: string;
+   apiVacancyUrl: string;
 }
 export type IApiServiceMethodType = 'get' | 'post' | 'patch' | 'delete' | 'put' | 'head';
 export interface IApiServiceObject {

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
+import axios, { type AxiosResponse } from 'axios';
 import cn from 'classnames';
 import { editingConfig } from '@/widgets/SelectSidebar/config';
 import { GenericHome } from '@heathmont/moon-icons-tw';
@@ -21,7 +22,6 @@ type TypeCreateNewVacancyProps = {
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
    const mode = useSelector<TypeRootState>((s) => s.button.mode); /** управление состоянием кнопки */
-   const cacheVacancy = useSelector<TypeRootState>((s) => s.vacancies.cacheVacancy); /** управление состоянием кнопки */
 
    const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
    const [pageInfo, setPageInfo] = useState<EditPageInfo>();
@@ -53,7 +53,8 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
       setClicked(!clicked);
       dispatch(vacanciesActions.setCacheVacancy(vacancy));
       dispatch(vacanciesActions.updateVacancyInList(vacancy));
-      dispatch(vacanciesActions.addVacancy(vacancy));
+
+      handleSubmitVacancy();
    };
 
    /** функция вызова нового компонента */
@@ -87,6 +88,26 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    //   };
    // }, [exitActive]);
 
+   const handleSubmitVacancy = async () => {
+      /** конфиг для axios */
+      const formData = JSON.stringify(vacancy);
+
+      const config = {
+         headers: {
+            'Content-Type': 'application/json',
+            'Project-ID': import.meta.env.VITE_PROJECT_ID,
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+         }
+      };
+
+      try {
+         const response: AxiosResponse<string> = await axios.post(import.meta.env.VITE_API_VACANCY_URL, formData, config);
+         console.log(response);
+      } catch (error) {
+         console.log(error);
+      }
+   };
+
    useEffect(() => {
       const currentInfo = editingConfig.find((item) => item.section === editPage);
       if (!currentInfo) {
@@ -103,9 +124,6 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
       };
    }, []);
 
-   console.log(vacancy);
-   console.log(cacheVacancy);
-
    return (
       <section ref={windowRef} className={styles.container}>
          {!clicked && <SavePopup active={saveActive} setActive={setSaveActive} />}
@@ -117,7 +135,7 @@ const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
             <h1 className={styles.h1}>{mode === 'create' ? 'Создание новой вакансии' : 'Редактирование вакансии'}</h1>
 
             <button className={!isChanged ? cn(styles.header_btn_clicked, styles.header_btn_save) : `${styles.header_btn_save}`} onClick={handleSaveVacancy}>
-               {isChanged ? (vacancy.status === 'активная' ? 'Сохранить и опубликовать' : ' Сохранить') : 'Изменения сохранены'}
+               {isChanged ? (vacancy.vacancy_status === 'активная' ? 'Сохранить и опубликовать' : ' Сохранить') : 'Изменения сохранены'}
             </button>
          </div>
 

@@ -17,5 +17,6 @@ export const appSettings: IAppSettings = {
    surveyUrl: import.meta.env.VITE_SURVEY_URL,
    apiSkillsUrlGateWay: import.meta.env.VITE_API_SKILLS_URL_GATEWAY,
    apiReportsUrl: import.meta.env.VITE_REPORTS_URL,
-   apiAnalysisUrl: import.meta.env.VITE_ANALYSIS_URL
+   apiAnalysisUrl: import.meta.env.VITE_ANALYSIS_URL,
+   apiVacancyUrl: import.meta.env.VITE_API_VACANCY_URL, /** сервис вакансий */
 };

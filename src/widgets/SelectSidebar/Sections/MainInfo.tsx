@@ -67,7 +67,7 @@ const MainInfo = () => {
             <label htmlFor="status" className={styles.input_label}>
                Статус вакансии
             </label>
-            <select id="status" className={styles.select_status} name="status" value={vacancy.status} onChange={handleFieldChange}>
+            <select id="status" className={styles.select_status} name="status" value={vacancy.vacancy_status} onChange={handleFieldChange}>
                <option value="активная" defaultChecked>
                   Активная
                </option>

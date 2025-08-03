@@ -136,7 +136,7 @@ const Job = () => {
             </div>
             <div className={styles.taxes}>
                <input id="taxes" type="checkbox" name="taxes" checked={vacancy.taxes} className={styles.checkbox} onChange={handleFieldChange} />
-               <label htmlFor="after_taxes" className={styles.input_label}>
+               <label htmlFor="taxes" className={styles.input_label}>
                   на руки
                </label>
             </div>
