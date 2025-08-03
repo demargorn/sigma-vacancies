@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router';
 import cn from 'classnames';
 import type { TypeDispatch } from '@/app/store/store';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
-import styles from './Popups.module.css';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
+import styles from './Popups.module.css';
 
 type TypeExitPopupProps = {
    active: boolean;
@@ -19,7 +19,7 @@ const ExitPopup = forwardRef<HTMLDivElement, TypeExitPopupProps>(({ active, setA
 
    /** сохранить черновик при выходе */
    const handleSaveVacancy = () => {
-      dispatch(vacanciesActions.addVacancy(vacancy));
+      // dispatch(vacanciesActions.addVacancy(vacancy)); // здесь будем делать put на сервер
       navigate('/vacancies');
    };
 
