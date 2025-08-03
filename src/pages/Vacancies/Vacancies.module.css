@@ -1,296 +1,296 @@
 .container {
-  position: fixed;
-  top: 0;
-  left: 260px;
-  width: calc(100vw - 260px);
-  max-width: 1660px;
-  background: var(--main-background-color);
-  padding: 20px 20px 0px 0px;
+   position: fixed;
+   top: 0;
+   left: 260px;
+   width: calc(100vw - 260px);
+   max-width: 1660px;
+   background: var(--main-background-color);
+   padding: 20px 20px 0px 0px;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 12px;
 }
 
 .breadcrumbs ol {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+   display: flex;
+   gap: 8px;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
 }
 
 .breadcrumbs ol li {
-  display: flex;
-  align-items: center;
+   display: flex;
+   align-items: center;
 }
 
 .input_container {
-  display: flex;
-  justify-items: space-between;
+   display: flex;
+   justify-items: space-between;
 }
 
 .input {
-  width: 256px;
-  height: 40px;
-  border: 1px solid rgb(206, 200, 200);
-  border-radius: 8px;
-  padding: 8px;
-  margin-right: 12px;
+   width: 256px;
+   height: 40px;
+   border: 1px solid rgb(206, 200, 200);
+   border-radius: 8px;
+   padding: 8px;
+   margin-right: 12px;
 }
 
 .input::placeholder {
-  background-image: url('/imgs/vacancies/search.svg');
-  background-repeat: no-repeat;
-  background-position: 8px;
-  padding-left: 40px;
+   background-image: url('/imgs/vacancies/search.svg');
+   background-repeat: no-repeat;
+   background-position: 8px;
+   padding-left: 40px;
 }
 
 .input_button {
-  width: 40px;
-  height: 40px;
-  background-image: url('/imgs/vacancies/i.svg');
-  background-color: var(--main-background-color);
+   width: 40px;
+   height: 40px;
+   background-image: url('/imgs/vacancies/i.svg');
+   background-color: var(--main-background-color);
 }
 
 .text_container {
-  display: flex;
-  margin-bottom: 24px;
+   display: flex;
+   margin-bottom: 24px;
 }
 
 .h1 {
-  font-size: 28px;
-  line-height: 40px;
-  font-weight: 600;
-  margin-right: 12px;
+   font-size: 28px;
+   line-height: 40px;
+   font-weight: 600;
+   margin-right: 12px;
 }
 
 .qty {
-  font-size: 28px;
-  line-height: 40px;
-  font-weight: 600;
-  color: #767a7f;
+   font-size: 28px;
+   line-height: 40px;
+   font-weight: 600;
+   color: #767a7f;
 }
 
 .tabs {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 24px;
 }
 
 .chips {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  box-sizing: border-box;
+   display: flex;
+   gap: 8px;
+   align-items: center;
+   box-sizing: border-box;
 }
 
 .chip {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  height: 36px;
-  border-radius: 10px;
-  background-color: var(--main-background-color);
-  padding: 8px 16px;
-  cursor: pointer;
+   display: flex;
+   align-items: center;
+   text-align: center;
+   height: 36px;
+   border-radius: 10px;
+   background-color: var(--main-background-color);
+   padding: 8px 16px;
+   cursor: pointer;
 }
 
 .chip_active {
-  background-color: var(--main-color);
-  color: white;
+   background-color: var(--main-color);
+   color: white;
 }
 
 .chip_disable {
-  opacity: 50%;
-  cursor: not-allowed;
+   opacity: 50%;
+   cursor: not-allowed;
 }
 
 .actions {
-  display: flex;
-  gap: 12px;
+   display: flex;
+   gap: 12px;
 }
 
 .action {
-  width: 40px;
-  height: 40px;
-  background-color: var(--main-background-color);
-  border-radius: 8px;
+   width: 40px;
+   height: 40px;
+   background-color: var(--main-background-color);
+   border-radius: 8px;
 }
 
 .action_add {
-  background-image: url('/imgs/vacancies/plus.svg');
-  background-size: 24px;
-  background-repeat: no-repeat;
-  background-color: #eceef4;
-  background-position: 5px;
-  color: var(--main-color);
-  width: 175px;
-  height: 40px;
-  padding: 10px 8px 10px 30px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 15px;
+   background-image: url('/imgs/vacancies/plus.svg');
+   background-size: 24px;
+   background-repeat: no-repeat;
+   background-color: #eceef4;
+   background-position: 5px;
+   color: var(--main-color);
+   width: 175px;
+   height: 40px;
+   padding: 10px 8px 10px 30px;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 15px;
 }
 .action_sort {
-  background-image: url('/imgs/vacancies/action_1.svg');
+   background-image: url('/imgs/vacancies/action_1.svg');
 }
 .action_filter {
-  background-image: url('/imgs/vacancies/action_2.svg');
+   background-image: url('/imgs/vacancies/action_2.svg');
 }
 .action_settings {
-  background-image: url('/imgs/vacancies/action_4.svg');
+   background-image: url('/imgs/vacancies/action_4.svg');
 }
 
 .main {
-  padding-block: 12px;
+   padding-block: 12px;
 }
 
 .main_top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.5vw;
-  margin-bottom: 1vw;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 1.5vw;
+   margin-bottom: 1vw;
 }
 
 /* общие стили для всех заголовков */
 .main_top > li,
 .owner_title {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  color: #767a7f;
-  white-space: nowrap;
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+   color: #767a7f;
+   white-space: nowrap;
 }
 
 .owner {
-  display: flex;
-  min-width: 250px;
-  width: 400px;
+   display: flex;
+   min-width: 250px;
+   width: 400px;
 }
 
 .owner_title {
-  margin-left: 6px;
+   margin-left: 6px;
 }
 
 .main_checkbox {
-  flex-basis: 40px;
-  width: 16px;
-  height: 16px;
-  margin-block: auto;
-  background: var(--main-background-color);
+   flex-basis: 40px;
+   width: 16px;
+   height: 16px;
+   margin-block: auto;
+   background: var(--main-background-color);
 }
 
 .recruter {
-  width: 144px;
+   width: 144px;
 }
 
 .created,
 .deadline {
-  width: 70px;
-  text-align: center;
+   width: 70px;
+   text-align: center;
 }
 
 .status {
-  width: 128px;
-  text-align: center;
+   width: 128px;
+   text-align: center;
 }
 
 .responses {
-  width: 60px;
-  text-align: center;
+   width: 60px;
+   text-align: center;
 }
 
 .create_vacancy_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
 .empty_container__description {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 16px;
 }
 
 .empty_container__text {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: center;
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+   text-align: center;
 }
 
 .empty_container__title {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 32px;
-  text-align: center;
+   font-size: 24px;
+   font-weight: 600;
+   line-height: 32px;
+   text-align: center;
 }
 
 .empty_container__btn {
-  height: 36px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  background-color: var(--main-color);
-  border-radius: 8px;
-  padding: 8px;
-  color: white;
+   height: 36px;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 20px;
+   background-color: var(--main-color);
+   border-radius: 8px;
+   padding: 8px;
+   color: white;
 }
 
 .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: -13px;
-  margin-bottom: 18px;
-  padding-inline: 8px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   margin-top: -13px;
+   margin-bottom: 18px;
+   padding-inline: 8px;
 }
 
 .previous_page,
 .next_page {
-  width: 32px;
-  height: 32px;
-  background-color: #eceef4;
+   width: 32px;
+   height: 32px;
+   background-color: #eceef4;
 }
 
 .page_number {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+   width: 32px;
+   height: 32px;
+   border-radius: 8px;
 }
 
 .page_number:hover {
-  color: black;
+   color: black;
 }
 
 .page_number__active {
-  background-color: var(--main-color);
-  color: white;
+   background-color: var(--main-color);
+   color: white;
 }
 
 /* адаптация для средних экранов */
 @media (min-width: 1556px) {
-  .main_top {
-    padding-right: 18.5vw;
-  }
+   .main_top {
+      padding-right: 18.5vw;
+   }
 }
 
 @media (min-width: 1281px) and (max-width: 1555px) {
-  .main_top {
-    padding-right: 19.5vw;
-  }
+   .main_top {
+      padding-right: 19.5vw;
+   }
 }
 
 @media (max-width: 1280px) {
-  .main_top {
-    gap: 1.8vw;
-    padding-right: 22vw;
-  }
+   .main_top {
+      gap: 1.8vw;
+      padding-right: 22vw;
+   }
 }
