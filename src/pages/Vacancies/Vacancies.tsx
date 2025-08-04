@@ -5,7 +5,6 @@ import axios from 'axios';
 import cn from 'classnames';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import type { TypeDispatch, TypeRootState } from '@/app/store/store';
-import { buttonActions } from '@/app/store/slices/button.mods.slice';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
 import Header from '@/widgets/Header/Header';
@@ -144,7 +143,7 @@ const Vacancies = () => {
                   className={cn(styles.action, styles.action_add)}
                   title="создать новую вакансию"
                   onClick={() => {
-                     dispatch(buttonActions.setMode('create'));
+                     // dispatch(buttonActions.setMode('create'));
                      navigate(`/vacancies/create`);
                      dispatch(vacanciesActions.resetVacancy());
                   }}
@@ -202,7 +201,6 @@ const Vacancies = () => {
                      <button
                         className={styles.empty_container__btn}
                         onClick={() => {
-                           dispatch(buttonActions.setMode('create'));
                            navigate('/vacancies/create');
                            dispatch(vacanciesActions.resetVacancy());
                         }}

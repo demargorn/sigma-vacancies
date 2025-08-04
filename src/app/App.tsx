@@ -34,8 +34,8 @@ const App = () => {
             <Route path="/login/passwordChange" element={<Login />} />
             <Route path="/" element={<Main />} />
             <Route path="/vacancies" element={<Vacancies />} />
-            <Route path="/vacancies/create" element={<CreateNewVacancy />} />
-            <Route path="/vacancies/edit/:id" element={<CreateNewVacancy />} />
+            <Route path="/vacancies/:mode" element={<CreateNewVacancy />} />
+            <Route path="/vacancies/:mode/:id" element={<CreateNewVacancy />} />
             <Route path="/active-vacancies" element={<ActiveVacancies />} />
             <Route path="/active-vacancies/:id" element={<ActiveVacancies />} />
             <Route path="*" element={<NotFound />} />

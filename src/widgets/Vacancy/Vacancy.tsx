@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
-import { buttonActions } from '@/app/store/slices/button.mods.slice';
+import type { TypeDispatch } from '@/app/store/store';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
 import type { IVacancy } from '@/interfaces/IVacancy.interface';
@@ -11,7 +10,6 @@ import styles from './Vacancy.module.css';
 
 const Vacancy = (props: IVacancy) => {
    const { vacancy } = useVacancyForm();
-   // const vacancies = useSelector((s: TypeRootState) => s.vacancies.items);
    const navigate = useNavigate();
    const dispatch = useDispatch<TypeDispatch>();
 
@@ -78,7 +76,6 @@ const Vacancy = (props: IVacancy) => {
                title="редактировать"
                className={styles.vacancy_edit_btn}
                onClick={() => {
-                  dispatch(buttonActions.setMode('edit'));
                   dispatch(vacanciesActions.setVacancyById(props.id!));
                   navigate(`/vacancies/edit/${props.id}`);
                }}

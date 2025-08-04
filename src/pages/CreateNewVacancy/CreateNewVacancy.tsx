@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router';
 import axios, { type AxiosResponse } from 'axios';
 import cn from 'classnames';
 import { editingConfig } from '@/widgets/SelectSidebar/config';
 import { GenericHome } from '@heathmont/moon-icons-tw';
 import { vacanciesActions } from '@/app/store/slices/vacancies.slice';
 import { useVacancyForm } from '@/shared/hooks/useVacancyForm';
-import type { TypeDispatch, TypeRootState } from '@/app/store/store';
+import type { TypeDispatch } from '@/app/store/store';
 import type { EditPageInfo, EditPollInfo } from '@/types/types';
 import Header from '@/widgets/Header/Header';
 import SelectSidebar from '@/widgets/SelectSidebar/SelectSidebar';
@@ -21,8 +21,8 @@ type TypeCreateNewVacancyProps = {
 
 const CreateNewVacancy = ({ pollInfo }: TypeCreateNewVacancyProps) => {
    const { vacancy, handleSubmitForm, isChanged } = useVacancyForm();
-   const mode = useSelector<TypeRootState>((s) => s.button.mode); /** управление состоянием кнопки */
 
+   const { mode } = useParams();
    const [editPage, setEditPage] = useState<string>(editingConfig[0].section);
    const [pageInfo, setPageInfo] = useState<EditPageInfo>();
    const [clicked, setClicked] = useState<boolean>(true); /** нажата ли кнопка Сохранить */
