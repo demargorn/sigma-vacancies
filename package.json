@@ -1,6 +1,5 @@
 {
-  "name": "vacancies",
-  "homepage": "https://demargorn.github.io/sigma-vacancies/",
+  "name": "sigma-vacancies",
   "private": true,
   "version": "1.0.0",
   "type": "module",
