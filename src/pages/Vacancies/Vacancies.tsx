@@ -90,6 +90,12 @@ const Vacancies = () => {
    }, [allChecked, someChecked]);
 
    useEffect(() => {
+      if (vacancies.length > 0) {
+         setCheckedStates(vacancies.map(() => false));
+      }
+   }, [vacancies]);
+
+   useEffect(() => {
       handleFetchVacancies();
    }, []);
 
@@ -178,7 +184,7 @@ const Vacancies = () => {
                         opened_date={v.opened_date}
                         deadline_date={v.deadline_date}
                         vacancy_status={v.vacancy_status}
-                        checked={checkedStates[i]}
+                        checked={checkedStates[i] ?? false}
                         onChange={(checked) => handleVacancyCheckboxChange(i, checked)}
                      />
                   ))
