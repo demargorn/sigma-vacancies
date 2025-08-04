@@ -6,6 +6,7 @@
    padding: 20px;
    background: var(--main-background-color);
    overflow-y: scroll;
+   z-index: 15;
 }
 
 .menu_btn {
